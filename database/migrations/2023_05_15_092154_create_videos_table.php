@@ -28,6 +28,7 @@ return new class extends Migration
                 ->onDelete('cascade');
 
             $table->string('path');
+            $table->boolean('is_moderated')->default(false);
             $table->boolean('is_deleted')->default(false);
             $table->timestamps();
         });
