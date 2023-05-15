@@ -7,7 +7,7 @@ const props = defineProps<Props>()
 </script>
 
 <template>
-  <div :class="darkMode ? 'bg-gray-600' : 'bg-white'">
+  <div :class="darkMode ? 'bg-gray-100' : 'bg-gray'">
     <div class="relative isolate px-6 pt-14 lg:px-8">
       <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
         <div class="text-center">
