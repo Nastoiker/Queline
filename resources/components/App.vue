@@ -1,15 +1,12 @@
 <template>
-    <div>
-        Page Not found
-    </div>
+<div>adsasda111s</div>
 </template>
-
 <script>
 export default {
-
+    name: "App"
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>
