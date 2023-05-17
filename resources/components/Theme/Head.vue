@@ -1,17 +1,12 @@
-<script setup lang="ts">
+<script setup>
 import { Head as InertiaHead } from '@inertiajs/vue3'
 
 defineOptions({
   name: 'ThemeHead',
 })
 
-interface Props {
-  item?: any
-  title?: string
-  description?: string
-}
 
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps(), {
   item: () => ({}),
   title: '',
   description: '',

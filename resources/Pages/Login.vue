@@ -133,7 +133,7 @@
 <script setup>
 import { useRouter } from "vue-router";
 import { ref } from "vue";
-import Alert from "../../Components/Alert/Alert.vue";
+import Alert from "../components/Alert/Alert.vue";
 
 const router = useRouter();
 

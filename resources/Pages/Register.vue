@@ -132,7 +132,7 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import Alert from "../../../lol/Queline/resources/views/Components/Alert/Alert.vue";
+import Alert from "../components/Alert/Alert.vue";
 
 const router = useRouter();
 const user = {
