@@ -23,7 +23,8 @@ return new class extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->string('banner');
+            $table->string('photo')->nullable();
+            $table->string('banner')->nullable();
             $table->dateTime('last_activity')->nullable();
             $table->rememberToken();
             $table->timestamps();
