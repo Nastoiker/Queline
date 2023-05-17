@@ -17,6 +17,11 @@ return new class extends Migration
             $table->string('description');
             $table->string('preview');
 
+            $table->foreignId('user_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
             $table->foreignId('category_id')
                 ->constrained()
                 ->onUpdate('cascade')
