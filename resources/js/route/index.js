@@ -2,6 +2,7 @@ import Home from "../../Pages/Home.vue";
 import Login from "../../Pages/Login.vue";
 import Register from "../../Pages/Register.vue";
 import {createRouter, createWebHistory} from "vue-router";
+import Profile from "../../Pages/Profile.vue";
 
 
 const router = createRouter({
@@ -24,7 +25,7 @@ const router = createRouter({
             meta: {
                 requiresAuth: true
             },
-            component: () => import('@/views/Dashboard.vue')
+            component: Profile,
         },
     ]
 });

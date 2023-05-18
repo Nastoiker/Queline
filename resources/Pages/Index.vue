@@ -1,9 +1,9 @@
-<script setup lang="ts">
-interface Props {
-  darkMode: boolean
-}
+<script setup>
+
 import '../../../lol/Queline/resources/css/app.css';
-const props = defineProps<Props>()
+const props = defineProps({
+    darkMode: Boolean,
+})
 </script>
 
 <template>

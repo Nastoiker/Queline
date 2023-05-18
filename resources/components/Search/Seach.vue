@@ -8,10 +8,12 @@ const props = defineProps({
 <template>
     <div>
         <label :for="id">{{label}}</label>
-        <input :id="id" :placeholder="placeholder" class />
+        <input  class="search__icon__input" :id="id" :placeholder="placeholder" class />
     </div>
 
 </template>
 <style scoped>
-
+input .search__icon__input {
+        background: url("../../assets/Search.svg");
+    }
 </style>
