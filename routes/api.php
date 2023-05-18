@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\VideoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,5 +24,7 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::group(['middleware' => 'authorize'], function () {
     Route::post('logout', [AuthController::class, 'logout']);
+
+    Route::post('/videos', [VideoController::class, 'store']);
 });
 
