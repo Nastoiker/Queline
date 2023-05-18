@@ -1,14 +1,15 @@
 import {defineStore} from "pinia";
+import {ref} from "vue";
 const url = "";
-interface Video {
-}
+
 export const useVideoStore = defineStore("videoStore", {
     state: () => ({
-
+        video: ref({});
     }),
     actions: {
         async getAllVideo() {
-            const res = await fetch(`${url}$`);
+            const res = await axios.get('/api/videos');
+            this.video = res.data;
         }
     }
 })

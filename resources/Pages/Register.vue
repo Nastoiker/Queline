@@ -11,12 +11,7 @@
         <p class="mt-2 text-center text-sm text-gray-600">
             Or
             {{ " " }}
-            <router-link
-                :to="{ name: 'Login' }"
-                class="font-medium text-indigo-600 hover:text-indigo-500"
-            >
-                login to your account
-            </router-link>
+
         </p>
     </div>
     <form class="mt-8 space-y-6" @submit="register">

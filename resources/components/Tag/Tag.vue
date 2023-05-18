@@ -1,5 +1,9 @@
 <script setup>
+
+defineOptions({
+    tag: String,
+})
 </script>
 <template>
-    <span></span>
+    <span>{{tag}}</span>
 </template>

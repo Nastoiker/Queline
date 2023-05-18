@@ -7,4 +7,4 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 const pinia = createPinia();
 const app = createApp(App);
 pinia.use(piniaPluginPersistedstate);
-app.use(router).use(pinia).mount('#app');
+app.use(pinia).use(router).mount('#app');
