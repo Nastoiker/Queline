@@ -6,12 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Video\VideoRequest;
 use App\Models\Tags;
 use App\Models\Video;
-use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use Laravel\Sanctum\PersonalAccessToken;
 
+
 class VideoController extends Controller
 {
+
     public function store(VideoRequest $request)
     {
         $video = $request->file('video');
@@ -27,9 +28,11 @@ class VideoController extends Controller
             $preview->save(storage_path($preview_path), null, 'webp');
         }
         $user_id = PersonalAccessToken::findToken($request->bearerToken())->tokenable_id;
+        $hash_id = base64_encode(uniqid());
 
         $created = Video::create([
             'title' => $request->input('title'),
+            'hash_id' => $hash_id,
             'description' => $request->input('description'),
             'preview' => $preview_path ?? null,
             'path' => $video_path,

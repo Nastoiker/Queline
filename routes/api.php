@@ -25,6 +25,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::group(['middleware' => 'authorize'], function () {
     Route::post('logout', [AuthController::class, 'logout']);
 
+
     Route::post('/videos', [VideoController::class, 'store']);
 });
 

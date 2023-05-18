@@ -17,6 +17,7 @@ class Video extends Model
         'ban_status_id',
         'is_moderated',
         'path',
-        'is_deleted'
+        'is_deleted',
+        'hash_id'
     ];
 }
