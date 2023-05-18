@@ -6,11 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\User\DefaultUserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class UserController extends Controller
 {
-    public function me($nickname)
+    public function me(Request $request)
     {
-        return new DefaultUserResource(User::where('nickname', $nickname)->first());
+        return new DefaultUserResource(User::findOrFail(PersonalAccessToken::findToken($request->bearerToken())));
     }
 }

@@ -27,7 +27,7 @@ Route::group(['middleware' => 'authorize'], function () {
     Route::post('logout', [AuthController::class, 'logout']);
 
     /* Пользователь */
-    Route::get('/@{nickname}', [UserController::class, 'me']);
+    Route::get('/user/me', [UserController::class, 'me']);
 
     /* Видео */
     Route::get('/videos', [VideoController::class, 'index']);
