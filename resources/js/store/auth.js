@@ -17,25 +17,24 @@ export const useAuthStore = defineStore("auth", {
         }
     },
     actions: {
-        async signUp(login, password) {
-            const res = await fetch("https://localhost:3000/register", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
+        async signUp(data) {
+            const res = await axios.post("api/register", {
+                    ...data
                 },
-                body: JSON.stringify({ email, password }),
-            });
-            const user = await res.json()
+                {
+                    headers: {
+                        'Content-type': 'multipart/form-data',
+                    }
+                }
+            );
+            const user =  res.data;
             this.user = user;
+            console.log(user);
             router.push('/')
         },
-        async signIn(email: string, password: string) {
-            const res = await fetch("https://localhost:3000/register", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ email, password }),
+        async signIn(data) {
+            const res = await axios.post("/api/login", {
+                data
             });
             const user = await res.json();
             this.user = user;
