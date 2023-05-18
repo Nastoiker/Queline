@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\BanStatus;
+use App\Models\Category;
 use App\Models\GradeStatus;
 use App\Models\Role;
 use Illuminate\Database\Seeder;
@@ -54,7 +55,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Пользователь'
         ]);
 
-
+        Category::factory(10)->create();
 
     }
 }
