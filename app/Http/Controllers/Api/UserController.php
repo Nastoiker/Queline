@@ -12,6 +12,7 @@ class UserController extends Controller
 {
     public function me(Request $request)
     {
-        return new DefaultUserResource(User::findOrFail(PersonalAccessToken::findToken($request->bearerToken())));
+        $token = PersonalAccessToken::findToken($request->bearerToken());
+        return new DefaultUserResource(User::findOrFail($token->tokenable_id));
     }
 }
