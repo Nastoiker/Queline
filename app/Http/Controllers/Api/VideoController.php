@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Video\VideoRequest;
+use App\Http\Resources\Video\DefaultVideoResource;
 use App\Models\Tags;
 use App\Models\Video;
 use Intervention\Image\Facades\Image;
@@ -12,6 +13,24 @@ use Laravel\Sanctum\PersonalAccessToken;
 
 class VideoController extends Controller
 {
+    public function index()
+    {
+        return DefaultVideoResource::collection(Video::all());
+    }
+
+    public function find($hash_id)
+    {
+        $video = Video::where('hash_id', $hash_id)->first();
+
+        if (!empty($video)) {
+            return new DefaultVideoResource($video);
+        } else {
+            return response()->json([
+                'Ничего не найдено'
+            ], 404);
+        }
+
+    }
 
     public function store(VideoRequest $request)
     {

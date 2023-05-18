@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('photo');
-            $table->bigInteger('parent_id')->nullable();
             $table->timestamps();
         });
     }
