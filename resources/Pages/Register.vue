@@ -124,7 +124,7 @@ const isPasswordConfirmed = computed(() => {
 function register(ev) {
     ev.preventDefault();
     loading.value = true;
-    if (isValidNickName.value == true && isValidEmail.value && isStrongPassword.value == true && isPasswordConfirmed.value == true ) {
+    if (isValidNickName.value && isValidEmail.value && isStrongPassword.value  && isPasswordConfirmed.value ) {
         auth.signUp({
             nickname:name.value,
             email: email.value,

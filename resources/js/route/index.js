@@ -3,7 +3,8 @@ import Login from "../../Pages/Login.vue";
 import Register from "../../Pages/Register.vue";
 import {createRouter, createWebHistory} from "vue-router";
 import Profile from "../../Pages/Profile.vue";
-
+import CreateVideo from "../../Pages/CreateVideo.vue";
+import editProfile from '@/Pages/editProfile.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,7 +12,9 @@ const router = createRouter({
         { path: '/', name: 'home', component: Home},
         { path: '/home', name: 'home', component: Home},
         { path: "/login", name: 'login', component: Login},
-        { path: "/register", name:'register' ,component: Register},
+        { path: "/register", name:'register' , component: Register},
+        { path: "/profile/editProfile", name:'editProfile' , component: editProfile},
+        { path: "/profile/createVideo", name:'create_video', component: CreateVideo},
         {
             path: '/signout',
             name: 'signout',

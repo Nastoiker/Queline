@@ -1,19 +1,26 @@
 <script setup>
+import {ref} from "vue";
+import {useVideoStore} from "@/js/store/video";
+
 const props = defineProps({
-    id: String,
     label: String,
-    placeholder: String,
 });
+const video = useVideoStore();
+const find = ref("");
+function findVideo(e) {
+    e.preventDefault();
+};
 </script>
 <template>
-    <div>
-        <label :for="id">{{label}}</label>
-        <input  class="search__icon__input" :id="id" :placeholder="placeholder" class />
-    </div>
+    <form @submit="findVideo">
+        <label>{{label}}</label>
+        <input  v-model="find"  :="$attrs"  class="search__icon__input"  @input="$emit('update:modelValue', $event.target.value)"/>
+    </form>
 
 </template>
 <style scoped>
-input .search__icon__input {
-        background: url("../../assets/Search.svg");
+ .search__icon__input {
+        background: url("../../assets/Search.svg") no-repeat;
     }
 </style>
+

@@ -44,27 +44,27 @@
         <input type="hidden" name="remember" value="true" />
         <div class="rounded-md shadow-sm -space-y-px">
             <div>
-                <BaseInput placeholder="nickname" class="w-full" label="Login" v-model="user.name" type="text"/>
+                <BaseInput placeholder="email" class="w-full" label="email" v-model="email" type="email"/>
             </div>
             <div>
-                <BaseInput placeholder="Пароль" class="w-full" label="Пароль" v-model="user.password" type="password"/>
+                <BaseInput placeholder="Пароль" class="w-full" label="Пароль" v-model="password" type="password"/>
             </div>
         </div>
 
-        <div class="flex items-center justify-between">
-            <div class="flex items-center">
-                <input
-                    id="remember-me"
-                    name="remember-me"
-                    type="checkbox"
-                    v-model="user.remember"
-                    class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-                />
-                <label for="remember-me" class="ml-2 block text-sm text-gray-900">
-                    Remember me
-                </label>
-            </div>
-        </div>
+<!--        <div class="flex items-center justify-between">-->
+<!--            <div class="flex items-center">-->
+<!--                <input-->
+<!--                    id="remember-me"-->
+<!--                    name="remember-me"-->
+<!--                    type="checkbox"-->
+<!--                    v-model="user.remember"-->
+<!--                    class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"-->
+<!--                />-->
+<!--                <label for="remember-me" class="ml-2 block text-sm text-gray-900">-->
+<!--                    Remember me-->
+<!--                </label>-->
+<!--            </div>-->
+<!--        </div>-->
 
         <div>
             <button
@@ -110,23 +110,35 @@
 </template>
 
 <script setup>
+const isValidEmail = computed(() => {
+    return loading.value ? (/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/).test(email.value.toString()) : null;
+});
+
+const isStrongPassword = computed(() => {
+    return loading.value ? password.value!=='' : null;
+});
+
 import { useRouter } from "vue-router";
-import { ref } from "vue";
+import {computed, ref} from "vue";
 import Alert from "../components/Alert/Alert.vue";
 import BaseInput from "@/components/Input/BaseInput.vue";
-
+import {useAuthStore} from "@/js/store/auth";
+const email = ref("");
+const password = ref("");
 const router = useRouter();
-
-const user = {
-    email: "",
-    password: "",
-};
+const auth = useAuthStore();
 let loading = ref(false);
-let errorMsg = ref("");
+const errorMsg = ref("");
 
 function login(ev) {
     ev.preventDefault();
-
     loading.value = true;
+    if (isValidEmail.value && isStrongPassword.value  ) {
+        auth.signIn({
+            email: email.value,
+            password: password.value,
+        });
+    }
+    errorMsg.value = 'Заполните все данные'
 }
 </script>

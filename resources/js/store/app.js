@@ -8,8 +8,7 @@ export const useAppStore = defineStore(
         }),
         getters: {},
         actions: {
-
-            toggleTheme(dark: boolean) {
+            toggleTheme(dark) {
                 if (dark) {
                     this.theme = 'dark';
                     document.documentElement.classList.add('dark');

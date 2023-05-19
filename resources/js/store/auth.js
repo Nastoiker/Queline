@@ -30,17 +30,27 @@ export const useAuthStore = defineStore("auth", {
             const user =  res.data;
             this.user = user;
             console.log(user);
-            router.push('/')
+            router.push(this.returnUrl || '/');
         },
         async signIn(data) {
             const res = await axios.post("/api/login", {
-                data
-            });
-            const user = await res.json();
+                ...data
+            },
+
+                {
+                    headers: {
+                        'Content-type': 'application/json',
+                    }
+                }
+            );
+            const user = res.data;
             this.user = user;
-            router.push('/')
+            localStorage.setItem('user_token', user.user_token);
+            router.push(this.returnUrl || '/');
         },
         logout() {
+            this.user = null;
+            localStorage.removeItem('user');
             this.$reset();
             router.push('/');
         }
