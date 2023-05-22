@@ -4,10 +4,11 @@
     </div>
 </template>
 <script setup>
+defineOptions({categories: Array});
     import {useCategoryStore} from "@/js/store/categories";
     import {useKeenSlider} from "keen-slider/vue";
     import CategoryesComponent from "@/components/Category/CategoryesComponent.vue";
-    const categories = useCategoryStore();
+    // const categories = useCategoryStore();
     const container = useKeenSlider({
         loop: true,
         mode: "free",

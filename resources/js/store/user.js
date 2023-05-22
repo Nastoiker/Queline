@@ -4,6 +4,7 @@ import {ref} from "vue";
 export const useUserStore = defineStore("user", {
     state: () => ({
         user: ref({}),
+        error: ref("")
     }),
     persist: true,
     actions: {
@@ -40,6 +41,23 @@ export const useUserStore = defineStore("user", {
             });
             this.user = user;
         },
+        async editBanner(data) {
+            const res = await axios.post('/api/user/editBanner', {
+                ...data
+            });
+            this.user = user;
+        },
+        async editAvatar(data) {
+            try {
+                const res = await axios.post('/api/user/ ', {
+                    ...data
+                });
+            } catch(e) {
+                this.error = e.message();
+            }
+
+        },
+
         async unLikeVideo(data) {
             const res = await axios.post('/api/videos', {
                 ...data
