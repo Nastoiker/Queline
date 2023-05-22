@@ -5,5 +5,5 @@ defineOptions({
 })
 </script>
 <template>
-    <span>{{tag}}</span>
+    <span class="bg-transparent border rounded-md">{{tag}}</span>
 </template>
