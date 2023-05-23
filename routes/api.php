@@ -38,5 +38,8 @@ Route::group(['middleware' => 'authorize'], function () {
     Route::get('/videos', [VideoController::class, 'index']);
     Route::get('/videos/{hash_id}', [VideoController::class, 'find']);
     Route::post('/videos', [VideoController::class, 'store']);
+
+    /* Получение видео определенного пользователя */
+    Route::get('/@{nickname}/videos', [VideoController::class, 'getVideosByNickname']);
 });
 

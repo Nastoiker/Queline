@@ -7,6 +7,7 @@ use App\Http\Requests\Video\VideoRequest;
 use App\Http\Resources\Video\DefaultVideoResource;
 use App\Models\Tags;
 use App\Models\Video;
+use App\Models\User;
 use Intervention\Image\Facades\Image;
 use Laravel\Sanctum\PersonalAccessToken;
 
@@ -74,5 +75,27 @@ class VideoController extends Controller
         ], 200, [
             'Content-type' => 'application/json'
         ]);
+    }
+
+    public function getVideosByNickname($nickname)
+    {
+        $user = User::where('nickname', $nickname)->first();
+
+        if (empty($user)) {
+            return response()->json([
+                'error' => 'Пользователя с теким никнеймом не существует'
+            ], 404, [
+                'Content-type' => 'application/json'
+            ]);
+        }
+
+        $videos = Video::where('user_id', $user->id)->get();
+
+        return response()->json([
+            'data' => DefaultVideoResource::collection($videos)
+        ], 200, [
+            'Content-type' => 'application/json'
+        ]);
+
     }
 }
