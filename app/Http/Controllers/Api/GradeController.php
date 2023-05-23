@@ -95,7 +95,7 @@ class GradeController extends Controller
         $user_id = PersonalAccessToken::findToken($request->bearerToken())->tokenable_id;
         $grade = Grade::where('video_id', $video->id)->where('user_id', $user_id)->first();
         $grade->delete();
-        
+
         return response()->json(null, 204);
     }
 

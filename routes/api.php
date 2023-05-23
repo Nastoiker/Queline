@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\GradeController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\VideoController;
@@ -50,6 +51,9 @@ Route::group(['middleware' => 'authorize'], function () {
     Route::post('/videos/{hash_id}/grade', [GradeController::class, 'grade']);
     Route::post('/videos/{hash_id}/grade', [GradeController::class, 'update']);
     Route::post('/videos/{hash_id}/grade', [GradeController::class, 'delete']);
+
+    Route::get('/videos/{hash_id}/comments', [CommentController::class, '']);
+    Route::post('/videos/{hash_id}/comments', [CommentController::class, 'store']);
 
 });
 
