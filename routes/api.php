@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\GradeController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\VideoController;
 use Illuminate\Support\Facades\Route;
@@ -44,5 +45,11 @@ Route::group(['middleware' => 'authorize'], function () {
 
     /* Получение видео определенного пользователя */
     Route::get('/@{nickname}/videos', [VideoController::class, 'getVideosByNickname']);
+
+    /* Оценка видео */
+    Route::post('/videos/{hash_id}/grade', [GradeController::class, 'grade']);
+    Route::post('/videos/{hash_id}/grade', [GradeController::class, 'update']);
+    Route::post('/videos/{hash_id}/grade', [GradeController::class, 'delete']);
+
 });
 
