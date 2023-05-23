@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Video;
 
 use App\Http\Resources\Category\DefaultCategoryResource;
+use App\Http\Resources\Tag\DefaultTagResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -26,7 +27,7 @@ class DefaultVideoResource extends JsonResource
             'is_moderated' => $this->is_moderated,
             'created_at' => $this->created_at,
             'grades' => [],
-            'tags' => []
+            'tags' => DefaultTagResource::collection($this->tags)
         ];
     }
 }

@@ -31,4 +31,9 @@ class Video extends Model
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
+
+    public function tags()
+    {
+        return $this->hasMany(Tags::class, 'video_id', 'id');
+    }
 }
