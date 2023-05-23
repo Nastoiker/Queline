@@ -9,6 +9,7 @@ use App\Http\Resources\Video\DefaultVideoResource;
 use App\Models\Tags;
 use App\Models\Video;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Laravel\Sanctum\PersonalAccessToken;
@@ -118,7 +119,26 @@ class VideoController extends Controller
 
     public function update($hash_id, VideoUpdateRequest $request)
     {
+
         $video = Video::where('hash_id', $hash_id)->first();
+
+        $user_id = PersonalAccessToken::findToken($request->bearerToken())->tokenable_id;
+
+        if ($video->is_deleted === 1) {
+            return response()->json([
+                'error' => 'Ничего не найдено'
+            ], 404, [
+                'Content-type' => 'application/json'
+            ]);
+        }
+
+        if ($video->user_id !== $user_id) {
+            return response()->json([
+                'error' => 'Вы не создатель этого видео'
+            ], 403, [
+                'Content-type' => 'application/json'
+            ]);
+        }
 
         if (empty($video)) {
             return response()->json([
@@ -168,9 +188,28 @@ class VideoController extends Controller
         ]);
     }
 
-    public function delete($hash_id)
+    public function delete($hash_id, Request $request)
     {
         $video = Video::where('hash_id', $hash_id)->first();
+
+        $user_id = PersonalAccessToken::findToken($request->bearerToken())->tokenable_id;
+
+        if ($video->is_deleted === 1) {
+            return response()->json([
+                'error' => 'Ничего не найдено'
+            ], 404, [
+                'Content-type' => 'application/json'
+            ]);
+        }
+
+        if ($video->user_id !== $user_id) {
+            return response()->json([
+                'error' => 'Вы не создатель этого видео'
+            ], 403, [
+                'Content-type' => 'application/json'
+            ]);
+        }
+
         $video->update(['is_deleted' => true]);
         return response()->json(null, 204);
     }
