@@ -9,7 +9,6 @@ use App\Http\Resources\Video\DefaultVideoResource;
 use App\Models\Tags;
 use App\Models\Video;
 use App\Models\User;
-use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Laravel\Sanctum\PersonalAccessToken;
@@ -19,21 +18,28 @@ class VideoController extends Controller
 {
     public function index()
     {
-        return DefaultVideoResource::collection(Video::all());
+        $videos = Video::where('is_deleted', 0);
+
+        if (empty($videos->count())) {
+            return response()->json([
+                'error' => 'Ничего не найдено'
+            ], 404);
+        }
+
+        return DefaultVideoResource::collection($videos->get());
     }
 
     public function find($hash_id)
     {
-        $video = Video::where('hash_id', $hash_id)->first();
+        $video = Video::where('hash_id', $hash_id)->where('is_deleted', 0);
 
-        if (!empty($video)) {
-            return new DefaultVideoResource($video);
-        } else {
+
+        if (empty($video->count())) {
             return response()->json([
-                'Ничего не найдено'
+                'error' => 'Ничего не найдено'
             ], 404);
         }
-
+        return new DefaultVideoResource($video->get());
     }
 
     public function store(VideoRequest $request)
@@ -92,10 +98,18 @@ class VideoController extends Controller
             ]);
         }
 
-        $videos = Video::where('user_id', $user->id)->get();
+        $videos = Video::where('user_id', $user->id)->where('is_deleted', 0);
+
+        if (empty($videos->count())) {
+            return response()->json([
+                'error' => 'Ничего не найдено'
+            ], 404, [
+                'Content-type' => 'application/json'
+            ]);
+        }
 
         return response()->json([
-            'data' => DefaultVideoResource::collection($videos)
+            'data' => DefaultVideoResource::collection($videos->get())
         ], 200, [
             'Content-type' => 'application/json'
         ]);
@@ -152,6 +166,13 @@ class VideoController extends Controller
         return response()->json([
             'message' => 'Данные изменены'
         ]);
+    }
+
+    public function delete($hash_id)
+    {
+        $video = Video::where('hash_id', $hash_id)->first();
+        $video->update(['is_deleted' => true]);
+        return response()->json(null, 204);
     }
 
 }
