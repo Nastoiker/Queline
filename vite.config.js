@@ -20,6 +20,7 @@ export default defineConfig({
     resolve: {
         alias: {
             '@': path.resolve(__dirname, './resources'),
+            'file': path.resolve(__dirname, './storage/'),
         },
     },
 

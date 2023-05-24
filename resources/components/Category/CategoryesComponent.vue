@@ -1,7 +1,9 @@
 <template>
-    <div>
-        <img :src="category.photo" alt="">
-        <h1>{{category.name}}</h1>
+    <div v-bind="$attrs" >
+<!--        <img :src="category.photo" alt="">-->
+        <div class="w-10 h-10 bg-white">
+        </div>
+        <h1>{{category.title}}</h1>
     </div>
 </template>
 <script setup>

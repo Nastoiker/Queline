@@ -1,24 +1,30 @@
 <template>
-    <form @submit="createVideo">
+    <form @submit.prevent="createVideo">
 
         <div class="sm:flex justify-around w-full ">
             <div>
                 <img class="mb-28" v-if="preview.length>0"  :src="preview" alt="fileName" style="max-height: 256px">
-                <video controls="controls" v-if="videoFile" :src="videoFile" alt="fileName" style="max-height: 256px" >
+                <video controls="controls" v-if="video" :src="video" alt="fileName" style="max-height: 256px" >
                 </video>
-                <InputFile  class="mb-32" @file-updated="videoHandle($event)" label="Видео"/>
-                <InputFile class="mb-32" @file-updated="previewImg($event)" label="Превью"/>
-                <Select  :options="['go', 'python', 'rust', 'javascript']"
-                         :default="'go'"
+                <BaseInput label="Видео" @change="videoHandle" type="file"/>-->
+                        <BaseInput label="Превью" @change="previewImg" type="file"/>
+                <InputFile  class="mb-32" @file-updated="videoHandle" label="Видео"/>
+                <InputFile accept="video/*" class="mb-32" @file-updated="previewImg" label="Превью"/>
+                <Select  :options="categories"
+                         :default="'Категория'"
                          class="select my-48 z-20"
-                         @input="console.log($event)"/>
+                         @input="setCategoryId"/>
             </div>
             <div>
+
                 <BaseInput label="Описание" v-model="Description"/>
                 <BaseInput label="Название" v-model="Title"/>
                 <ButtonComponent >Создать видео</ButtonComponent>
 
             </div>
+        </div>
+        <div class="my-48">
+            {{userStore.error}}
         </div>
 
 
@@ -27,44 +33,56 @@
 
 
 <script setup>
+
  import {useUserStore} from "@/js/store/user";
  import BaseInput from "@/components/Input/BaseInput.vue";
  import {ref} from "vue";
  import Select from '@/components/Select/Select.vue'
  import ButtonComponent from "@/components/Button/ButtonComponent.vue";
  import InputFile from "@/components/InputFile/InputFile.vue";
- const videoFile = ref();
+ import {useVideoStore} from "@/js/store/video";
+ import {storeToRefs} from "pinia";
+ const videoFile = ref({});
+ const video = ref();
  const Title = ref("");
  const Description = ref("");
-const preview = ref({})
+const preview = ref({});
+const previewFile = ref({});
+ const categoryId = ref("");
  const userStore = useUserStore();
- function previewImg($event) {
-     // preview.value = event.target.files[0];
-     preview.value =  $event.previewBase64;
+const api = useVideoStore();
+const setCategoryId = (id) => {
+    categoryId.value = id;
+}
+ const { categories } = storeToRefs(api);
+ api.getCategories();
+ function previewImg(file) {
+     // previewFile.value = file.target.files;
+     preview.value =  file.previewBase64;
+     previewFile.value = file;
      console.log(1);
  }
- function videoHandle($event) {
-     // videoFile.value = event.target.files[0];
-
-     videoFile.value = $event.previewBase64;
+ function videoHandle(file) {
+     // videoFile.value = file.target.files;
+     videoFile.value = file;
+     video.value = file.previewBase64;
  }
- const createVideo = (e) => {
-     e.preventDefault();
+ const createVideo = () => {
      console.log({
-         preview: preview.value,
+         preview: previewFile.value,
          video: videoFile.value,
          description: Description.value,
          title: Title.value,
          tags: [],
-         category_id: 1,
+         category_id: categoryId.value,
      });
      userStore.createVideo({
-            preview: preview.value,
+            preview: previewFile.value,
          video: videoFile.value,
          description: Description.value,
          title: Title.value,
          tags: [],
-         category_id: 1,
+         category_id: categoryId.value,
      });
 
  }

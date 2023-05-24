@@ -8,11 +8,11 @@
                 v-for="(option, i) of options"
                 :key="i"
                 @click="
-          selected = option;
+          selected = option.title;
           open = false;
-          $emit('input', option);
+          $emit('input', option.id);
         ">
-                {{ option }}
+                {{ option.title }}
             </div>
         </div>
     </div>

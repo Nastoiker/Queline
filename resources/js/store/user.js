@@ -4,10 +4,20 @@ import {ref} from "vue";
 export const useUserStore = defineStore("user", {
     state: () => ({
         user: ref({}),
+        video: ref({}),
         error: ref("")
     }),
     persist: true,
     actions: {
+        async getVideoUser() {
+            const res = await axios.get(`/api/@${this.user.nickname}/videos`, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('user_token')}`
+                }
+            });
+            console.log(res.data);
+            this.user.video =  res.data.data;
+        },
         async fetchUser() {
             if(!localStorage.getItem('user_token')) {
                 return;
@@ -23,17 +33,21 @@ export const useUserStore = defineStore("user", {
             this.user = user;
         },
         async createVideo(data) {
-            const res = await axios.post('/api/videos', {
-                ...data
-            },
-                {
-                    headers: {
-                        'Content-type': 'multipart/form-data',
-                        'Authorization': `Bearer ${localStorage.getItem('user_token')}`
+            try {
+                const res = await axios.post('/api/videos', {
+                        ...data
+                    },
+                    {
+                        headers: {
+                            'Content-type': 'multipart/form-data',
+                            'Authorization': `Bearer ${localStorage.getItem('user_token')}`
+                        }
                     }
-                }
                 );
-            this.user = user;
+            } catch (e) {
+                this.error = e.message;
+            }
+
         },
         async likeVideo(data) {
             const res = await axios.post('/api/videos', {
@@ -57,7 +71,19 @@ export const useUserStore = defineStore("user", {
             }
 
         },
-
+        async editProfile(data) {
+            const res = await axios.post(`/api/@${this.user.nickname}`, {
+                ...data
+            },
+                {
+                    headers: {
+                        'Content-type': 'multipart/form-data',
+                        'Accept': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('user_token')}`
+                    },
+                }
+                );
+        },
         async unLikeVideo(data) {
             const res = await axios.post('/api/videos', {
                 ...data

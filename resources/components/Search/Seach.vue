@@ -7,17 +7,20 @@ const props = defineProps({
 });
 const video = useVideoStore();
 const find = ref("");
-function findVideo(e) {
-    e.preventDefault();
+function findVideo() {
 };
 </script>
 <template>
-    <form @submit="findVideo" class="flex">
+    <form @submit.prevent="findVideo" class="flex">
         <input  v-model="find"  :="$attrs"  class="search__icon__input indent-16 bg-white"  @input="$emit('update:modelValue', $event.target.value)"/>
     </form>
 
 </template>
 <style scoped>
+    input:focus {
+        width: 600px;
+        transition: all 2s ease-in-out;
+    }
  .search__icon__input {
         background: url("../../assets/Search.svg") no-repeat;
      padding-right: 1rem;
