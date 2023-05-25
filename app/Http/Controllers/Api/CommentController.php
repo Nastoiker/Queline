@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Comment\CommentStoreRequest;
+use App\Http\Requests\Comment\CommentUpdateRequest;
+use App\Http\Resources\Comment\DefaultCommentResource;
 use App\Models\Comment;
 use App\Models\Video;
 use Illuminate\Http\Request;
@@ -21,8 +23,9 @@ class CommentController extends Controller
         }
 
         $video = $video->first();
+        $comments = Comment::where('video_id', $video->id)->where('re_id', null)->get();
 
-        return Comment::where('video_id', $video->id);
+        return DefaultCommentResource::collection($comments);
     }
 
     public function store($hash_id, CommentStoreRequest $request)
@@ -48,4 +51,27 @@ class CommentController extends Controller
             'message' => 'Комментарий добавлен'
         ]);
     }
+
+    public function update($id, CommentUpdateRequest $request)
+    {
+        $comment = Comment::findOrFail($id);
+        $comment->update([
+            'text' => $request->input('text')
+        ]);
+        return response()->json([
+            'message' => 'Комментарий изменен'
+        ], 200, [
+            'Content-type' => 'application/json'
+        ]);
+    }
+
+    public function delete($id)
+    {
+        $comment = Comment::findOrFail($id);
+        $comment->update([
+            'is_deleted' => true
+        ]);
+        return response(null, 204);
+    }
+
 }

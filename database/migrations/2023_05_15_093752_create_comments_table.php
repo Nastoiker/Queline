@@ -28,7 +28,7 @@ return new class extends Migration
 
             $table->bigInteger('re_id')->nullable();
 
-            $table->boolean('is_deleted');
+            $table->boolean('is_deleted')->default(false);
             $table->timestamps();
         });
     }

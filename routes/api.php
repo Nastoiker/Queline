@@ -29,6 +29,13 @@ Route::post('/login', [AuthController::class, 'login']);
 /* Категории */
 Route::get('/categories', [CategoryController::class, 'index']);
 
+/* Видео */
+Route::get('/videos', [VideoController::class, 'index']);
+Route::get('/videos/{hash_id}', [VideoController::class, 'find']);
+
+/* Получение видео определенного пользователя */
+Route::get('/@{nickname}/videos', [VideoController::class, 'getVideosByNickname']);
+
 
 Route::group(['middleware' => 'authorize'], function () {
     Route::post('logout', [AuthController::class, 'logout']);
@@ -37,23 +44,22 @@ Route::group(['middleware' => 'authorize'], function () {
     Route::get('/user/me', [UserController::class, 'me']);
 
     /* Видео */
-    Route::get('/videos', [VideoController::class, 'index']);
-    Route::get('/videos/{hash_id}', [VideoController::class, 'find']);
     Route::post('/videos', [VideoController::class, 'store']);
     Route::put('/videos/{hash_id}', [VideoController::class, 'update']);
     Route::delete('/videos/{hash_id}', [VideoController::class, 'delete']);
 
-
-    /* Получение видео определенного пользователя */
-    Route::get('/@{nickname}/videos', [VideoController::class, 'getVideosByNickname']);
 
     /* Оценка видео */
     Route::post('/videos/{hash_id}/grade', [GradeController::class, 'grade']);
     Route::post('/videos/{hash_id}/grade', [GradeController::class, 'update']);
     Route::post('/videos/{hash_id}/grade', [GradeController::class, 'delete']);
 
-    Route::get('/videos/{hash_id}/comments', [CommentController::class, '']);
+
+    /* Комментарии к видео */
+    Route::get('/videos/{hash_id}/comments', [CommentController::class, 'allFromVideo']);
     Route::post('/videos/{hash_id}/comments', [CommentController::class, 'store']);
 
+    Route::put('/comments/{id}', [CommentController::class, 'update']);
+    Route::delete('/comments/{id}', [CommentController::class, 'delete']);
 });
 

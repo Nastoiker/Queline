@@ -34,13 +34,12 @@ class VideoController extends Controller
     {
         $video = Video::where('hash_id', $hash_id)->where('is_deleted', 0);
 
-
         if (empty($video->count())) {
             return response()->json([
                 'error' => 'Ничего не найдено'
             ], 404);
         }
-        return new DefaultVideoResource($video->get());
+        return new DefaultVideoResource($video->first());
     }
 
     public function store(VideoRequest $request)
