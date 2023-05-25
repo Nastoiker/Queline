@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\User;
 
+use Exception;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -17,23 +18,34 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         $email = $request->input('email');
-        $user = User::where('email', $email)->first();
+        $user = User::where('email', $email);
 
-        if (Hash::check($request->input('password'), $user->password)) {
+        try {
+            if (empty($user->count())) {
+                throw new Exception();
+            }
+            $user = $user->first();
+
+            if (!Hash::check($request->input('password'), $user->password)) {
+                throw new Exception();
+            }
+
             $token = $user->createToken('user_token')->plainTextToken;
             return response()->json([
                 'user_token' => $token
             ], 200, [
                 'Content-type' => 'application/json'
             ]);
+
+        } catch (Exception) {
+            return response()->json([
+                'error' => [
+                    'message' => 'Неправильный логин или пароль'
+                ]
+            ], 422, [
+                'Content-type' => 'application/json'
+            ]);
         }
-        return response()->json([
-            'error' => [
-                'message' => 'Неправильный логин или пароль'
-            ]
-        ], 422, [
-            'Content-type' => 'application/json'
-        ]);
     }
 
     public function register(RegisterRequest $request)

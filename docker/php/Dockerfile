@@ -10,6 +10,8 @@ RUN apt-get update && apt-get install -y \
 	&& docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
 	&& docker-php-ext-install -j$(nproc) gd
 
+COPY ./php.ini /usr/local/etc/php/php.ini
+
 #CMD php artisan optimize
 #CMD php artisan cache:clear
 #CMD php artisan config:clear
