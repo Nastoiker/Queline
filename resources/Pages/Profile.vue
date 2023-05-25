@@ -6,14 +6,14 @@
                 :src="user.banner ? user.banner : defaultBanner"
                 alt=""
             />
-            <div class="-mt-20 flex justify-around items-center">
+            <div class="-mt-20 text-white flex justify-around items-center">
                 <div class="flex">
                     <img
                         class="w-48 h-48 rounded-full"
                         :src="user.photo ? user.photo : defaultAvatar"
                         alt=""
                     />
-                    <div class="self-end space-y-5 ml-10 mb-5">
+                    <div class="text-2xl self-end space-y-5 ml-10 mb-5">
                         <h1>{{ user.nickname }}</h1>
                         <h2>{{ user.email }}</h2>
                     </div>
@@ -25,17 +25,34 @@
                 </button>
             </div>
         </div>
-        <div class="flex border border-b-2">
-            <button @click="isActive = 'own_video'">
-                <h1 :class="{ isAciveS: isActive.value === 'own_video' }">
-                    Ваши видео
-                </h1></button
-            ><button>
-                <h1>Категория видео</h1></button
-            ><button>
-                <h1>Подписки</h1></button
-            ><button>
-                <h1>О каналае</h1>
+        <div class="flex text-2xl space-x-10 my-20 border-b-2">
+            <button
+                @click="setActiveTab('own_video')"
+                class="isAciveS"
+                :class="{ active: activeTab == 'own_video' }"
+            >
+                <h1>Ваши видео</h1>
+            </button>
+            <button
+                @click="setActiveTab('category')"
+                class="isAciveS"
+                :class="{ active: activeTab == 'category' }"
+            >
+                <h1>Категория видео</h1>
+            </button>
+            <button
+                @click="setActiveTab('folows')"
+                class="isAciveS"
+                :class="{ active: activeTab == 'folows' }"
+            >
+                <h1>Подписки</h1>
+            </button>
+            <button
+                @click="setActiveTab('about')"
+                class="isAciveS"
+                :class="{ active: activeTab == 'about' }"
+            >
+                <h1>О канале</h1>
             </button>
         </div>
 
@@ -49,6 +66,11 @@
                 <!--                        <video width="400" height="300" controls="controls"  :src="'../../storage' + video.path"></video>-->
             </div>
         </div>
+        <div class="text-white" v-if="activeTab === 'about'">
+            <div v-for="(value, index) of Object.entries(user)">
+                {{ value[0] + ": " + value[1] }}
+            </div>
+        </div>
         <router-link to="/profile/createVideo" name="create_video"
             >Создать видео</router-link
         >
@@ -56,10 +78,28 @@
 </template>
 <style scope>
 .isAciveS {
+    padding-bottom: 1rem;
     color: white;
-    border-bottom: 5px solid black;
+}
+.isAciveS.active {
+    border-bottom: 5px solid white;
+    transition: all 0.2s ease-in-out;
 }
 </style>
+<script>
+export default {
+    data() {
+        return {
+            activeTab: "own_video",
+        };
+    },
+    methods: {
+        setActiveTab(tab) {
+            this.activeTab = tab;
+        },
+    },
+};
+</script>
 <script setup>
 import defaultBanner from "@/assets/banner.jpg";
 import { computed, ref } from "vue";
