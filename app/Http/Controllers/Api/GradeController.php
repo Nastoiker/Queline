@@ -15,7 +15,7 @@ class GradeController extends Controller
     {
         $video = Video::where('hash_id', $hash_id)->where('is_deleted', 0);
 
-        if (empty($video->count)) {
+        if (empty($video->count())) {
             return response()->json([
                 'error' => 'Ничего не найдено'
             ], 404, [
@@ -23,7 +23,7 @@ class GradeController extends Controller
             ]);
         }
 
-        $video = $video->get();
+        $video = $video->first();
 
         $user_id = PersonalAccessToken::findToken($request->bearerToken())->tokenable_id;
 
@@ -51,7 +51,7 @@ class GradeController extends Controller
     {
         $video = Video::where('hash_id', $hash_id)->where('is_deleted', 0);
 
-        if (empty($video->count)) {
+        if (empty($video->count())) {
             return response()->json([
                 'error' => 'Ничего не найдено'
             ], 404, [
@@ -59,7 +59,7 @@ class GradeController extends Controller
             ]);
         }
 
-        $video = $video->get();
+        $video = $video->first();
 
         $user_id = PersonalAccessToken::findToken($request->bearerToken())->tokenable_id;
 
@@ -85,7 +85,7 @@ class GradeController extends Controller
     {
         $video = Video::where('hash_id', $hash_id)->where('is_deleted', 0);
 
-        if ($video->count()) {
+        if (empty($video->count())) {
             return response()->json([
                 'error' => 'Ничего не найдено'
             ], 404);

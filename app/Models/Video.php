@@ -36,4 +36,9 @@ class Video extends Model
     {
         return $this->hasMany(Tags::class, 'video_id', 'id');
     }
+
+    public function grades()
+    {
+        return $this->hasMany(Grade::class, 'video_id', 'id');
+    }
 }

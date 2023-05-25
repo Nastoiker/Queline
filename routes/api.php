@@ -51,8 +51,8 @@ Route::group(['middleware' => 'authorize'], function () {
 
     /* Оценка видео */
     Route::post('/videos/{hash_id}/grade', [GradeController::class, 'grade']);
-    Route::post('/videos/{hash_id}/grade', [GradeController::class, 'update']);
-    Route::post('/videos/{hash_id}/grade', [GradeController::class, 'delete']);
+    Route::put('/videos/{hash_id}/grade', [GradeController::class, 'update']);
+    Route::delete('/videos/{hash_id}/grade', [GradeController::class, 'delete']);
 
 
     /* Комментарии к видео */
