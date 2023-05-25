@@ -1,52 +1,51 @@
-<script setup>
-const props = defineProps({categories: Array});
-import CategoryesComponent from "@/components/Category/CategoryesComponent.vue";
-import { ref } from 'vue'
-// const some = ref([{title: 'asdasdasd'},{title: 'asdasdasd'},{title: 'asdasdasd'},{title: 'asdasdasd'},{title: 'asdasdasd'}]);
 
-</script>
 
-<style>
-@import url('keen-slider/keen-slider.css');
-</style>
 <script>
-import { useKeenSlider } from 'keen-slider/vue'
-import { ref } from 'vue'
+import {ref, toRef, watchEffect} from "vue";
+import { useKeenSlider } from "keen-slider/vue";
+import "keen-slider/keen-slider.min.css";
 
 export default {
-    setup(){
-        const someasdasd = ref([{title: 'asdasdasd'},{title: 'asdasdasd'},{title: 'asdasdasd'},{title: 'asdasdasd'},{title: 'asdasdasd'}]);
-        const opacities = ref([])
-        const [container] = useKeenSlider({
+    props: {
+        categories: {
+            type: Array
+        }
+    },
 
-            slides: this.props.categories.length,
-            detailsChanged: (s) => {
-                opacities.value = s.track.details.slides.map((slide) => slide.portion)
+    setup(props) {
+        const categoriesValue = ref(props.categories);
+        const [container] = useKeenSlider({
+            loop: true,
+            slides: {
+                perView: 'auto',
             },
-        })
-        return { container, someasdasd, opacities }
-    }
-}
+
+            // mode: "free-snap",
+        });
+
+        return { container, categoriesValue  };
+    },
+};
 </script>
+
+
 
 <template>
     <div>
-        Категории
-        <div ref="container" class="keen-slider">
-            <div  v-for="(c,index) of props.categories"  class="keen-slider__slide" :key="index" >
-
-                    <!--        <img :src="category.photo" alt="">-->
+        <div class="keen-slider w-full" ref="container">
+            <div
+                class="keen-slider__slide "
+                v-for="(src, idx) in categoriesValue"
+                :key="idx"
+            >
                 <div>
+                    <div class="bg-white w-10 h-10">
 
-                    <div class="w-10 h-10 bg-white">
                     </div>
-                    <h1>sadasd</h1>
-                    <h1 >{{c.title}}</h1>
+                    <h1>{{src.title}}</h1>
                 </div>
-                <!--            <CategoryesComponent class="keen-slider__slide" :category="c"/>-->
             </div>
         </div>
-
     </div>
 
 </template>

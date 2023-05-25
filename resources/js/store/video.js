@@ -5,11 +5,15 @@ const url = "";
 export const useVideoStore = defineStore("videoStore", {
     state: () => ({
         video: ref({}),
-        categories: ref([{}]),
+        categories: ref([{
+            title: 'asdasdas',
+        }]),
         currentVideo: ref({}),
     }),
     getters: {
-
+        returnCategories() {
+            return this.categories;
+        }
     },
     actions: {
         async getVideoUser(nickname) {

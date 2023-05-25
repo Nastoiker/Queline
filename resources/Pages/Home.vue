@@ -14,18 +14,22 @@
  // export default {
  //     components: {CategoryContainer}
  // }
- const userStore = useUserStore();
- const { user } = storeToRefs(userStore);
- userStore.fetchUser();
  const api = useVideoStore();
  const { categories } = storeToRefs(api);
  api.getCategories();
+ const userStore = useUserStore();
+ const { user } = storeToRefs(userStore);
+ userStore.fetchUser();
+
  console.log(categories);
 </script>
-<template>
+<template v-if="categories.length>0">
     <div>
         <MainHome />
-        <CategoryContainer :categories="categories" />
+        <div v-if="categories.length>5">
+            <CategoryContainer :categories="categories" />
+
+        </div>
         Home
         {{user}}
     </div>
