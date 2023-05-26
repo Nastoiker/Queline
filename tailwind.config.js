@@ -8,6 +8,15 @@ module.exports = {
         "./resources/**/*.svelte",
     ],
     theme: {
+        colors: {
+            transparent: 'transparent',
+            current: 'currentColor',
+            'white': '#E9E8ED',
+            'gray': '#6D6F73',
+            'black': '#303236',
+            'green': '#198585',
+
+        },
         extend: {},
     },
     plugins: [],

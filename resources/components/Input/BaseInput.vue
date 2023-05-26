@@ -1,7 +1,7 @@
 <template>
     <div class="text-start">
         <label :for="label">{{label}}</label>
-        <input ref="file" :id="label" class="w-full text-white p-2 bg-transparent" type="text" :="$attrs" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)">
+        <input ref="file" :id="label" class="w-full text-white p-2 border-black dark:border-white bg-transparent" type="text" :="$attrs" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)">
     </div>
 </template>
 <script setup>

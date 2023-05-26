@@ -1,19 +1,21 @@
 <template>
-    <header v-bind:class="{ scrolled: isScrolled }" class="max-w-[1500px] w-full fixed top-0 z-50">
-        <div class="flex justify-between items-center">
+    <header v-bind:class="{ scrolled: isScrolled }" class="left-0 right-0 w-full fixed top-0 z-50">
+        <div class="flex justify-between mx-auto max-w-[1500px] items-center">
             <Navbar />
             <Search label="поиск" />
+            <button @click="toggleDark()"><img class="h-8 w-8" :src="isDark ? Moon : Sun" alt=""></button>
             <div v-if="user" class="flex items-center">
                 <router-link to="/profile">
                     <img
-                        class="w-12 h-12 object-cover rounded-full"
+                        class="w-10 h-10 object-cover rounded-full"
                         :src="user.photo ? user.photo : defaultAvatar"
                         alt=""
                     />
                 </router-link>
-                <router-link to="/">
-                   выйти
-                </router-link>
+                <button @click="auth.logout()">
+                    выйти
+                </button>
+
             </div>
             <div v-else>
                 <router-link to="/register">Войти </router-link>
@@ -23,14 +25,22 @@
     </header>
 </template>
 <script setup>
+import Sun from '@/assets/sun.svg';
+import Moon from '@/assets/moon.svg';
+
 import Search from "@/components/Search/Seach.vue";
 import Navbar from "@/components/NavBar/Navbar.vue";
 import { storeToRefs } from "pinia";
 import defaultAvatar from "@/assets/user.jpg";
 import { useUserStore } from "../../js/store/user";
+import {useDark, useToggle} from "@vueuse/core";
+import {useAuthStore} from "@/js/store/auth";
 const userStore = useUserStore();
+const auth = useAuthStore();
 const { user } = storeToRefs(userStore);
 userStore.fetchUser();
+const isDark = useDark();
+const toggleDark = useToggle(isDark);
 </script>
 <script>
 export default {
@@ -57,6 +67,6 @@ export default {
 </script>
 <style scoped>
 header.scrolled {
-    background-color: #796d6d;
+    @apply bg-gray  text-white  ;
 }
 </style>

@@ -6,16 +6,16 @@
                 :src="user.banner ? user.banner : defaultBanner"
                 alt=""
             />
-            <div class="-mt-20 text-white flex justify-around items-center">
-                <div class="flex">
+            <div class="-mt-20 flex justify-around items-center">
+                <div class="  sm:flex text-start">
                     <img
-                        class="w-48 h-48 rounded-full"
+                        class="w-48 mx-auto h-48 rounded-full"
                         :src="user.photo ? user.photo : defaultAvatar"
                         alt=""
                     />
-                    <div class="text-2xl self-end space-y-5 ml-10 mb-5">
-                        <h1>{{ user.nickname }}</h1>
-                        <h2>{{ user.email }}</h2>
+                    <div class="text-2xl  self-end space-y-5 sm:ml-10 sm:mb-5">
+                        <h1 class="mx-auto">{{ user.nickname }}</h1>
+                        <h2 class="mx-auto"> {{ user.email }}</h2>
                     </div>
                 </div>
                 <button>
@@ -66,7 +66,7 @@
                 <!--                        <video width="400" height="300" controls="controls"  :src="'../../storage' + video.path"></video>-->
             </div>
         </div>
-        <div class="text-white" v-if="activeTab === 'about'">
+        <div v-if="activeTab === 'about'">
             <div v-for="(value, index) of Object.entries(user)">
                 {{ value[0] + ": " + value[1] }}
             </div>
@@ -79,7 +79,6 @@
 <style scope>
 .isAciveS {
     padding-bottom: 1rem;
-    color: white;
 }
 .isAciveS.active {
     border-bottom: 5px solid white;

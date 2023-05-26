@@ -1,6 +1,5 @@
 <template>
     <div>
-        <h1>Создание видео</h1>
         <CreateVideo />
     </div>
 </template>

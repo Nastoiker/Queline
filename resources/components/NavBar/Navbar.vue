@@ -6,24 +6,17 @@
             </svg>
             </button>
         <Transition name="slide-fade">
-            <div id="menu" class="p-2 sm:p-10 bg-gray-200 h-full top-0 fixed left-0 z-50 block w-[40vw] max-w-[400px]" @clickout="isOpen = !isOpen" v-if="isOpen">
+            <div id="menu" class="p-2 sm:p-10 bg-gray h-full top-0 fixed left-0 z-50 block w-[40vw] max-w-[400px]" @clickout="isOpen = !isOpen" v-if="isOpen">
                 <button  class=" w-full" @click="isOpen = !isOpen"><svg class="ml-auto" width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="28.9691" height="3.10383" rx="1.55192" transform="matrix(0.707129 0.707085 -0.707129 0.707085 2.51465 0.321777)" fill="#D9D9D9"/>
                     <rect width="28.9691" height="3.10383" rx="1.55192" transform="matrix(0.707129 -0.707085 0.707129 0.707085 0 20.4838)" fill="#D9D9D9"/>
                 </svg>
                 </button>
-                <p>
-                    видео лайки
-                </p>
-                <p>
-                    видео лайки
-                </p>
-                <p>
-                    видео лайки
-                </p>
-                <p>
-                    видео лайки
-                </p>
+                <ul>
+                    <li v-for="(link, index) in links" :key="index">
+                        <router-link :to="{ path: link.path }">{{ link.name }}</router-link>
+                    </li>
+                </ul>
             </div>
         </Transition>
     </div>
@@ -58,11 +51,12 @@ import {ref} from "vue";
 </style>
 <script>
 import {ref} from "vue";
-
+import  router from '@/js/route/index';
 export default  {
     data () {
         return {
             isOpen: false,
+            links: [],
         }
     },
     methods: {
@@ -80,7 +74,17 @@ export default  {
     },
     created: function() {
         window.addEventListener('click', this.outElement);
+
+        const routes = router.getRoutes()
+
+        this.links = routes.map(route => {
+            return {
+                path: route.path,
+                name: route.name ? route.name : route.path.substring(1),
+            }
+        })
     },
+
 
 }
 

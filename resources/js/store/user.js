@@ -5,7 +5,7 @@ export const useUserStore = defineStore("user", {
     state: () => ({
         user: ref({}),
         video: ref({}),
-        error: ref("")
+        errorCreate: ref("")
     }),
     persist: true,
     actions: {
@@ -44,8 +44,9 @@ export const useUserStore = defineStore("user", {
                         }
                     }
                 );
+                this.errorCreate =null;
             } catch (e) {
-                this.error = e.message;
+                this.errorCreate = e.message;
             }
 
         },

@@ -6,8 +6,7 @@
                 <img class="mb-28" v-if="preview.length>0"  :src="preview" alt="fileName" style="max-height: 256px">
                 <video controls="controls" v-if="video" :src="video" alt="fileName" style="max-height: 256px" >
                 </video>
-                <BaseInput label="Видео" @change="videoHandle" type="file"/>-->
-                        <BaseInput label="Превью" @change="previewImg" type="file"/>
+
                 <InputFile  class="mb-32" @file-updated="videoHandle" label="Видео"/>
                 <InputFile accept="video/*" class="mb-32" @file-updated="previewImg" label="Превью"/>
                 <Select  :options="categories"
@@ -19,12 +18,12 @@
 
                 <BaseInput label="Описание" v-model="Description"/>
                 <BaseInput label="Название" v-model="Title"/>
-                <ButtonComponent >Создать видео</ButtonComponent>
+                <ButtonComponent class="my-10">Создать видео</ButtonComponent>
 
             </div>
         </div>
         <div class="my-48">
-            {{userStore.error}}
+            {{userStore.errorCreate}}
         </div>
 
 
