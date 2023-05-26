@@ -70,6 +70,7 @@ class AuthController extends Controller
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
             'photo' => $profile_path ?? null,
+            'description' => $request->input('description'),
             'banner' => $banner_path ?? null
         ]);
         $token = $user->createToken('user_token')->plainTextToken;

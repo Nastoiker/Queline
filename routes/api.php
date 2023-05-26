@@ -43,6 +43,9 @@ Route::group(['middleware' => 'authorize'], function () {
 
     /* Пользователь */
     Route::get('/user/me', [UserController::class, 'me']);
+    Route::put('user/change/photo', [UserController::class, 'updatePhoto']);
+    Route::put('user/change/banner', [UserController::class, 'updateBanner']);
+    Route::put('user/change/nickname', [UserController::class, 'updateNickname']);
 
     /* Видео */
     Route::post('/videos', [VideoController::class, 'store']);
@@ -59,10 +62,10 @@ Route::group(['middleware' => 'authorize'], function () {
     /* Комментарии к видео */
     Route::get('/videos/{hash_id}/comments', [CommentController::class, 'allFromVideo']);
     Route::post('/videos/{hash_id}/comments', [CommentController::class, 'store']);
-
     Route::put('/comments/{id}', [CommentController::class, 'update']);
     Route::delete('/comments/{id}', [CommentController::class, 'delete']);
 
+    /* Оценки комментариев */
     Route::post('/comments/{id}/grade', [CommentGradeController::class, 'store']);
     Route::put('/comments/{id}/grade', [CommentGradeController::class, 'update']);
     Route::delete('/comments/{id}/grade', [CommentGradeController::class, 'delete']);

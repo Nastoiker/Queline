@@ -25,6 +25,7 @@ class RegisterRequest extends FormRequest
             'nickname' => 'required|string|unique:users,nickname|min:2',
             'email' => 'required|email:rfc|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
+            'description' => 'string',
             'photo' => 'image:jpg,png,webp'
         ];
     }
