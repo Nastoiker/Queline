@@ -25,4 +25,9 @@ class Comment extends Model
     {
         return $this->hasMany(Comment::class, 're_id', 'id');
     }
+
+    public function grades() {
+        return $this->hasMany(CommentGrade::class, 'comment_id', 'id');
+    }
+
 }

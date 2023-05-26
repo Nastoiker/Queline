@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CommentController;
+use App\Http\Controllers\Api\CommentGradeController;
 use App\Http\Controllers\Api\GradeController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\VideoController;
@@ -61,5 +62,9 @@ Route::group(['middleware' => 'authorize'], function () {
 
     Route::put('/comments/{id}', [CommentController::class, 'update']);
     Route::delete('/comments/{id}', [CommentController::class, 'delete']);
+
+    Route::post('/comments/{id}/grade', [CommentGradeController::class, 'store']);
+    Route::put('/comments/{id}/grade', [CommentGradeController::class, 'update']);
+    Route::delete('/comments/{id}/grade', [CommentGradeController::class, 'delete']);
 });
 

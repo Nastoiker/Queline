@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Comment;
 
+use App\Http\Resources\CommentGrade\DefaultCommentGradeResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -20,8 +21,8 @@ class DefaultCommentResource extends JsonResource
             'text' => $this->text,
             'is_deleted' => $this->is_deleted,
             'created_at' => $this->created_at,
-            're' => DefaultCommentResource::collection($this->re)
-
+            're' => DefaultCommentResource::collection($this->re),
+            'grades' => DefaultCommentGradeResource::collection($this->grades)
         ];
     }
 }
