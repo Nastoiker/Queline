@@ -112,9 +112,9 @@ const videoStore = useVideoStore();
 const userStore = useUserStore();
 const userInfo = userStore.fetchUser();
 userStore.fetchUser();
-userStore.getVideoUser();
 const { user } = storeToRefs(userStore);
 const isActive = ref("");
+userStore.getVideoUser();
 
 console.log(user);
 </script>

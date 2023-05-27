@@ -4,5 +4,5 @@
     </div>
 </template>
 <script setup>
-const videoId = this.$
+const videoId = this.$route.params.id;
 </script>

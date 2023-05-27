@@ -7,8 +7,8 @@ import Navbar from '@/components/NavBar/Navbar.vue'
 </script>
 
 <template>
-<div>
-    <div class="max-w-screen-2xl mx-auto">
+<div class=" overflow-hidden">
+    <div class="max-w-screen-2xl mx-auto ">
         <Header  />
         <div class="my-20">
             <router-view />

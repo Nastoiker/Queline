@@ -1,11 +1,12 @@
 <template>
     <div class="text-center mx-5 min-w-20" v-bind="$attrs">
-        <!--        <img :src="category.photo" class="rounded-md" alt="">-->
-        <div class="w-full min-w-10 h-48 rounded-md bg-white"></div>
+<!--        <img :src="category.photo"  class="w-full min-w-10 h-48 rounded-md bg-white" />-->
+        <img :src="categoryDefault"  class="w-full min-w-10 h-auto rounded-md bg-white" />
         <h1>{{ category.title }}</h1>
     </div>
 </template>
 <script setup>
+import categoryDefault from '@/assets/category.jpg'
 const props = defineProps({
     category: Object,
 });

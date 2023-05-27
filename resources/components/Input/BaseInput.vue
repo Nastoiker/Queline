@@ -27,7 +27,6 @@ input {
     input::placeholder {
         font-size: 1rem;
         font-weight: bold;
-        color: black;
         margin: 5px;
     }
 

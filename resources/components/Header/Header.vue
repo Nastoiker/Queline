@@ -17,10 +17,7 @@
                 </button>
 
             </div>
-            <div v-else>
-                <router-link to="/register">Войти </router-link>
-                <router-link to="/login">Зарегестрироваться </router-link>
-            </div>
+
         </div>
     </header>
 </template>

@@ -26,7 +26,7 @@
     <div>
 
         <MainHome />
-        <div v-if="categories.length>5" class="dark:bg-white">
+        <div v-if="categories.length>5">
             <CategoryContainer :categories="categories" />
 
         </div>

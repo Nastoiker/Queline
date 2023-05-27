@@ -142,7 +142,7 @@ const isValidEmail = computed(() => {
 });
 
 const isValidNickName = computed(() => {
-    return loading.value ? name.value.length > 7 : null;
+    return loading.value ? name.value.length > 2 : null;
 });
 
 const isStrongPassword = computed(() => {
