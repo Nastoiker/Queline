@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Video\VideoBanRequest;
 use App\Http\Requests\Video\VideoRequest;
 use App\Http\Requests\Video\VideoUpdateRequest;
 use App\Http\Resources\Video\DefaultVideoResource;
@@ -213,4 +214,40 @@ class VideoController extends Controller
         return response()->json(null, 204);
     }
 
+    public function ban($hash_id, VideoBanRequest $request)
+    {
+        $video = Video::where('hash_id', $hash_id);
+
+        if (empty($video->count())) {
+            return response()->json([
+                'error' => 'Видео не найдено'
+            ], 404);
+        }
+
+        $video->first()->update([
+            'ban_status_id' => $request->input('ban_status')
+        ]);
+        return response()->json([
+            'message' => 'Ограничение добавлено'
+        ]);
+    }
+
+    public function moderate($hash_id)
+    {
+        $video = Video::where('hash_id', $hash_id);
+
+        if (empty($video->count())) {
+            return response()->json([
+                'error' => 'Видео не найдено'
+            ], 404);
+        }
+
+        $video->first()->update([
+            'is_moderated' => true
+        ]);
+
+        return response()->json([
+            'message' => 'Видео отмечено как прошедшее модерацию'
+        ]);
+    }
 }

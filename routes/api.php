@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\BanStatusController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\CommentGradeController;
@@ -67,7 +68,6 @@ Route::group(['middleware' => 'authorize'], function () {
 
 
     /* Комментарии к видео */
-
     Route::post('/videos/{hash_id}/comments', [CommentController::class, 'store']);
     Route::put('/comments/{id}', [CommentController::class, 'update']);
     Route::delete('/comments/{id}', [CommentController::class, 'delete']);
@@ -80,5 +80,13 @@ Route::group(['middleware' => 'authorize'], function () {
     /* Подписчики */
     Route::post('/@{nickname}/subscribe', [SubscribeController::class, 'store']);
     Route::delete('/@{nickname}/subscribe', [SubscribeController::class, 'delete']);
+
+    /* Роуты админа */
+    Route::group(['middleware' => 'admin'], function () {
+       Route::put('/videos/{hash_id}/ban', [VideoController::class, 'ban']);
+       Route::put('/videos/{hash_id}/moderate', [VideoController::class, 'moderate']);
+       Route::get('/ban_statuses', [BanStatusController::class, 'all']);
+    });
+
 });
 
