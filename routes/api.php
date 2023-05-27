@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\CommentGradeController;
 use App\Http\Controllers\Api\GradeController;
+use App\Http\Controllers\Api\SubscribeController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\VideoController;
 use Illuminate\Support\Facades\Route;
@@ -37,7 +38,13 @@ Route::get('/videos/{hash_id}', [VideoController::class, 'find']);
 /* Получение видео определенного пользователя */
 Route::get('/@{nickname}/videos', [VideoController::class, 'getVideosByNickname']);
 
+/* Комментарии к видео */
+Route::get('/videos/{hash_id}/comments', [CommentController::class, 'allFromVideo']);
 
+/* Подписчики */
+Route::get('/@{nickname}/subscribers', [SubscribeController::class, 'getAllByNickname']);
+
+/* Роуты с необходимой авторизацией */
 Route::group(['middleware' => 'authorize'], function () {
     Route::post('logout', [AuthController::class, 'logout']);
 
@@ -60,7 +67,7 @@ Route::group(['middleware' => 'authorize'], function () {
 
 
     /* Комментарии к видео */
-    Route::get('/videos/{hash_id}/comments', [CommentController::class, 'allFromVideo']);
+
     Route::post('/videos/{hash_id}/comments', [CommentController::class, 'store']);
     Route::put('/comments/{id}', [CommentController::class, 'update']);
     Route::delete('/comments/{id}', [CommentController::class, 'delete']);
@@ -69,5 +76,9 @@ Route::group(['middleware' => 'authorize'], function () {
     Route::post('/comments/{id}/grade', [CommentGradeController::class, 'store']);
     Route::put('/comments/{id}/grade', [CommentGradeController::class, 'update']);
     Route::delete('/comments/{id}/grade', [CommentGradeController::class, 'delete']);
+
+    /* Подписчики */
+    Route::post('/@{nickname}/subscribe', [SubscribeController::class, 'store']);
+    Route::delete('/@{nickname}/subscribe', [SubscribeController::class, 'delete']);
 });
 

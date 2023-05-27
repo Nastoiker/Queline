@@ -3,14 +3,14 @@
         <div>
             <img
                 class="w-full h-48 object-cover"
-                :src="user.banner ? user.banner : defaultBanner"
+                :src="user.banner ? '/storage' + user.banner : defaultBanner"
                 alt=""
             />
             <div class="-mt-20 flex justify-around items-center">
                 <div class="  sm:flex text-start">
                     <img
                         class="w-48 mx-auto h-48 rounded-full"
-                        :src="user.photo ? user.photo : defaultAvatar"
+                        :src="user.photo ? '/storage' + user.photo : defaultAvatar"
                         alt=""
                     />
                     <div class="text-2xl  self-end space-y-5 sm:ml-10 sm:mb-5">
@@ -61,7 +61,7 @@
                 {{ video.title }}
                 <VideoComponent
                     :img="video.preview"
-                    :path="'/storage' + video.path"
+                    :path="video.path"
                 />
                 <!--                        <video width="400" height="300" controls="controls"  :src="'../../storage' + video.path"></video>-->
             </div>

@@ -7,7 +7,6 @@ export const useUserStore = defineStore("user", {
         video: ref({}),
         errorCreate: ref("")
     }),
-    persist: true,
     actions: {
         async getVideoUser() {
             const res = await axios.get(`/api/@${this.user.nickname}/videos`, {
