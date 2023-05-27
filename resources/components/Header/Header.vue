@@ -1,6 +1,6 @@
 <template>
     <header v-bind:class="{ scrolled: isScrolled }" class="left-0 right-0 w-full fixed top-0 z-50">
-        <div class="flex justify-between mx-auto max-w-[1500px] items-center">
+        <div class="flex justify-between mx-auto max-w-[1720px] items-center">
             <Navbar />
             <Search label="поиск" />
             <button @click="toggleDark()"><img class="h-8 w-8" :src="isDark ? Moon : Sun" alt=""></button>

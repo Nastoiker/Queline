@@ -28,6 +28,7 @@ export const useAuthStore = defineStore("auth", {
                 }
             );
             const user =  res.data;
+            localStorage.setItem('user_token', user.user_token);
             this.user = user;
             console.log(user);
             router.push(this.returnUrl || '/');

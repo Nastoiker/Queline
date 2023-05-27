@@ -24,7 +24,6 @@ function findVideo() {
 </template>
 <style scoped>
 input:focus {
-    width: 100%;
     transition: all 2s ease-in-out;
     border: 2px solid;
 }
