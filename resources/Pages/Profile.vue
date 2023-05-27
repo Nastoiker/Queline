@@ -110,7 +110,6 @@ import VideoComponent from "@/components/Video/VideoComponent.vue";
 import { useVideoStore } from "@/js/store/video";
 const videoStore = useVideoStore();
 const userStore = useUserStore();
-const userInfo = userStore.fetchUser();
 userStore.fetchUser();
 const { user } = storeToRefs(userStore);
 const isActive = ref("");

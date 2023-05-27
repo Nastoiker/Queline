@@ -12,4 +12,6 @@ class CategoryController extends Controller
     public function index() {
         return DefaultCategoryResource::collection(Category::all());
     }
+
+
 }
