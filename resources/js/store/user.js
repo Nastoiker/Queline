@@ -8,15 +8,6 @@ export const useUserStore = defineStore("user", {
         errorCreate: ref("")
     }),
     actions: {
-        async getVideoUser() {
-            const res = await axios.get(`/api/@${this.user.nickname}/videos`, {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('user_token')}`
-                }
-            });
-            console.log(res.data);
-            this.user.video =  res.data.data;
-        },
         async fetchUser() {
             if(!localStorage.getItem('user_token')) {
                 return;

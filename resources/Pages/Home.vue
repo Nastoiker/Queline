@@ -24,7 +24,6 @@
 </script>
 <template v-if="categories.length>0">
     <div>
-
         <MainHome />
         <div v-if="categories.length>5">
             <CategoryContainer :categories="categories" />

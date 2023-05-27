@@ -18,7 +18,7 @@ export const useVideoStore = defineStore("videoStore", {
     actions: {
         async getVideoUser(nickname) {
             const res = await axios.get(`/api/@${nickname}/videos`);
-            this.video =  res.data;
+            this.video =  res.data.data;
         },
         async getAllVideo() {
             const res = await axios.get('/api/videos');

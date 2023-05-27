@@ -105,7 +105,6 @@ import { computed, ref } from "vue";
 import defaultAvatar from "@/assets/user.jpg";
 import { useUserStore } from "../js/store/user";
 import { storeToRefs } from "pinia";
-import Banner from "@/assets/banner.jpg";
 import VideoComponent from "@/components/Video/VideoComponent.vue";
 import { useVideoStore } from "@/js/store/video";
 const videoStore = useVideoStore();
@@ -113,7 +112,5 @@ const userStore = useUserStore();
 userStore.fetchUser();
 const { user } = storeToRefs(userStore);
 const isActive = ref("");
-userStore.getVideoUser();
-
-console.log(user);
+videoStore.getVideoUser(user.nickname);
 </script>
