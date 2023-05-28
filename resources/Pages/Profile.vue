@@ -1,18 +1,12 @@
 <template>
     <div>
         <div>
-            <img
-                class="w-full h-48 object-cover"
-                :src="user.banner ? '/storage' + user.banner : defaultBanner"
-                alt=""
-            />
+            <Bunner :defaultSrc="user.banner ? '/storage' + user.banner : defaultBanner" @file-updated="uploadBunner"  class="w-full object-cover  h-full" />
+
             <div class="-mt-20 flex justify-around items-center">
                 <div class="  sm:flex text-start">
-                    <img
-                        class="w-48 mx-auto h-48 rounded-full"
-                        :src="user.photo ? '/storage' + user.photo : defaultAvatar"
-                        alt=""
-                    />
+                    <Avatar  :defaultSrc="user.photo ? '/storage' + user.photo : defaultAvatar"  @input="uploadImage" class="w-48 mx-auto h-48 rounded-full"/>
+
                     <div class="text-2xl  self-end space-y-5 sm:ml-10 sm:mb-5">
                         <h1 class="mx-auto">{{ user.nickname }}</h1>
                         <h2 class="mx-auto"> {{ user.email }}</h2>
@@ -112,5 +106,13 @@ const userStore = useUserStore();
 userStore.fetchUser();
 const { user } = storeToRefs(userStore);
 const isActive = ref("");
+const uploadImage = (e) => {
+    AvatarFile.value = e;
+}
+const AvatarFile = ref({});
+const BunnerFile = ref({});
+const uploadBunner = (e) => {
+    BunnerFile.value = e;
+}
 videoStore.getVideoUser(user.nickname);
 </script>
