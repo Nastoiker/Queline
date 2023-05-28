@@ -50,12 +50,12 @@
             </button>
         </div>
 
-        <div v-for="video of user.video">
+        <div v-for="v of video">
             <div>
-                {{ video.title }}
+                {{ v.title }}
                 <VideoComponent
-                    :img=" '/storage' + video.preview"
-                    :path="'/storage'+ video.path"
+                    :img=" '/storage' + v.preview"
+                    :path="'/storage'+ v.path"
                 />
                 <!--                        <video width="400" height="300" controls="controls"  :src="'../../storage' + video.path"></video>-->
             </div>
@@ -107,6 +107,7 @@ const videoStore = useVideoStore();
 const userStore = useUserStore();
 userStore.fetchUser();
 const { user } = storeToRefs(userStore);
+const { video } = storeToRefs(videoStore);
 const isActive = ref("");
 const uploadImage = (e) => {
     AvatarFile.value = e;
@@ -126,5 +127,5 @@ const uploadBunner = (e) => {
         banner: AvatarFile.value,
     });
 }
-videoStore.getVideoUser(user.nickname);
+videoStore.getVideoUser('asdasdasdasd2');
 </script>
