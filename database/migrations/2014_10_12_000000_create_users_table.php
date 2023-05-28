@@ -13,8 +13,13 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('nickname')->unique();
-            $table->string('email')->unique();
+
+            $table->string('nickname')
+                ->unique();
+
+            $table->string('email')
+                ->unique();
+
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
 
@@ -23,7 +28,10 @@ return new class extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->text('description')->nullable();
+            $table->text('description')
+                ->nullable()
+                ->fulltext();
+
             $table->string('photo')->nullable();
             $table->string('banner')->nullable();
             $table->dateTime('last_activity')->nullable();

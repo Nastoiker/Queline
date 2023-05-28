@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\CommentGradeController;
 use App\Http\Controllers\Api\GradeController;
+use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Api\SubscribeController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\VideoController;
@@ -44,6 +45,9 @@ Route::get('/videos/{hash_id}/comments', [CommentController::class, 'allFromVide
 
 /* Подписчики */
 Route::get('/@{nickname}/subscribers', [SubscribeController::class, 'getAllByNickname']);
+
+/* Поиск */
+Route::get('/search', [SearchController::class, 'index']);
 
 /* Роуты с необходимой авторизацией */
 Route::group(['middleware' => 'authorize'], function () {

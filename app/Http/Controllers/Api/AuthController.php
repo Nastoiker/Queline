@@ -65,7 +65,16 @@ class AuthController extends Controller
             $banner->save(storage_path($banner_path), null, 'webp');
         }
 
-        $user = User::create([
+//        $user = User::create([
+//            'nickname' => $request->input('nickname'),
+//            'email' => $request->input('email'),
+//            'password' => Hash::make($request->input('password')),
+//            'photo' => $profile_path ?? null,
+//            'description' => $request->input('description'),
+//            'banner' => $banner_path ?? null
+//        ]);
+
+        $user = new User([
             'nickname' => $request->input('nickname'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
@@ -73,6 +82,7 @@ class AuthController extends Controller
             'description' => $request->input('description'),
             'banner' => $banner_path ?? null
         ]);
+        $user->save();
         $token = $user->createToken('user_token')->plainTextToken;
         return response()->json([
             'user_token' => $token

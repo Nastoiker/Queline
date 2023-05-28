@@ -5,10 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use Laravel\Scout\Attributes\SearchUsingFullText;
+use Laravel\Scout\Attributes\SearchUsingPrefix;
+use Laravel\Scout\Searchable;
 
 class Video extends Model
 {
-    use HasFactory;
+    use HasFactory, Searchable;
+
     protected $fillable = [
         'title',
         'description',
@@ -21,6 +25,18 @@ class Video extends Model
         'is_deleted',
         'hash_id'
     ];
+
+    #[SearchUsingFullText(['title', 'description', 'nickname', 'tags', 'category'])]
+    public function toSearchableArray()
+    {
+        return [
+            'title' => $this->title,
+            'description' => $this->description,
+//            'nickname' => $this->user()->nickname,
+//            'tags' => $this->tags(),
+//            'category' => $this->category()->name
+        ];
+    }
 
     public function user()
     {

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('hash_id');
 
-            $table->string('title');
-            $table->string('description');
+            $table->string('title')->fulltext();
+            $table->string('description')->fulltext();
             $table->string('preview');
 
             $table->foreignId('user_id')

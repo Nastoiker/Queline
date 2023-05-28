@@ -7,6 +7,7 @@ use App\Models\BanStatus;
 use App\Models\Category;
 use App\Models\GradeStatus;
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -57,5 +58,12 @@ class DatabaseSeeder extends Seeder
 
         Category::factory(10)->create();
 
+        User::create([
+            'nickname' => 'admin',
+            'email' => 'admin@test.ru',
+            'password' => 'admin123',
+            'description' => 'admin account',
+            'role_id' => 1
+        ]);
     }
 }
