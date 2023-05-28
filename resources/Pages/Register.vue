@@ -18,6 +18,28 @@
             >
         </p>
     </div>
+    <Alert  v-if="errors">
+        {{ errors }}
+        <span
+            @click="errors = ''"
+            class="w-8 h-8 flex items-center justify-center rounded-full transition-colors cursor-pointer hover:bg-[rgba(0,0,0,0.2)]"
+        >
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+        >
+          <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </span>
+    </Alert>
     <form class="mt-8 space-y-6" @submit="register">
         <!--        <Alert v-if="Object.keys(errors).length" class="flex-col items-stretch text-sm">-->
         <!--            <div v-for="(field, i) of Object.keys(errors)" :key="i">-->
@@ -133,7 +155,7 @@ const password = ref("");
 const confirmPassword = ref("");
 
 const loading = ref(false);
-let errors = ref({});
+let errors = ref("");
 
 const isValidEmail = computed(() => {
     return loading.value
@@ -152,9 +174,11 @@ const isStrongPassword = computed(() => {
 const isPasswordConfirmed = computed(() => {
     return loading.value ? password.value === confirmPassword.value : null;
 });
+
 function register(ev) {
     ev.preventDefault();
     loading.value = true;
+    errors.value='';
     if (
         isValidNickName.value &&
         isValidEmail.value &&
@@ -167,6 +191,7 @@ function register(ev) {
             password: password.value,
             password_confirmation: confirmPassword.value,
         });
+        errors.value = "Пользователь с такой почтой уже существует";
     } else {
         errors.value = "Не все данные заполнены";
         console.log(
@@ -175,5 +200,6 @@ function register(ev) {
             isPasswordConfirmed.value
         );
     }
+    loading.value = false;
 }
 </script>

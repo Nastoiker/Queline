@@ -1,4 +1,5 @@
 <template>
+    <div class="max-w-[1220px] mx-auto">
     <div>
         <img
             class="mx-auto h-12 w-auto"
@@ -19,7 +20,7 @@
         </p>
     </div>
     <form class="mt-8 space-y-6" @submit="login">
-        <Alert v-if="errorMsg">
+        <Alert  v-if="errorMsg">
             {{ errorMsg }}
             <span
                 @click="errorMsg = ''"
@@ -69,7 +70,7 @@
         <div>
             <button
                 type="submit"
-                :disabled="loading"
+                :disabled="loading.value"
                 class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 :class="{
           'cursor-not-allowed': loading,
@@ -107,6 +108,7 @@
             </button>
         </div>
     </form>
+    </div>
 </template>
 
 <script setup>
@@ -139,6 +141,7 @@ function login(ev) {
             password: password.value,
         });
     }
-    errorMsg.value = 'Заполните все данные'
+    loading.value = false;
+    errorMsg.value = 'Такого пользователя не существует'
 }
 </script>

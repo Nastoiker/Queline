@@ -41,22 +41,48 @@ export const useUserStore = defineStore("user", {
 
         },
         async likeVideo(data) {
-            const res = await axios.post('/api/videos', {
+            const res = await axios.post('http://queline/api/videos/hash/grade', {
                 ...data
             });
-            this.user = user;
         },
         async editBanner(data) {
-            const res = await axios.post('/api/user/editBanner', {
+            const res = await axios.post('http://queline/api/user/me/banner', {
                 ...data
-            });
+            },
+                {
+                    headers: {
+                        'Content-type': 'multipart/form-data',
+                        'Authorization': `Bearer ${localStorage.getItem('user_token')}`
+                    }
+                }
+            );
+            this.user = user;
+        },
+        async editNickName(nickname) {
+            const res = await axios.post('http://queline/api/user/me/banner', {
+                ...nickname
+            },
+            {
+                headers: {
+                    'Content-type': 'multipart/form-data',
+                        'Authorization': `Bearer ${localStorage.getItem('user_token')}`
+                }
+            }
+            );
             this.user = user;
         },
         async editAvatar(data) {
             try {
                 const res = await axios.post('/api/user/ ', {
                     ...data
-                });
+                },
+                    {
+                        headers: {
+                            'Content-type': 'multipart/form-data',
+                            'Authorization': `Bearer ${localStorage.getItem('user_token')}`
+                        }
+                    }
+                );
             } catch(e) {
                 this.error = e.message();
             }
@@ -85,6 +111,24 @@ export const useUserStore = defineStore("user", {
             const res = await axios.post('/api/videos', {
                 ...data
             });
+        },
+        async editVideo(data) {
+            const edit = await axios.post('api/videos/hash', {
+
+            })
+        },
+        async editComment(id, data) {
+            const res = await axios.put(`/api/comments/${id}`, {
+                    ...data
+                },
+                {
+                    headers: {
+                        'Content-type': 'multipart/form-data',
+                        'Accept': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('user_token')}`
+                    },
+                }
+            );
         },
         async followChannel(data) {
             const res = await axios.post('/api/videos', {

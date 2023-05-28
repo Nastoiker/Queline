@@ -40,6 +40,10 @@ export const useAdminstore = defineStore("user", {
                 ...data
             });
         },
-
+        async moderateVideo(videoId) {
+            const video = await axios.put('/api/videos/hash/moderate', {
+                videoId
+            })
+        }
     }
 });

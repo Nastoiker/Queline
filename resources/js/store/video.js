@@ -26,7 +26,9 @@ export const useVideoStore = defineStore("videoStore", {
         },
         async getVideo() {
             const res = await axios.get('/api/videos/hash');
+            const comment = await axios.get('api/videos/hash/comments');
             this.currentVideo = res.data;
+            this.currentVideo.comments = comment.data.data;
         },
         async getCommentsVideo() {
             const res = await axios.get('/api/videos/hash/comments');

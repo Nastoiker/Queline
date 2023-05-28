@@ -60,8 +60,8 @@
             <div>
                 {{ video.title }}
                 <VideoComponent
-                    :img="video.preview"
-                    :path="video.path"
+                    :img=" '/storage' + video.preview"
+                    :path="'/storage'+ video.path"
                 />
                 <!--                        <video width="400" height="300" controls="controls"  :src="'../../storage' + video.path"></video>-->
             </div>

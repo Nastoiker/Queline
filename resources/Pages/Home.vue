@@ -9,7 +9,9 @@
  import MainHome from "@/components/Main/MainHome.vue";
  import CategoryContainer from "@/components/Containers/CategoryContainer.vue";
  import {useVideoStore} from "@/js/store/video";
-
+ import VideoComponent from "@/components/Video/VideoComponent.vue";
+import video from '@/assets/video.mp4';
+import videoImg from '@/assets/preview.jpg';
  // export default {
  //     components: {CategoryContainer}
  // }
@@ -29,6 +31,10 @@
             <CategoryContainer :categories="categories" />
 
         </div>
+        <VideoComponent
+            :img="videoImg"
+            :path="video"
+        />
         Home
         {{user}}
     </div>
