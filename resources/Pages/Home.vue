@@ -32,6 +32,7 @@ import videoImg from '@/assets/preview.jpg';
 
         </div>
         <VideoComponent
+            class="w-fit"
             :img="videoImg"
             :path="video"
         />
