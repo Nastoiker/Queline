@@ -87,7 +87,9 @@ Route::group(['middleware' => 'authorize'], function () {
        Route::put('/videos/{hash_id}/moderate', [VideoController::class, 'moderate']);
        Route::get('/ban_statuses', [BanStatusController::class, 'all']);
 
-       Route::post('/categories', [CategoryController::class, '']);
+       Route::post('/categories', [CategoryController::class, 'store']);
+       Route::put('/categories/{id}', [CategoryController::class, 'update']);
+       Route::delete('/categories/{id}', [CategoryController::class, 'delete']);
     });
 
 });
