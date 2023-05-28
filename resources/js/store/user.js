@@ -46,7 +46,7 @@ export const useUserStore = defineStore("user", {
             });
         },
         async editBanner(data) {
-            const res = await axios.post('http://queline/api/user/me/banner', {
+            const res = await axios.put('http://queline/api/user/me/banner', {
                 ...data
             },
                 {
@@ -73,7 +73,7 @@ export const useUserStore = defineStore("user", {
         },
         async editAvatar(data) {
             try {
-                const res = await axios.post('/api/user/ ', {
+                const res = await axios.put('/api/user/me/photo ', {
                     ...data
                 },
                     {
@@ -88,6 +88,7 @@ export const useUserStore = defineStore("user", {
             }
 
         },
+
         async editProfile(data) {
             const res = await axios.post(`/api/@${this.user.nickname}`, {
                 ...data

@@ -1,13 +1,14 @@
 <template>
-    <header v-bind:class="{ scrolled: isScrolled }" class="left-0 right-0 w-full fixed top-0 z-50">
-        <div class="flex justify-between mx-auto max-w-[1720px] items-center">
-            <Navbar />
+    <header v-bind:class="{ scrolled: isScrolled }" class="left-0 right-0  w-full fixed top-0 z-50">
+        <div class="flex  justify-between mx-auto max-w-[1720px] items-center">
+                <Navbar />
+
             <Search label="поиск" />
             <button @click="toggleDark()"><img class="h-8 w-8" :src="isDark ? Moon : Sun" alt=""></button>
-            <div v-if="user" class="flex items-center">
+            <div v-if="user.nickname" class="flex items-center">
                 <router-link to="/profile">
                     <img
-                        class="w-10 h-10 object-cover rounded-full"
+                        class="w-8 h-8 object-cover rounded-full"
                         :src="user.photo ? user.photo : defaultAvatar"
                         alt=""
                     />
@@ -24,7 +25,6 @@
 <script setup>
 import Sun from '@/assets/sun.svg';
 import Moon from '@/assets/moon.svg';
-
 import Search from "@/components/Search/Seach.vue";
 import Navbar from "@/components/NavBar/Navbar.vue";
 import { storeToRefs } from "pinia";
@@ -36,6 +36,7 @@ const userStore = useUserStore();
 const auth = useAuthStore();
 const { user } = storeToRefs(userStore);
 userStore.fetchUser();
+
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
 </script>

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <Bunner :defaultSrc="user.banner ? '/storage' + user.banner : defaultBanner" @file-updated="uploadBunner"  class="w-full object-cover  h-full" />
+            <Bunner :defaultSrc="user.banner ? '/storage' + user.banner : defaultBanner" @file-updated="uploadBunner"  class="w-full object-cover  h-48" />
 
             <div class="-mt-20 flex justify-around items-center">
                 <div class="  sm:flex text-start">
@@ -98,6 +98,8 @@ import defaultBanner from "@/assets/banner.jpg";
 import { computed, ref } from "vue";
 import defaultAvatar from "@/assets/user.jpg";
 import { useUserStore } from "../js/store/user";
+import Avatar from "@/components/AvatarComponent/Avatar.vue";
+import Bunner from '@/components/Bunner/Bunner.vue'
 import { storeToRefs } from "pinia";
 import VideoComponent from "@/components/Video/VideoComponent.vue";
 import { useVideoStore } from "@/js/store/video";
@@ -108,11 +110,21 @@ const { user } = storeToRefs(userStore);
 const isActive = ref("");
 const uploadImage = (e) => {
     AvatarFile.value = e;
+    userStore.editAvatar({
+        photo: AvatarFile.value,
+    })
+
 }
 const AvatarFile = ref({});
 const BunnerFile = ref({});
+function HandleError(error){
+    errorBunner.value = error;
+}
 const uploadBunner = (e) => {
     BunnerFile.value = e;
+    userStore.editBanner({
+        banner: AvatarFile.value,
+    });
 }
 videoStore.getVideoUser(user.nickname);
 </script>

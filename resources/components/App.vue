@@ -10,7 +10,7 @@ import Navbar from '@/components/NavBar/Navbar.vue'
 <div class=" overflow-hidden">
     <div class="max-w-[1720px] mx-auto ">
         <Header  />
-        <div class="my-20">
+        <div class="my-10">
             <router-view />
 
         </div>

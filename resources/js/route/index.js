@@ -6,7 +6,7 @@ import Profile from "../../Pages/Profile.vue";
 import CreateVideo from "../../Pages/CreateVideo.vue";
 import editProfile from "@/Pages/editProfile.vue";
 import SearchPage from "@/Pages/SearchPage.vue";
-
+import {useUserStore} from "@/js/store/user";
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -52,9 +52,10 @@ const router = createRouter({
     ],
 });
 router.beforeEach((to, from, next) => {
-    const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
-    if (requiresAuth && localStorage.getItem("token")) {
-        next("/signin");
+    const user = useUserStore()
+     user.fetchUser();
+    if (to.meta.requiresAuth && !user.user.nickname) {
+        next("/home");
     } else {
         next();
     }
