@@ -27,7 +27,10 @@ class DefaultVideoResource extends JsonResource
             'path' => $this->path,
             'is_moderated' => $this->is_moderated,
             'created_at' => $this->created_at,
-            'grades' => DefaultGradeResource::collection($this->grades),
+            'grades' => [
+                'likes' => DefaultGradeResource::collection($this->likes),
+                'dislikes' => DefaultGradeResource::collection($this->dislikes)
+            ],
             'tags' => DefaultTagResource::collection($this->tags)
         ];
     }

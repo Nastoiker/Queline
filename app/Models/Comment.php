@@ -30,4 +30,16 @@ class Comment extends Model
         return $this->hasMany(CommentGrade::class, 'comment_id', 'id');
     }
 
+    public function likes()
+    {
+        return $this->hasMany(CommentGrade::class, 'comment_id', 'id')
+            ->where('grade_status_id', 1);
+    }
+
+    public function dislikes()
+    {
+        return $this->hasMany(CommentGrade::class, 'comment_id', 'id')
+            ->where('grade_status_id', 2);
+    }
+
 }

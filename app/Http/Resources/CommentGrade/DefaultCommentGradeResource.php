@@ -16,7 +16,7 @@ class DefaultCommentGradeResource extends JsonResource
     {
         return [
             'nickname' => $this->user->nickname,
-            'grade_status' => $this->grade_status_id
+//            'grade_status' => $this->grade_status_id
         ];
     }
 }

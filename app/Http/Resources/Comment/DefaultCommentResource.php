@@ -22,7 +22,10 @@ class DefaultCommentResource extends JsonResource
             'is_deleted' => $this->is_deleted,
             'created_at' => $this->created_at,
             're' => DefaultCommentResource::collection($this->re),
-            'grades' => DefaultCommentGradeResource::collection($this->grades)
+            'grades' => [
+                'likes' => DefaultCommentGradeResource::collection($this->likes),
+                'dislikes' => DefaultCommentGradeResource::collection($this->dislikes)
+            ]
         ];
     }
 }

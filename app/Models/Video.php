@@ -26,15 +26,12 @@ class Video extends Model
         'hash_id'
     ];
 
-    #[SearchUsingFullText(['title', 'description', 'nickname', 'tags', 'category'])]
+    #[SearchUsingFullText(['title', 'description'])]
     public function toSearchableArray()
     {
         return [
             'title' => $this->title,
-            'description' => $this->description,
-//            'nickname' => $this->user()->nickname,
-//            'tags' => $this->tags(),
-//            'category' => $this->category()->name
+            'description' => $this->description
         ];
     }
 
@@ -56,5 +53,17 @@ class Video extends Model
     public function grades()
     {
         return $this->hasMany(Grade::class, 'video_id', 'id');
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Grade::class, 'video_id', 'id')
+            ->where('grade_status_id', 1);
+    }
+
+    public function dislikes()
+    {
+        return $this->hasMany(Grade::class, 'video_id', 'id')
+            ->where('grade_status_id', 2);
     }
 }
