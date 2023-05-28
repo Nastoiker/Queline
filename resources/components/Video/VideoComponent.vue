@@ -9,6 +9,7 @@
             class="w-96"
             :controls="isPlaying.value"
             @ended="reset" preload="auto"
+            muted="muted"
            >
             <source :src="props.path" type="video/mp4">
         </video>
@@ -45,15 +46,12 @@ import {defineProps} from 'vue';
 
 export default {
 
-    data(props) {
+    data() {
         return {
-            videoUrl: props.path,
-            img: props.img,
             isPlay: false,
         };
     },
     mounted() {
-        // this.$refs.video.pause(); // Остановите видео перед его запуском
         this.$refs.video.addEventListener('loadeddata', () => {
             console.log('Видео загружено и готово к воспроизведению');
         });
