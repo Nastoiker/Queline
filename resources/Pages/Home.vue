@@ -36,7 +36,10 @@ import videoImg from '@/assets/preview.jpg';
             :img="videoImg"
             :path="video"
         />
-        Home
-        {{user}}
+        <div>
+            Home
+            {{user}}
+        </div>
+
     </div>
 </template>
