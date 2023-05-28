@@ -5,29 +5,31 @@
         <div class="relative w-full min-h-[100vh]  ">
             <div class="bg-green borderRadius absolute  right-0 m-0  w-[941px] h-[941px]">        </div>
 
-            <div class="relative w-full w-full">
                     <div class="dots absolute sm:right-[200px] z-10 top-0">
                     </div>
-                </div>
-            <div class="sm:flex justify-between w-full">
-                <h1 class=" my-auto double-line-shadow text-5xl">Популярное</h1>
-                <div class="w-1/2 z-50">
-                    <iframe width="full" height="300" src="https://www.youtube.com/embed/yBp5mXHxY94" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <button></button>
 
-                    <div>
+            <div class="flex flex-wrap   my-48 sm:justify-around w-full">
+                <h1 class=" my-auto double-line-shadow text-7xl z-30">Популярное</h1>
+                <div class="w-1/3 h-96 z-40">
 
-                    </div>
+                        <video class=" min-w-[400px]" controls="controls" :src="videoGame"></video>
+                        <h1>Здесь геншин</h1>
+
                 </div>
+
+
             </div>
-            <button>Подробнее</button>
-            </div>
+        </div>
 
 
 </template>
+<script setup>
+import videoGame from '@/assets/game.mp4';
+</script>
 <style scoped>
 .double-line-shadow{
-    color: rgba(43, 47, 47, 0.7);
-    text-shadow: 200px -20px 1px rgba(202, 139, 104, 0.6);
+    text-shadow: 200px -50px 1px rgba(255, 255, 255, 0.1);
 }
 .borderRadius {
     border-radius: 100% ;

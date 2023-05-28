@@ -10,7 +10,7 @@ import {useUserStore} from "@/js/store/user";
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
-        { path: "/", name: "home", component: Home },
+        { path: "/", name: "main", component: Home },
         { path: "/home", name: "home", component: Home },
         { path: "/login", name: "login", component: Login },
         { path: "/register", name: "register", component: Register },
