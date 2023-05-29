@@ -66,4 +66,9 @@ class Video extends Model
         return $this->hasMany(Grade::class, 'video_id', 'id')
             ->where('grade_status_id', 2);
     }
+
+    public function watches()
+    {
+        return $this->hasMany(Watch::class, 'video_id', 'id');
+    }
 }

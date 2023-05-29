@@ -5,6 +5,7 @@ namespace App\Http\Resources\Video;
 use App\Http\Resources\Category\DefaultCategoryResource;
 use App\Http\Resources\Grade\DefaultGradeResource;
 use App\Http\Resources\Tag\DefaultTagResource;
+use App\Http\Resources\Watch\DefaultWatchResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -31,7 +32,8 @@ class DefaultVideoResource extends JsonResource
                 'likes' => DefaultGradeResource::collection($this->likes),
                 'dislikes' => DefaultGradeResource::collection($this->dislikes)
             ],
-            'tags' => DefaultTagResource::collection($this->tags)
+            'tags' => DefaultTagResource::collection($this->tags),
+            'watches' => DefaultWatchResource::collection($this->watches)
         ];
     }
 }

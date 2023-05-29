@@ -7,5 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Watch extends Model
 {
+    protected $fillable = [
+        'video_id',
+        'user_id'
+    ];
     use HasFactory;
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }

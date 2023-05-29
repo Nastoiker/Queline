@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Api\SubscribeController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\VideoController;
+use App\Http\Controllers\Api\WatchController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -84,6 +85,8 @@ Route::group(['middleware' => 'authorize'], function () {
     /* Подписчики */
     Route::post('/@{nickname}/subscribe', [SubscribeController::class, 'store']);
     Route::delete('/@{nickname}/subscribe', [SubscribeController::class, 'delete']);
+
+    Route::post('/videos/{hash_id}/watch', [WatchController::class, 'store']);
 
     /* Роуты админа */
     Route::group(['middleware' => 'admin'], function () {
