@@ -87,6 +87,7 @@ export default {
 import { useSearchStore } from "@/js/store/search";
 import { storeToRefs } from "pinia";
 import {ref} from "vue";
+import {useRouter} from "vue-router";
 const searchStore = useSearchStore();
 const { search, finded } = storeToRefs(searchStore);
 const router = useRouter();
