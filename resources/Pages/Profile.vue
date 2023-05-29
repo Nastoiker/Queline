@@ -119,5 +119,5 @@ const uploadBunner = (e) => {
         banner: AvatarFile.value,
     });
 }
-
+videoStore.getVideoUser('asdasdasdasd2');
 </script>
