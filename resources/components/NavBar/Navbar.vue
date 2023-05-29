@@ -18,6 +18,9 @@
                     <rect width="28.9691" height="3.10383" rx="1.55192" transform="matrix(0.707129 -0.707085 0.707129 0.707085 0 20.4838)" fill="#D9D9D9"/>
                 </svg>
                 </button>
+                <button @click="auth.logout()">
+                    выйти
+                </button>
                 <div v-if="!user.nickname">
                     <router-link class="block" to="/register">Зарегестрироваться </router-link>
                     <router-link to="/login">Войти </router-link>
