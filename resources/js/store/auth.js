@@ -53,6 +53,7 @@ export const useAuthStore = defineStore("auth", {
             this.user = null;
             localStorage.removeItem('user');
             this.$reset();
+            localStorage.removeItem('nickname');
             router.push('/home');
         }
     },

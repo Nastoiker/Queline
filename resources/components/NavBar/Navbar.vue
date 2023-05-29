@@ -1,12 +1,13 @@
 <template>
     <div class="top-10">
         <div class="flex  items-center space-x-10">
-            <button id="menuButton" class="h-10 w-10 "  @click="isOpen  = !isOpen"><svg width="62" height="17" viewBox="0 0 62 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <button id="menuButton" class="h-10 w-10 "  @click="isOpen=!isOpen">
+                <svg width="62" height="17" viewBox="0 0 62 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="62" height="4" rx="2" fill="#D9D9D9"/>
                 <rect y="13" width="62" height="4" rx="2" fill="#D9D9D9"/>
             </svg>
             </button>
-            <img @click="scrollToTop" :src="logo" class="w-full h-8" alt="">
+            <img @click="route.push('/')" :src="logo" class="w-full h-8" alt="">
 
         </div>
 
@@ -37,7 +38,7 @@ import {useUserStore} from "@/js/store/user";
 import {useAuthStore} from "@/js/store/auth";
 import {storeToRefs} from "pinia";
 import logo from '@/assets/logo.svg';
-
+import route from "@/js/route/index.js";
 const userStore = useUserStore();
 const auth = useAuthStore();
 const { user } = storeToRefs(userStore);

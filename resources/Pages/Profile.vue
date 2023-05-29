@@ -50,16 +50,7 @@
             </button>
         </div>
 
-        <div v-for="v of video">
-            <div>
-                {{ v.title }}
-                <VideoComponent
-                    :img=" '/storage' + v.preview"
-                    :path="'/storage'+ v.path"
-                />
-                <!--                        <video width="400" height="300" controls="controls"  :src="'../../storage' + video.path"></video>-->
-            </div>
-        </div>
+       <VideoContainer :videos="video"/>
         <div v-if="activeTab === 'about'">
             <div v-for="(value, index) of Object.entries(user)">
                 {{ value[0] + ": " + value[1] }}
@@ -103,6 +94,7 @@ import Bunner from '@/components/Bunner/Bunner.vue'
 import { storeToRefs } from "pinia";
 import VideoComponent from "@/components/Video/VideoComponent.vue";
 import { useVideoStore } from "@/js/store/video";
+import VideoContainer from "@/components/Containers/VideoContainer.vue";
 const videoStore = useVideoStore();
 const userStore = useUserStore();
 userStore.fetchUser();
@@ -127,5 +119,6 @@ const uploadBunner = (e) => {
         banner: AvatarFile.value,
     });
 }
-videoStore.getVideoUser(user.nickname);
+
+videoStore.getVideoUser(localStorage.getItem('nickname'));
 </script>

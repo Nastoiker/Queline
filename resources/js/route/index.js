@@ -51,9 +51,9 @@ const router = createRouter({
         },
     ],
 });
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
     const user = useUserStore()
-     user.fetchUser();
+    await user.fetchUser();
     if (to.meta.requiresAuth && !user.user.nickname) {
         next("/home");
     } else {

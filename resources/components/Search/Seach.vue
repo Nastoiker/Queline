@@ -8,7 +8,7 @@ const props = defineProps({
 const video = useVideoStore();
 const find = ref("");
 function findVideo() {
-    router.push(`founded/${find.value}`);
+    router.push(`../founded/${find.value}`);
 }
 </script>
 <template>

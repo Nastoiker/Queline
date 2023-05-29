@@ -1,6 +1,8 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&display=swap');
 body {
+    font-family: 'Montserrat', sans-serif;
     @apply bg-white dark:bg-black text-black dark:text-white;
 }

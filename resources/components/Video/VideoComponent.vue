@@ -1,36 +1,28 @@
 <template>
-    <div class="w-fit  my-5 " @mouseover.native="play" >
+    <div class="w-fit my-5 " @mouseover.native="play" >
         <video
+            preload="none"
             ref="video"
             @timeupdate="updateTime"
             @mouseover.native="play"
-            :poster="props.img"
-            width="100"
-            height="50"
-            class="w-96 "
+            :style="{ backgroundImage: 'url(' + props.img + ') ', backgroundSize: 'cover', height: '180px' } "
+            class=" video-preview  rounded-md"
             :controls="isPlaying.value"
-            @ended="reset" preload="auto"
+            @ended="reset"
             muted="muted"
+            :src="props.path"
            >
-            <source :src="props.path" type="video/mp4">
         </video>
-        <div v-if="currentTime>0" className="progress-bar-container">
-            <progress className="progress-bar absolute z-10" :max="duration" :value="currentTime"></progress>
+        <div v-if="currentTime>3" className="progress-bar-container">
+            <progress className="progress-bar  absolute z-10" :max="duration" :value="currentTime"></progress>
         </div>
     </div>
 </template>
 <script setup>
 import {defineProps, ref} from "vue";
 const props = defineProps({
-    title: String,
-    description: String,
-    id: String,
-    category: Object,
-    preview: { type: String },
     path: String,
     img: String,
-    Author: Object,
-    author: Object,
 });
 
 const toggle = (e) => {
@@ -106,7 +98,12 @@ export default {
 .progress-bar-container {
     position: relative;
 }
-
+.video-preview {
+    width: 320px;
+    background-size: contain ;
+    max-height: 322px;
+    background-position: center;
+}
 .progress-bar-text {
     position: absolute;
     top: 0;

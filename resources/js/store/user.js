@@ -20,6 +20,7 @@ export const useUserStore = defineStore("user", {
                 }
             );
             const user = res.data.data;
+            localStorage.setItem('nickname', user.nickname);
             this.user = user;
         },
         async createVideo(data) {

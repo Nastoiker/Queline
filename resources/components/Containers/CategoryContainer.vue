@@ -30,20 +30,20 @@ export default {
                     slides: {
                         loop: false,
                         perView: 3,
-                        spacing: 10,
+                        spacing: 7,
                     },
                 },
                 "(min-width: 1000px)": {
                     slides: {
                         loop: true,
                         perView: 6,
-                        spacing: 15,
+                        spacing: 7,
                     },
                 },
                 "(min-width: 1400px)": {
                     slides: {
-                        perView: 8,
-                        spacing: 15,
+                        perView: 7,
+                        spacing: 7,
                     },
                 },
             },

@@ -22,7 +22,7 @@ export const useVideoStore = defineStore("videoStore", {
         },
         async getAllVideo() {
             const res = await axios.get('/api/videos');
-            this.video = res.data;
+            this.video = res.data.data;
         },
 
         async getVideo() {

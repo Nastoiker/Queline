@@ -23,6 +23,7 @@
                 Категории
             </button>
         </div>
+        {{searchValue.value}}
         <div class="tab-content">
             <div v-show="activeTab === 'video'">
                 <h2>Видео</h2>
@@ -85,6 +86,12 @@ export default {
 <script setup>
 import { useSearchStore } from "@/js/store/search";
 import { storeToRefs } from "pinia";
+import {ref} from "vue";
 const searchStore = useSearchStore();
 const { search, finded } = storeToRefs(searchStore);
+const router = useRouter();
+const searchValue = ref('');
+searchValue.value = router.currentRoute.value.params.value;
+console.log(this.$route);
 </script>
+
