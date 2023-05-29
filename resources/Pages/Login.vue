@@ -45,10 +45,10 @@
         <input type="hidden" name="remember" value="true" />
         <div class="rounded-md shadow-sm -space-y-px">
             <div>
-                <BaseInput placeholder="email" class="w-full" label="email" v-model="email" type="email"/>
+                <BaseInput  placeholder="email" class="w-full" label="email" v-model="email" type="email"/>
             </div>
             <div>
-                <BaseInput placeholder="Пароль" class="w-full" label="Пароль" v-model="password" type="password"/>
+                <BaseInput minlength="8" placeholder="Пароль" class="w-full" label="Пароль" v-model="password" type="password"/>
             </div>
         </div>
 

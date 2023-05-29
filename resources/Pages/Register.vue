@@ -71,6 +71,7 @@
             </div>
             <div>
                 <BaseInput
+                    minlength="8"
                     placeholder="Пароль"
                     class="w-full"
                     label="Пароль"
@@ -87,6 +88,7 @@
             </div>
             <div>
                 <BaseInput
+                    minlength="8"
                     placeholder="confirmPassword"
                     class="w-full"
                     label="Подвердите пароль"
@@ -191,7 +193,7 @@ function register(ev) {
             password: password.value,
             password_confirmation: confirmPassword.value,
         });
-        errors.value = "Пользователь с такой почтой уже существует";
+        if(!auth.user)         errors.value = "Пользователь с такой почтой уже существует";
     } else {
         errors.value = "Не все данные заполнены";
         console.log(

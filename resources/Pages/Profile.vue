@@ -49,8 +49,9 @@
                 <h1>О канале</h1>
             </button>
         </div>
-
-       <VideoContainer :videos="video"/>
+        <div v-if="activeTab === 'own_video'">
+            <VideoContainer :videos="video"/>
+        </div>
         <div v-if="activeTab === 'about'">
             <div v-for="(value, index) of Object.entries(user)">
                 {{ value[0] + ": " + value[1] }}
