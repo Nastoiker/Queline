@@ -51,14 +51,20 @@ const router = createRouter({
         },
     ],
 });
-router.beforeEach(async (to, from, next) => {
+router.beforeEach( async (to, from, next) => {
     const user = useUserStore()
-    await user.fetchUser();
-    if (to.meta.requiresAuth && !user.user.nickname) {
-        next("/home");
+     await user.fetchUser();
+    if (to.matched.some((route) => route.meta?.requiresAuth)) {
+        setTimeout(() => {},2000);
+        if (!user.user.email) {
+            next("/home");
+        } else {
+            next();
+        }
     } else {
         next();
     }
+
 });
 console.log(router.getRoutes());
 export default router;

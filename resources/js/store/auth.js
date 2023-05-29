@@ -51,10 +51,10 @@ export const useAuthStore = defineStore("auth", {
         },
         logout() {
             this.user = null;
-            localStorage.removeItem('user');
+            localStorage.removeItem('user_token');
             this.$reset();
             localStorage.removeItem('nickname');
-            router.push('/home');
+            router.push('/');
         }
     },
     greeting: {

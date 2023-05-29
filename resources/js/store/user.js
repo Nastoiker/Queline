@@ -20,6 +20,9 @@ export const useUserStore = defineStore("user", {
                 }
             );
             const user = res.data.data;
+            if(!user.nickname) {
+                return;
+            }
             localStorage.setItem('nickname', user.nickname);
             this.user = user;
         },
