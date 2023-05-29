@@ -21,7 +21,10 @@ class DefaultVideoResource extends JsonResource
         return [
             'hash_id' => $this->hash_id,
             'title' => $this->title,
-            'nickname' => $this->user->nickname,
+            'author' => [
+                'nickname' => $this->user->nickname,
+                'photo' => $this->user->photo
+            ],
             'description' => $this->description,
             'preview' => $this->preview,
             'category' => new DefaultCategoryResource($this->category),
