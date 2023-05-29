@@ -120,5 +120,4 @@ const uploadBunner = (e) => {
     });
 }
 
-videoStore.getVideoUser(localStorage.getItem('nickname'));
 </script>
