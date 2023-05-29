@@ -262,4 +262,12 @@ class VideoController extends Controller
             'message' => 'Видео отмечено как прошедшее модерацию'
         ]);
     }
+
+    public function getVideosByCategory($id)
+    {
+        $videos = Video::where('category_id', $id)->where('is_deleted', 0);
+
+        return DefaultVideoResource::collection($videos->get());
+    }
+
 }

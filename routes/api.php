@@ -37,6 +37,7 @@ Route::get('/categories', [CategoryController::class, 'index']);
 /* Видео */
 Route::get('/videos', [VideoController::class, 'index']);
 Route::get('/videos/{hash_id}', [VideoController::class, 'find']);
+Route::get('/category/{id}/videos', [VideoController::class, 'getVideosByCategory']);
 
 /* Получение видео определенного пользователя */
 Route::get('/@{nickname}/videos', [VideoController::class, 'getVideosByNickname']);
