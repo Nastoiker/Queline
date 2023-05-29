@@ -67,7 +67,6 @@ router.beforeEach( async (to, from, next) => {
     const user = useUserStore()
      await user.fetchUser();
     if (to.matched.some((route) => route.meta?.requiresAuth)) {
-        setTimeout(() => {},2000);
         if (!user.user.email) {
             next("/home");
         } else {
