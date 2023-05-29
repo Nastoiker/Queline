@@ -9,7 +9,7 @@
                 <router-link to="/profile">
                     <img
                         class="w-8 h-8 object-cover rounded-full"
-                        :src="user.photo ? user.photo : defaultAvatar"
+                        :src="user.photo ? '/storage' +  user.photo : defaultAvatar"
                         alt=""
                     />
                 </router-link>

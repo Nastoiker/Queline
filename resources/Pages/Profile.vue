@@ -108,7 +108,7 @@ const uploadImage = (e) => {
     AvatarFile.value = e;
     userStore.editAvatar({
         photo: AvatarFile.value,
-        method: 'PUT',
+        _method: 'PUT',
     })
 
 }
@@ -121,7 +121,7 @@ const uploadBunner = (e) => {
     BunnerFile.value = e;
     userStore.editBanner({
         banner: AvatarFile.value,
-        method: 'PUT',
+        _method: 'PUT',
     });
 }
 

@@ -8,7 +8,7 @@
                    <span>{{ WordEnd(currentVideo.watches.length)}}</span>
                </div>
                <div class="my-2 flex space-x-5">
-                   <img  class="w-20 h-20 object-cover rounded-full" :src="currentVideo.author.photo ? currentVideo.author.photo : defaultAvatar" alt="">
+                   <img  class="w-20 h-20 object-cover rounded-full" :src="currentVideo.author.photo ? '/storage' + currentVideo.author.photo : defaultAvatar" alt="">
                    <div>
                        <h1>
                            {{currentVideo.author.nickname}}
