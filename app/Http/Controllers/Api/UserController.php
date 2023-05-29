@@ -74,4 +74,23 @@ class UserController extends Controller
             'message' => 'Ник изменен'
         ]);
     }
+
+    public function makeAdmin($nickname)
+    {
+        $user = User::where('nickname', $nickname);
+
+        if (empty($user->count())) {
+            return response()->json([
+                'error' => 'Пользователя с таким никнеймом не существует'
+            ], 404);
+        }
+
+        $user->first()->update([
+            'role_id' => 1
+        ]);
+
+        return response()->json([
+            'message' => 'Администратор добавлен'
+        ]);
+    }
 }
