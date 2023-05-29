@@ -26,15 +26,16 @@
         {{searchValue.value}}
         <div class="tab-content">
             <div v-show="activeTab === 'video'">
-                <h2>Видео</h2>
+               <VideoContainer :videos="founded.videos"/>
                 <!-- Ваш контент для вкладки видео -->
             </div>
             <div v-show="activeTab === 'users'">
-                <h2>Пользователи</h2>
+                {{founded.users}}
                 <!-- Ваш контент для вкладки пользователи -->
             </div>
             <div v-show="activeTab === 'category'">
                 <h2>Категории</h2>
+                {{founded.categories}}
                 <!-- Ваш контент для вкладки категории -->
             </div>
         </div>
@@ -88,11 +89,14 @@ import { useSearchStore } from "@/js/store/search";
 import { storeToRefs } from "pinia";
 import {ref} from "vue";
 import {useRouter} from "vue-router";
-const searchStore = useSearchStore();
-const { search, finded } = storeToRefs(searchStore);
+import VideoContainer from "@/components/Containers/VideoContainer.vue";
 const router = useRouter();
+
+const searchStore = useSearchStore();
 const searchValue = ref('');
 searchValue.value = router.currentRoute.value.params.value;
-console.log(this.$route);
+searchStore.getFounded(searchValue.value);
+const { founded } = storeToRefs(searchStore);
+
 </script>
 

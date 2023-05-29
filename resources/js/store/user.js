@@ -50,7 +50,7 @@ export const useUserStore = defineStore("user", {
             });
         },
         async editBanner(data) {
-            const res = await axios.put('http://queline/api/user/me/banner', {
+            const res = await axios.post('/api/user/change/banner', {
                 ...data
             },
                 {
@@ -77,7 +77,7 @@ export const useUserStore = defineStore("user", {
         },
         async editAvatar(data) {
             try {
-                const res = await axios.put('/api/user/me/photo ', {
+                const res = await axios.post('/api/user/change/photo ', {
                     ...data
                 },
                     {

@@ -2,14 +2,14 @@ import axios from "axios";
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-export const useSearchStore = defineStore("videoStore", {
+export const useSearchStore = defineStore('search', {
     state: () => ({
         founded: ref({}),
     }),
     actions: {
-        async getAllVideo(search) {
-            const res = await axios.get(`${url}$`);
-            this.founded = res.data.data;
+        async getFounded(search) {
+            const res = await axios.get(`/api/search?q={${search}}`);
+            this.founded = res.data;
         },
     },
 });
