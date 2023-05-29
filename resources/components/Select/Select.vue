@@ -58,7 +58,7 @@ export default {
     width: 100%;
     text-align: left;
     outline: none;
-    height: 47px;
+    height: 100%;
     border: 1px white;
     line-height: 47px;
 }

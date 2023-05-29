@@ -1,8 +1,47 @@
 <template>
-    <div>
-
+    <div v-if="currentVideo.path">
+       <div>
+           <video  controls="controls"  class="rounded-lg" :src="'/storage'+ currentVideo.path"></video>
+           <div>
+               <div>
+                   <h1 class="text-2xl">{{currentVideo.title}}</h1>
+                   <span>{{ WordEnd(currentVideo.watches.length)}}</span>
+               </div>
+               <div class="my-2 flex space-x-5">
+                   <img  class="w-20 h-20 object-cover rounded-full" :src="currentVideo.author.photo ? currentVideo.author.photo : defaultAvatar" alt="">
+                   <div>
+                       <h1>
+                           {{currentVideo.author.nickname}}
+                       </h1>
+                   </div>
+                   <ButtonComponent class="bg-green">Подписаться</ButtonComponent>
+                   <div class="rounded-2xl h-fit p-2 space-x-3 flex bg-gray">
+                        <div>
+                           {{currentVideo.grades.likes.length}}
+                        </div>
+                       <div>
+                           {{currentVideo.grades.dislikes.length}}
+                       </div>
+                   </div>
+               </div>
+                {{DateNumber(new Date(currentVideo.created_at))}}
+           </div>
+       </div>
     </div>
 </template>
 <script setup>
-const videoId = this.$route.params.id;
+import {useRoute} from "vue-router";
+import defaultAvatar from "@/assets/user.jpg";
+
+import {useVideoStore} from "@/js/store/video";
+import {storeToRefs} from "pinia";
+import WordEnd from "../js/helpler/word";
+import ButtonComponent from "@/components/Button/ButtonComponent.vue"
+import {DateNumber} from "../js/helpler/date";
+const video =useVideoStore();
+const route = useRoute()
+video.getVideo(route.params.hash_id)
+const { currentVideo } = storeToRefs(video);
+
+const value = route.params;
 </script>

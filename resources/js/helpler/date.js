@@ -6,3 +6,8 @@ export default function formatDate(date) {
     dayjs.extend(relativeTime)
     return dayjs(date).fromNow()
 }
+export const DateNumber = (data) => {
+
+    return  dayjs(data).format('YYYY. MM.DD')
+
+}

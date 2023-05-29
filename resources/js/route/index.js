@@ -7,6 +7,8 @@ import CreateVideo from "../../Pages/CreateVideo.vue";
 import editProfile from "@/Pages/editProfile.vue";
 import SearchPage from "@/Pages/SearchPage.vue";
 import {useUserStore} from "@/js/store/user";
+import VideoPage from "@/Pages/VideoPage.vue";
+import CategoryPage from "@/Pages/CategoryPage.vue";
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -33,6 +35,16 @@ const router = createRouter({
             path: "/founded/:value",
             name: "founded",
             component: SearchPage,
+        },
+        {
+            path: "/video/:hash_id",
+            name: "videoPage",
+            component: VideoPage,
+        },
+        {
+            path: "/category/:category_Id",
+            name: "categoryPage",
+            component: CategoryPage,
         },
         {
             path: "/signout",

@@ -1,7 +1,7 @@
 <template>
     <div class="w-[320px]">
         <VideoComponent
-            @click="router.push(`/video/${hash}`)"
+            @click="router.push(`/video/${video.hash_id}`)"
             :img="'/storage' + video.preview"
             :path="'/storage'+ video.path"
         />

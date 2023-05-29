@@ -25,10 +25,10 @@ export const useVideoStore = defineStore("videoStore", {
             this.video = res.data.data;
         },
 
-        async getVideo() {
-            const res = await axios.get('/api/videos/hash');
-            const comment = await axios.get('api/videos/hash/comments');
-            this.currentVideo = res.data;
+        async getVideo(hash_id) {
+            const res = await axios.get(`/api/videos/${hash_id}`);
+            const comment = await axios.get(`api/videos/${hash_id}/comments`);
+            this.currentVideo = res.data.data;
             this.currentVideo.comments = comment.data.data;
         },
         async getCommentsVideo() {
@@ -41,9 +41,9 @@ export const useVideoStore = defineStore("videoStore", {
             console.log(category);
             this.categories =  category;
         },
-        async getVideoByCategory() {
-            const res = await axios.get('/api/videos/hash/comments');
-            this.currentVideo.comments = res.data;
+        async getVideoByCategory(category) {
+            const res = await axios.get(`/api/category/${category}/videos`);
+            this.video = res.data.data;
         },
 
     }

@@ -7,17 +7,18 @@
                 <video controls="controls" v-if="video" :src="video" alt="fileName" style="max-height: 256px" >
                 </video>
 
-                <InputFile  class="mb-32" @file-updated="videoHandle" label="Видео"/>
-                <InputFile accept="video/*" class="mb-32" @file-updated="previewImg" label="Превью"/>
-                <Select  :options="categories"
-                         :default="'Категория'"
-                         class="select my-48 z-20"
-                         @input="setCategoryId"/>
+                <InputFile v-if="!preview.length>0" class="mb-32" @file-updated="videoHandle" label="Видео"/>
+                <InputFile v-if="!video" accept="video/*" class="mb-32" @file-updated="previewImg" label="Превью"/>
+
             </div>
             <div>
 
                 <BaseInput label="Описание" v-model="Description"/>
                 <BaseInput label="Название" v-model="Title"/>
+                <Select  :options="categories"
+                         :default="'Категория'"
+                         class="select h-full z-20"
+                         @input="setCategoryId"/>
                 <ButtonComponent class="my-10">Создать видео</ButtonComponent>
 
             </div>
