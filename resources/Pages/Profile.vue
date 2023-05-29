@@ -102,6 +102,8 @@ userStore.fetchUser();
 const { user } = storeToRefs(userStore);
 const { video } = storeToRefs(videoStore);
 const isActive = ref("");
+videoStore.getVideoUser(localStorage.getItem('nickname'));
+
 const uploadImage = (e) => {
     AvatarFile.value = e;
     userStore.editAvatar({
@@ -123,5 +125,4 @@ const uploadBunner = (e) => {
     });
 }
 
-videoStore.getVideoUser(localStorage.getItem('nickname'));
 </script>
