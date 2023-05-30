@@ -39,6 +39,8 @@ import Like from "@/components/Video/Like.vue";
 import Dislike from "@/components/Video/Dislike.vue";
 const video =useVideoStore();
 const route = useRoute()
+const handleLike = () => {}
+const videoLike =
 video.getVideo(route.params.hash_id)
 const { currentVideo } = storeToRefs(video);
 

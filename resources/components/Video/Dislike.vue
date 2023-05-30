@@ -1,5 +1,5 @@
 <template>
-    <div class="flex w-auto">
+    <div class="flex w-auto"  @click="$emit('like')">
         <div class="w-[20px] h-[20px] mr-2 cursor-pointer">
             <img src="/resources/assets/Vector_dislike.svg" alt="" class="w-fit h-fit object-cover">
         </div>
@@ -7,12 +7,11 @@
     </div>
 </template>
 
-<script>
-import { defineProps} from 'vue';
+<script setup>
 const props = defineProps({
     count: {
         type: Number,
-        default: 0
+        default: 0,
     }
 })
 </script>
