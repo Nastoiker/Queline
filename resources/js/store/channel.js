@@ -5,7 +5,8 @@ export const useChannelStore = defineStore(
     'app',
     {
         state: () => ({
-            subs: ref({});
+            subs: ref({}),
+            channel: ref({})
         }),
         getters: {},
         actions: {
@@ -21,6 +22,10 @@ export const useChannelStore = defineStore(
             async getSubs(nickname) {
                 const res = await axios.get(`/api/@${nickname}/subscribers`);
                 this.subs = res.data;
+            },
+            async getChannel(nickname) {
+                const res = await axios.get(`/api/@${nickname}`);
+                this.channel = res.data.data;
             }
         },
     },

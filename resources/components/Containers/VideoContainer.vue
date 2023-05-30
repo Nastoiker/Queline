@@ -3,6 +3,9 @@
         <div class="mx-auto sm:mx-0"  v-for="v in videos" :key="v.hash_id">
             <VideoData  :video="v"/>
         </div>
+        <h1 v-if="videos.length===0" class="text-4xl">
+            Ничего не найдено
+        </h1>
     </div>
 
 </template>

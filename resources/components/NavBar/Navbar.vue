@@ -3,8 +3,8 @@
         <div class="flex  items-center space-x-10">
             <button id="menuButton" class="h-10 w-10 "  @click="isOpen=!isOpen">
                 <svg width="62" height="17" viewBox="0 0 62 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="62" height="4" rx="2" fill="#D9D9D9"/>
-                <rect y="13" width="62" height="4" rx="2" fill="#D9D9D9"/>
+                <rect width="62" height="4" rx="2" :fill="isDark ? '#D9D9D9' : '#303236'"/>
+                <rect y="13" width="62" height="4" rx="2" :fill="isDark ? '#D9D9D9' :  '#303236'"/>
             </svg>
             </button>
             <img @click="route.push('/')" :src="logo" class="hidden sm:block w-full h-8" alt="">
@@ -45,9 +45,12 @@ import {useAuthStore} from "@/js/store/auth";
 import {storeToRefs} from "pinia";
 import logo from '@/assets/logo.svg';
 import route from "@/js/route/index.js";
+import {useDark} from "@vueuse/core";
 const userStore = useUserStore();
 const auth = useAuthStore();
 const { user } = storeToRefs(userStore);
+const isDark = useDark();
+
 userStore.fetchUser();
 </script>
 

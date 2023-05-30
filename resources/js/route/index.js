@@ -56,6 +56,11 @@ const router = createRouter({
             component: () => import('@/Pages/CategoryPage.vue'),
         },
         {
+            path: "/@:nickname",
+            name: "channel",
+            component: () => import('@/Pages/Channel.vue'),
+        },
+        {
             path: "/signout",
             name: "signout",
             beforeEnter: (to, from, next) => {
