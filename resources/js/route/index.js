@@ -61,6 +61,11 @@ const router = createRouter({
             },
             component: Profile,
         },
+        {
+            path: '/:pathMatch(.*)*',
+            name: 'NotFound',
+            component: () => import('@/Pages/NotFound.vue')
+        }
     ],
 });
 router.beforeEach( async (to, from, next) => {
