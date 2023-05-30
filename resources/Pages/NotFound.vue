@@ -1,6 +1,6 @@
 <template>
     <div class="not-found-main">
-        <div class="not-found-404 text-center mt-36 mb-2 leading-none">404</div>
+        <div class="not-found-404  text-center mt-36 mb-2 leading-none">404</div>
         <div class="text-4xl text-center mt-6 mb-6">Страница не найдена</div>
         <div class="text-3xl text-center w-1/2 ml-auto mr-auto">Похоже, запрашиваемая вами страница не найдена.
             Воспользуйтесь меню нашего сайта для поиска или выхода в меню

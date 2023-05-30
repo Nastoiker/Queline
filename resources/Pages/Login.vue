@@ -1,8 +1,8 @@
 <template>
-    <div class="max-w-[1220px] mx-auto my-20 bg-black dark:bg-white rounded-lg p-10">
+    <div class="max-w-[1000px] border mx-auto my-20 bg-transparent  rounded-lg shadow-lg p-10">
     <div>
 
-        <h2 class="mt-6 text-center text-white dark:text-black text-3xl ">
+        <h2 class="mt-6 text-center  text-3xl ">
             Регистрация
         </h2>
         <p class="mt-2 text-center text-sm ">
