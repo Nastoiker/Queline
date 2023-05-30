@@ -7,7 +7,7 @@
     </div>
 </template>
 
-<script setup>
+<script>
 const props = defineProps({
     count: {
         type: Number,
