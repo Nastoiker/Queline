@@ -1,28 +1,36 @@
-import Home from "../../Pages/Home.vue";
-import Login from "../../Pages/Login.vue";
-import Register from "../../Pages/Register.vue";
-import { createRouter, createWebHistory } from "vue-router";
-import Profile from "../../Pages/Profile.vue";
-import CreateVideo from "../../Pages/CreateVideo.vue";
-import editProfile from "@/Pages/editProfile.vue";
-import SearchPage from "@/Pages/SearchPage.vue";
+import {createRouter, createWebHistory} from "vue-router";
 import {useUserStore} from "@/js/store/user";
-import VideoPage from "@/Pages/VideoPage.vue";
-import CategoryPage from "@/Pages/CategoryPage.vue";
+
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
-        { path: "/", name: "main", component: Home },
-        { path: "/home", name: "home", component: Home },
-        { path: "/login", name: "login", component: Login },
-        { path: "/register", name: "register", component: Register },
+        {
+            path: "/",
+            name: "main",
+            component: () => import('@/Pages/Home.vue')
+        },
+        {
+            path: "/home",
+            name: "home",
+            component: () => import('@/Pages/Home.vue')
+        },
+        {
+            path: "/login",
+            name: "login",
+            component: () => import('@/Pages/Login.vue')
+        },
+        {
+            path: "/register",
+            name: "register",
+            component: () => import('@/Pages/Register.vue')
+        },
         {
             path: "/profile/editProfile",
             name: "editProfile",
             meta: {
                 requiresAuth: true,
             },
-            component: editProfile,
+            component: () => import('@/Pages/editProfile.vue'),
         },
         {
             path: "/profile/createVideo",
@@ -30,22 +38,22 @@ const router = createRouter({
             meta: {
                 requiresAuth: true,
             },
-            component: CreateVideo,
+            component: () => import('@/Pages/CreateVideo.vue'),
         },
         {
             path: "/founded/:value",
             name: "founded",
-            component: SearchPage,
+            component: () => import('@/Pages/SearchPage.vue'),
         },
         {
             path: "/video/:hash_id",
             name: "videoPage",
-            component: VideoPage,
+            component: () => import('@/Pages/VideoPage.vue'),
         },
         {
             path: "/category/:category_Id",
             name: "categoryPage",
-            component: CategoryPage,
+            component: () => import('@/Pages/CategoryPage.vue'),
         },
         {
             path: "/signout",
@@ -60,7 +68,7 @@ const router = createRouter({
             meta: {
                 requiresAuth: true,
             },
-            component: Profile,
+            component: () => import('@/Pages/Profile.vue'),
         },
         {
             path: '/:pathMatch(.*)*',
@@ -69,9 +77,9 @@ const router = createRouter({
         }
     ],
 });
-router.beforeEach( async (to, from, next) => {
+router.beforeEach(async (to, from, next) => {
     const user = useUserStore()
-     await user.fetchUser();
+    await user.fetchUser();
     if (to.matched.some((route) => route.meta?.requiresAuth)) {
         if (!user.user.email) {
             next("/home");

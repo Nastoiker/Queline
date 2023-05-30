@@ -1,6 +1,6 @@
 <template>
     <div class="flex mx-auto  flex-wrap sm:gap-[30px]">
-        <div class="mx-auto sm:mx-0"  v-for="v of videos" :key="v.hash_id">
+        <div class="mx-auto sm:mx-0"  v-for="v in videos" :key="v.hash_id">
             <VideoData  :video="v"/>
         </div>
     </div>

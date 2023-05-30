@@ -50,6 +50,25 @@ export const useVideoStore = defineStore("videoStore", {
             const res = await axios.get(`/api/category/${category}/videos`);
             this.videoByCategory = res.data.data;
         },
-
+        async setLike(hash_id) {
+            const res = await axios.post(`/api/videos/${hash_id}/grade`, {
+                grade_status: 1
+            }, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('user_token')}`
+                }
+            });
+            await this.getVideo(hash_id);
+        },
+        async setDislike(hash_id) {
+            const res = await axios.post(`/api/videos/${hash_id}/grade`, {
+                grade_status: 2
+            }, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('user_token')}`
+                }
+            });
+            await this.getVideo(hash_id);
+        }
     }
 })

@@ -8,14 +8,16 @@
 </template>
 
 <script setup>
-
 const props = defineProps({
     count: {
         type: Number,
-        default: 0
+        default: 0,
+    },
+    isGraded: {
+        type: Boolean,
+        default: false
     }
 })
-
 
 </script>
 

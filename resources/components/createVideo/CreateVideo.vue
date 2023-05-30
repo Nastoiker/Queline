@@ -97,7 +97,7 @@ const setCategoryId = (id) => {
          video: videoFile.value,
          description: Description.value,
          title: Title.value,
-         tags: [],
+         tags: JSON.stringify([]),
          category_id: categoryId.value,
      });
      userStore.createVideo({
@@ -105,7 +105,7 @@ const setCategoryId = (id) => {
          video: videoFile.value,
          description: Description.value,
          title: Title.value,
-         tags: [],
+         tags: JSON.stringify([]),
          category_id: categoryId.value,
      });
 
