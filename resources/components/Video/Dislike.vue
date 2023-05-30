@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import { defineProps} from 'vue';
 const props = defineProps({
     count: {
         type: Number,
