@@ -13,7 +13,7 @@
                         alt=""
                     />
                 </router-link>
-                <button @click="auth.logout()">
+                <button class=" hidden sm:block"  @click="auth.logout()">
                     выйти
                 </button>
 

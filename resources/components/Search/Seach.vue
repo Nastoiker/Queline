@@ -17,7 +17,7 @@ function findVideo() {
             v-model="find"
             :="$attrs"
             type="search"
-            class="search__icon__input  indent-8 sm:w-96 h-[34px] text-black "
+            class="search__icon__input  indent-8 sm:w-96 h-[34px] text-black dark:text-white"
             @input="$emit('update:modelValue', $event.target.value)"
         />
     </form>

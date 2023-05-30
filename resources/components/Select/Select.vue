@@ -58,13 +58,12 @@ export default {
     width: 100%;
     text-align: left;
     outline: none;
-    height: 100%;
-    border: 1px white;
+    height: 47px;
     line-height: 47px;
 }
 
 .custom-select .selected {
-    background-color: transparent;
+    background-color: #0a0a0a;
     border-radius: 6px;
     border: 1px solid #666666;
     color: #fff;

@@ -3,8 +3,8 @@
         <div>
             <Bunner :defaultSrc="user.banner ? '/storage' + user.banner : defaultBanner" @file-updated="uploadBunner"  class="w-full object-cover  h-48" />
 
-            <div class="-mt-20 flex justify-around items-center">
-                <div class="  sm:flex text-start">
+            <div class="-mt-20  sm:flex justify-around items-center">
+                <div class=" text-center sm:flex sm:text-start">
                     <Avatar  :defaultSrc="user.photo ? '/storage' + user.photo : defaultAvatar"  @input="uploadImage" class="w-48 mx-auto h-48 rounded-full"/>
 
                     <div class="text-2xl  self-end space-y-5 sm:ml-10 sm:mb-5">
@@ -12,14 +12,19 @@
                         <h2 class="mx-auto"> {{ user.email }}</h2>
                     </div>
                 </div>
-                <button>
-                    <router-link to="/profile/editProfile" name="create_video"
-                        >Редактировать профиль</router-link
-                    >
-                </button>
+                <div class="my-10">
+                    <button class="block">
+                        <router-link to="/profile/editProfile" name="create_video">Редактировать профиль</router-link>
+                    </button>
+                    <button class="block">
+                        <router-link to="/profile/createVideo" name="create_video">Создать видео</router-link>
+                    </button>
+
+                </div>
+
             </div>
         </div>
-        <div class="flex text-2xl space-x-10 my-20 border-b-2">
+        <div class="flex text-sm sm:text-2xl space-x-10 my-20 border-b-2">
             <button
                 @click="setActiveTab('own_video')"
                 class="isAciveS"
@@ -57,9 +62,6 @@
                 {{ value[0] + ": " + value[1] }}
             </div>
         </div>
-        <router-link to="/profile/createVideo" name="create_video"
-            >Создать видео</router-link
-        >
     </div>
 </template>
 <style scope>

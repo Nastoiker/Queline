@@ -7,7 +7,7 @@ import Navbar from '@/components/NavBar/Navbar.vue'
 </script>
 
 <template>
-<div class=" overflow-hidden">
+<div class=" ">
     <div class="max-w-[1720px] mx-auto ">
         <Header  />
         <div class="my-10">

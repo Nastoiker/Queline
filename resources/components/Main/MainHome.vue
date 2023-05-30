@@ -9,9 +9,9 @@
                     </div>
             <button></button>
 
-            <div class="flex flex-wrap   my-48 sm:justify-around w-full">
-                <h1 class=" my-auto double-line-shadow text-7xl z-30">Популярное</h1>
-                <div class="w-1/3 h-96 z-40">
+            <div class=" flex flex-col-reverse md:flex-row flex-wrap mx-auto mt-48  mb-24 md:mb-48 sm:justify-around w-full">
+                <h1 class=" my-auto double-line-shadow  text-4xl sm:text-7xl z-30">Популярное</h1>
+                <div class="sm:w-1/3  z-40">
 
                         <video class=" min-w-[400px]" controls="controls" :src="videoGame"></video>
                         <h1>Здесь геншин</h1>
