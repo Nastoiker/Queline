@@ -1,21 +1,17 @@
 <template>
-    <div class="max-w-[1220px] mx-auto">
+    <div class="max-w-[1000px] border mx-auto my-20 bg-transparent  rounded-lg shadow-lg p-10">
     <div>
-        <img
-            class="mx-auto h-12 w-auto"
-            src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-            alt="Workflow"
-        />
-        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Sign in to your account
+
+        <h2 class="mt-6 text-center  text-3xl ">
+            Регистрация
         </h2>
-        <p class="mt-2 text-center text-sm text-gray-600">
-            Or
+        <p class="mt-2 text-center text-sm ">
+            или
             <router-link
                 :to="{ name: 'register' }"
-                class="font-medium text-indigo-600 hover:text-indigo-500"
+                class="font-medium  hover:text-indigo-500"
             >
-                register for free
+                Авторизируйтесь
             </router-link>
         </p>
     </div>
@@ -71,7 +67,8 @@
             <button
                 type="submit"
                 :disabled="loading.value"
-                class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+
+                class="group bg-gray relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 :class="{
           'cursor-not-allowed': loading,
           'hover:bg-indigo-500': loading,

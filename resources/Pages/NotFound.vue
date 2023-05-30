@@ -1,12 +1,13 @@
 <template>
     <div class="not-found-main">
-        <div class="not-found-404 text-center mt-36 mb-2 leading-none">404</div>
-        <div class="text-4xl text-center mt-6 mb-6">Страница не найдена</div>
-        <div class="text-3xl text-center w-1/2 ml-auto mr-auto">Похоже, запрашиваемая вами страница не найдена.
+        <div class="  text-9xl  relative text-center mt-36 mb-2 leading-none z-50">404</div>
+        <div class="text-lg sm:text-4xl relative text-center mt-6 mb-6 z-50">Страница не найдена</div>
+        <div class="text-lg sm:text-3xl relative text-center w-1/2 ml-auto mr-auto z-50">Похоже, запрашиваемая вами страница не найдена.
             Воспользуйтесь меню нашего сайта для поиска или выхода в меню
         </div>
         <div class="round absolute w-[941px] h-[941px] rounded-full z-1"></div>
         <div class="points w-[300px] h-[300px] absolute z-1"></div>
+
         <div class="bottom-line-1 bottom-0 w-full h-[130px] absolute z-30 left-0"></div>
         <div class="bottom-line-2 bottom-0 w-full h-[231px] absolute z-20 left-0"></div>
     </div>
@@ -25,6 +26,7 @@
     background-color: #198585;
     right: -400px;
     top: -450px;
+
 }
 
 .points {

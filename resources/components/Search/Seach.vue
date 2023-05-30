@@ -17,7 +17,7 @@ function findVideo() {
             v-model="find"
             :="$attrs"
             type="search"
-            class="search__icon__input  indent-8 sm:w-96 h-[34px] text-black dark:text-white"
+            class="search__icon__input  indent-8 sm:w-96 h-[34px]  text-black "
             @input="$emit('update:modelValue', $event.target.value)"
         />
     </form>
@@ -46,9 +46,10 @@ input:focus {
         padding-right: 1rem;
         padding-bottom: 0.2rem;
         padding-top: 0.2rem;
+        margin: 2 auto;
         width: 100%;
         max-width: 20rem;
-        background-color: transparent;
+        background-color: #E9E8ED;
         border: 0;
         background-position: right;
         background-origin: content-box;
