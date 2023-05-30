@@ -8,6 +8,7 @@ export const useVideoStore = defineStore("videoStore", {
         categories: ref([{
             title: 'asdasdas',
         }]),
+        loaded: ref(Boolean),
         videoByCategory: ref({}),
         currentCategory: ref({}),
         currentVideo: ref({}),
@@ -19,8 +20,10 @@ export const useVideoStore = defineStore("videoStore", {
     },
     actions: {
         async getVideoUser(nickname) {
+            this.loaded = true;
             const res = await axios.get(`/api/@${nickname}/videos`);
             this.video =  res.data.data;
+            this.loaded = false;
         },
         async getAllVideo() {
             const res = await axios.get('/api/videos');

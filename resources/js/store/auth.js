@@ -54,6 +54,7 @@ export const useAuthStore = defineStore("auth", {
             localStorage.removeItem('user_token');
             this.$reset();
             localStorage.removeItem('nickname');
+            location.reload();
             router.push('/');
         }
     },

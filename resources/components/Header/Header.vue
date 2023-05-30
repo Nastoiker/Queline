@@ -34,8 +34,7 @@ import {useDark, useToggle} from "@vueuse/core";
 import {useAuthStore} from "@/js/store/auth";
 const userStore = useUserStore();
 const auth = useAuthStore();
-const { user } = storeToRefs(userStore);
-userStore.fetchUser();
+let { user } = storeToRefs(userStore);
 
 const isDark = useDark();
 const toggleDark = useToggle(isDark);

@@ -19,16 +19,17 @@ const router = createRouter({
         {
             path: "/profile/editProfile",
             name: "editProfile",
+            meta: {
+                requiresAuth: true,
+            },
             component: editProfile,
         },
         {
             path: "/profile/createVideo",
             name: "create_video",
-            component: CreateVideo,
-        },
-        {
-            path: "/profile/createVideo",
-            name: "create_video",
+            meta: {
+                requiresAuth: true,
+            },
             component: CreateVideo,
         },
         {

@@ -49,7 +49,7 @@
                 <h1>О канале</h1>
             </button>
         </div>
-        <div v-if="activeTab === 'own_video'">
+        <div v-if="activeTab === 'own_video' && !loaded">
             <VideoContainer :videos="video"/>
         </div>
         <div v-if="activeTab === 'about'">
@@ -100,7 +100,7 @@ const videoStore = useVideoStore();
 const userStore = useUserStore();
 userStore.fetchUser();
 const { user } = storeToRefs(userStore);
-const { video } = storeToRefs(videoStore);
+const { video, loaded } = storeToRefs(videoStore);
 const isActive = ref("");
 videoStore.getVideoUser(localStorage.getItem('nickname'));
 
