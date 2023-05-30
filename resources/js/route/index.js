@@ -9,6 +9,7 @@ import SearchPage from "@/Pages/SearchPage.vue";
 import {useUserStore} from "@/js/store/user";
 import VideoPage from "@/Pages/VideoPage.vue";
 import CategoryPage from "@/Pages/CategoryPage.vue";
+import Channel from "@/Pages/Channel.vue";
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -46,6 +47,11 @@ const router = createRouter({
             path: "/category/:category_Id",
             name: "categoryPage",
             component: CategoryPage,
+        },
+        {
+            path: "/@:nickname",
+            name: "channel",
+            component: Channel,
         },
         {
             path: "/signout",

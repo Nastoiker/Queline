@@ -24,12 +24,16 @@
                 {{DateNumber(new Date(currentVideo.created_at))}}
            </div>
        </div>
+        <form @submit.prevent="">
+            <label class="block">Оставьте свой комментарий</label>
+            <textarea cols="40" rows="5" />
+        </form>
     </div>
 </template>
 <script setup>
 import {useRoute} from "vue-router";
 import defaultAvatar from "@/assets/user.jpg";
-
+import CommentForm from "@/components/Comment/CommentForm.vue";
 import {useVideoStore} from "@/js/store/video";
 import {storeToRefs} from "pinia";
 import WordEnd from "../js/helpler/word";

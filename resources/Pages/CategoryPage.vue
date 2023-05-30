@@ -6,7 +6,6 @@
 
 <VideoContainer :videos="videoByCategory.filter((v) => v.category.id == value)"/>
 
-    {{value}}
 </template>
 <script setup>
 import {useVideoStore} from "@/js/store/video";

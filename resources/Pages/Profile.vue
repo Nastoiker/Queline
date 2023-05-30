@@ -24,7 +24,7 @@
 
             </div>
         </div>
-        <div class="flex text-sm sm:text-2xl space-x-10 my-20 border-b-2">
+        <div class="flex text-sm sm:text-2xl space-x-10 my-20 border-b-2 ">
             <button
                 @click="setActiveTab('own_video')"
                 class="isAciveS"
@@ -69,8 +69,8 @@
     padding-bottom: 1rem;
 }
 .isAciveS.active {
-    border-bottom: 5px solid white;
     transition: all 0.2s ease-in-out;
+    @apply  border-b-4 ;
 }
 </style>
 <script>
