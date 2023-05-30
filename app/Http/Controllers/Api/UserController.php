@@ -93,4 +93,17 @@ class UserController extends Controller
             'message' => 'Администратор добавлен'
         ]);
     }
+
+    public function getByNickname($nickname)
+    {
+        $user = User::where('nickname', $nickname);
+
+        if (empty($user->count())) {
+            return response()->json([
+                'error' => 'Ничего не найдено'
+            ], 404);
+        }
+
+        return new DefaultUserResource($user->first());
+    }
 }

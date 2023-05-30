@@ -45,6 +45,9 @@ Route::get('/@{nickname}/videos', [VideoController::class, 'getVideosByNickname'
 /* Комментарии к видео */
 Route::get('/videos/{hash_id}/comments', [CommentController::class, 'allFromVideo']);
 
+/* Пользователь */
+Route::get('/@{nickname}', [UserController::class, 'getByNickname']);
+
 /* Подписчики */
 Route::get('/@{nickname}/subscribers', [SubscribeController::class, 'getAllByNickname']);
 
