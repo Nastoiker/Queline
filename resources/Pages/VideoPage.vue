@@ -16,12 +16,9 @@
                    </div>
                    <ButtonComponent class="bg-green">Подписаться</ButtonComponent>
                    <div class="rounded-2xl h-fit p-2 space-x-3 flex bg-gray">
-                        <div>
-                           {{currentVideo.grades.likes.length}}
-                        </div>
-                       <div>
-                           {{currentVideo.grades.dislikes.length}}
-                       </div>
+                       <Like :count="currentVideo.grades.likes.length"></Like>
+                       <div class="line-clamp-1"></div>
+                       <Dislike :count="currentVideo.grades.dislikes.length"></Dislike>
                    </div>
                </div>
                 {{DateNumber(new Date(currentVideo.created_at))}}
@@ -38,6 +35,8 @@ import {storeToRefs} from "pinia";
 import WordEnd from "../js/helpler/word";
 import ButtonComponent from "@/components/Button/ButtonComponent.vue"
 import {DateNumber} from "../js/helpler/date";
+import Like from "@/components/Video/Like.vue";
+import Dislike from "@/components/Video/Dislike.vue";
 const video =useVideoStore();
 const route = useRoute()
 video.getVideo(route.params.hash_id)
