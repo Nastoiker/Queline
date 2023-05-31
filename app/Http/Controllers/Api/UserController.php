@@ -106,4 +106,9 @@ class UserController extends Controller
 
         return new DefaultUserResource($user->first());
     }
+
+    public function getAllAdmin()
+    {
+        return DefaultUserResource::collection(User::all());
+    }
 }

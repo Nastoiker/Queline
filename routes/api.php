@@ -106,6 +106,8 @@ Route::group(['middleware' => 'authorize'], function () {
        Route::delete('/categories/{id}', [CategoryController::class, 'delete']);
 
        Route::put('/@{nickname}/make-admin', [UserController::class, 'makeAdmin']);
+
+       Route::get('all-users', [UserController::class, 'getAllAdmin']);
     });
 
 });
