@@ -10,6 +10,7 @@
  import CategoryContainer from "@/components/Containers/CategoryContainer.vue";
  import {useVideoStore} from "@/js/store/video";
 import VideoContainer from "@/components/Containers/VideoContainer.vue";
+ import CategoryArrVideo from "@/components/Containers/CategoryArrVideo.vue";
  const api = useVideoStore();
  const { categories, video } = storeToRefs(api);
  api.getCategories();
@@ -22,15 +23,10 @@ import VideoContainer from "@/components/Containers/VideoContainer.vue";
 <template v-if="categories.length>0">
     <div>
         <MainHome />
-        <div v-if="categories.length>5">
+        <div v-if="categories.length>5" >
+            <h1 class="text-4xl ml-4 my-10">Игры</h1>
             <CategoryContainer :categories="categories" />
-
         </div>
-        <VideoContainer :videos="video"/>
-        <div>
-            Home
-            {{user}}
-        </div>
-
+        <CategoryArrVideo :categories="categories" :videos="video"/>
     </div>
 </template>
