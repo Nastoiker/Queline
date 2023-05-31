@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
     <div v-if="currentVideo.path" class="w-11/12">
         <div class="w-fit">
             <video controls="controls" class="rounded-lg" :src="'/storage'+ currentVideo.path"></video>
