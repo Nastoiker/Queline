@@ -9,7 +9,7 @@ import Navbar from '@/components/NavBar/Navbar.vue'
 <template>
 <div class=" ">
     <div class="max-w-[1720px] mx-auto ">
-        <Header  />
+        <Header/>
         <div class="my-10">
             <router-view />
 

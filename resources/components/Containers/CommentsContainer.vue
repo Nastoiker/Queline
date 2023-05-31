@@ -1,15 +1,16 @@
 <template>
-    <div class="flex mx-auto  flex-wrap sm:gap-[30px]">
-        <div class="mx-auto sm:mx-0"  v-for="v of comments" :key="v.hash_id">
-           <Comment />
+    <div class="mx-auto w-full">
+        <h3 class="text-[24px] mb-6">Комментарии</h3>
+        <div class="flex justify-between items-center">
+            <div class="rounded-full w-[62px] h-[62px] bg-gray"></div>
+            <CommentForm @sendComment="(text) => $emit('sendComment', text)"></CommentForm>
+        </div>
+
+        <div class="mx-auto sm:mx-0">
+           <slot></slot>
         </div>
     </div>
-
 </template>
 <script setup>
-import VideoData from "@/components/Video/VideoData.vue";
-import Comment from "@/components/Comment/Comment.vue";
-const props = defineProps({
-    comments: Array,
-})
+import CommentForm from '@/components/Comment/CommentForm.vue';
 </script>

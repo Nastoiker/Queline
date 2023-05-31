@@ -1,13 +1,14 @@
 import {defineStore} from "pinia";
 import {ref} from "vue";
+import axios from "axios";
+import {aw} from "../../../public/build/assets/app-041cbd2e";
+
 const url = "";
 
 export const useVideoStore = defineStore("videoStore", {
     state: () => ({
         video: ref({}),
-        categories: ref([{
-            title: 'asdasdas',
-        }]),
+        categories: ref({}),
         loaded: ref(Boolean),
         videoByCategory: ref({}),
         currentCategory: ref({}),
@@ -36,19 +37,17 @@ export const useVideoStore = defineStore("videoStore", {
 
         async getVideo(hash_id) {
             const res = await axios.get(`/api/videos/${hash_id}`);
-            const comment = await axios.get(`api/videos/${hash_id}/comments`);
+            const comment = await axios.get(`/api/videos/${hash_id}/comments`);
             this.currentVideo = res.data.data;
             this.currentVideo.comments = comment.data.data;
         },
-        async getCommentsVideo() {
-            const res = await axios.get('/api/videos/hash/comments');
-            this.currentVideo.comments = res.data;
+        async getCommentsVideo(hash_id) {
+            const res = await axios.get(`/api/videos/${hash_id}/comments`);
+            this.currentVideo.comments = res.data.data;
         },
         async getCategories() {
             const res = await axios.get('/api/categories');
-            const category =  res.data.data;
-            console.log(category);
-            this.categories =  category;
+            this.categories =  res.data.data;
         },
         async getVideoByCategory(category) {
             const res = await axios.get(`/api/category/${category}/videos`);
@@ -73,6 +72,28 @@ export const useVideoStore = defineStore("videoStore", {
                 }
             });
             await this.getVideo(hash_id);
+        },
+        async pushComment(text, hash_id, re_id = null) {
+            const commentData = {'text': text};
+            if (re_id) {
+                commentData.re_id = re_id;
+            }
+            const res = await axios.post(`/api/videos/${hash_id}/comments`, commentData, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('user_token')}`
+                }
+            });
+            await this.getCommentsVideo(hash_id);
+        },
+        async setCommentGrade(id, grade_status, hash_id) {
+            const res = await axios.post(`/api/comments/${id}/grade`, {
+                grade_status_id: grade_status
+            }, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('user_token')}`
+                }
+            });
+            await this.getCommentsVideo(hash_id);
         }
     }
 })

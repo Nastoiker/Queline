@@ -51,7 +51,7 @@ const router = createRouter({
             component: () => import('@/Pages/VideoPage.vue'),
         },
         {
-            path: "/category/:category_Id",
+            path: "/category/:id",
             name: "categoryPage",
             component: () => import('@/Pages/CategoryPage.vue'),
         },

@@ -17,7 +17,8 @@ class DefaultCategoryResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'photo' => $this->photo
+            'photo' => $this->photo,
+            'created_at' => $this->created_at
         ];
     }
 }

@@ -1,10 +1,10 @@
 <template>
     <div class="flex space-x-5 items-center">
-        <img :src="categoryDefault"  class="w-32 h-32 object-cover rounded-md bg-white" />
-        <h1 class="text-5xl my-20">{{videoByCategory[0].category.title}}</h1>
+        <img :src="categoryDefault"  class="w-32 h-32 object-cover rounded-md bg-white" alt=""/>
+        <h1 class="text-5xl my-20">{{categories[value].title}}</h1>
     </div>
 
-<VideoContainer :videos="videoByCategory.filter((v) => v.category.id == value)"/>
+<!--<VideoContainer :videos="videoByCategory.filter((v) => v.category.id === +value)"/>-->
 
 </template>
 <script setup>
@@ -15,8 +15,15 @@ import categoryDefault from '@/assets/category.jpg'
 import {useRoute} from "vue-router";
 import VideoContainer from "@/components/Containers/VideoContainer.vue";
 const route = useRoute()
-const value = route.params.category_Id;
+const value = route.params.id;
 const videoStore = useVideoStore();
 videoStore.getVideoByCategory(value);
 const { videoByCategory } = storeToRefs(videoStore);
+await videoStore.getCategories();
+const categories = videoStore.returnCategories;
+
+console.log(categories)
 </script>
+<style scoped>
+
+</style>
