@@ -22,7 +22,6 @@
 </template>
 <script setup>
 import {useVideoStore} from "@/js/store/video";
-import {storeToRefs} from "pinia";
 import formatDate from "@/js/helpler/date";
 import CommentLike from "@/components/Comment/CommentLike.vue";
 import CommentDislike from "@/components/Comment/CommentDislike.vue";
