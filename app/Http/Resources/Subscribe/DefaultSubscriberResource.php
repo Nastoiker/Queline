@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Subscribe;
 
+use App\Http\Resources\User\DefaultUserResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -15,7 +16,7 @@ class DefaultSubscriberResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'nickname' => $this->user->nickname,
+            'user' => new DefaultUserResource($this->user),
             'subscribed_at' => $this->created_at
         ];
     }

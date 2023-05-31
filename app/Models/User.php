@@ -59,4 +59,13 @@ class User extends Authenticatable
           'description' => $this->description
         ];
     }
+
+    public function subscribers()
+    {
+        return $this->hasMany(Subscribe::class, 'channel_id', 'id');
+    }
+    public function subscribes()
+    {
+        return $this->hasMany(Subscribe::class, 'subscriber_id', 'id');
+    }
 }

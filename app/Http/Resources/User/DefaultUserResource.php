@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\User;
 
+use App\Http\Resources\Subscribe\DefaultSubscriberResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -14,6 +15,14 @@ class DefaultUserResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'nickname' => $this->nickname,
+            'photo' => $this->photo,
+            'description' => $this->description,
+            'banner' => $this->banner,
+            'email' => $this->email,
+            'subscribers' => DefaultSubscriberResource::collection($this->subscribers),
+            'subscribes' => UserLiteResource::collection($this->subscribes)
+        ];
     }
 }

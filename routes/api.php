@@ -51,6 +51,9 @@ Route::get('/@{nickname}', [UserController::class, 'getByNickname']);
 /* Подписчики */
 Route::get('/@{nickname}/subscribers', [SubscribeController::class, 'getAllByNickname']);
 
+/* Подписки */
+Route::get('/@{nickname}/subscribes', [SubscribeController::class, 'subscribesByUser']);
+
 /* Поиск */
 Route::get('/search', [SearchController::class, 'index']);
 

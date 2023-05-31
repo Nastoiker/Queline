@@ -81,4 +81,22 @@ class SubscribeController extends Controller
         $subscribe->first()->delete();
         return response(null, 404);
     }
+
+    public function subscribesByUser($nickname)
+    {
+        $user = User::where('nickname', $nickname);
+
+        if (empty($user->count())) {
+            return response()->json([
+                'error' => 'Пользователь не найден'
+            ], 404);
+        }
+
+        $user = $user->first();
+
+        $subscribes = Subscribe::where('subscriber_id', $user->id);
+
+        return DefaultSubscriberResource::collection($subscribes->get());
+    }
+
 }
