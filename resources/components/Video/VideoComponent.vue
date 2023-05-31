@@ -6,7 +6,6 @@
             @timeupdate="updateTime"
             :style="{ backgroundImage: 'url(' + props.img + ') ', backgroundSize: 'cover', height: '180px' } "
             class=" video-preview  rounded-md"
-            :controls="isPlaying.value"
             @ended="reset"
             muted="muted"
             :src="props.path"
@@ -54,14 +53,14 @@ export default {
         // this.$refs.video.addEventListener('loadeddata', () => {
         //     console.log('Видео загружено и готово к воспроизведению');
         // });
-        const video = this.$refs.video;
 
+        const video = this.$refs.video;
         video.addEventListener("mouseenter", this.play);
         video.addEventListener("mouseleave", this.stop);
     },
     beforeUnmount() {
         const video = this.$refs.video;
-        video.removeEventListener("mouseenter", this.play);
+        video.removeEventListener("mouseenter",  this.play);
         video.removeEventListener("mouseleave", this.stop);
     },
 
@@ -70,33 +69,31 @@ export default {
             this.currentTime =this.$refs.video.currentTime;
             this.duration = Number(this.$refs.video.duration);
         },
-        play() {
-
-            if(this.isPlay) return ;
-             else {
-                 if(this.check) {
-                     this.$refs.video.src = this.src;
-                     this.$refs.video.load();
-                 }
-                this.$refs.video.play();
+         play() {
+            if(!this.isPlay) {
+                if(this.check) {
+                    this.$refs.video.src = this.src;
+                    this.$refs.video.load();
+                }
                 this.$refs.video.currentTime = 0;
                 this.isPlay = true;
-            }
+                 this.$refs.video.play();
+            };
+
         },
-        stop() {
-            if(!this.isPlay) return ;
-             else {
-                this.$refs.video.pause();
+         stop() {
+            if(this.isPlay) {
                 this.isPlay = false;
                 this.check = true;
                 this.src =  this.$refs.video.src;
                 this.$refs.video.src = '';
-            }
+            };
+
         },
         reset() {
             if(!this.isPlay) return ; else {
 
-
+                this.currentTime = 0;
             }
         },
     },
