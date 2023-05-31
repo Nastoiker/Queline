@@ -3,7 +3,7 @@
         <video
             preload="none"
             ref="video"
-            class=" video-preview  rounded-md"
+            class=" video-preview object-cover  rounded-md"
             :controls="true"
             :poster="props.img"
             muted="muted"
