@@ -24,11 +24,13 @@
                         <Like
                             :count="currentVideo.grades.likes.length"
                             @like="handleLike"
+                            :is-graded="isGraded(currentVideo.grades.likes)"
                         ></Like>
                         <div class="line-clamp-1"></div>
                         <Dislike
                             :count="currentVideo.grades.dislikes.length"
                             @dislike="handleDislike"
+                            :is-graded="isGraded(currentVideo.grades.dislikes)"
                         ></Dislike>
                     </div>
                 </div>
@@ -68,6 +70,10 @@ const handleDislike = () => {
 
 const handlePushComment = (text) => {
     video.pushComment(text, hash_id)
+}
+
+const isGraded = (data) => {
+    return Boolean(data.find(item => item.nickname === localStorage.getItem('nickname')))
 }
 
 const {currentVideo} = storeToRefs(video);
