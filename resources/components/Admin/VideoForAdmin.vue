@@ -3,10 +3,9 @@
         <video
             preload="none"
             ref="video"
-            @timeupdate="updateTime"
-            :style="{ backgroundImage: 'url(' + props.img + ') ', backgroundSize: 'cover', height: '180px' } "
             class=" video-preview  rounded-md"
-            :controls="this.isPlay ?? false"
+            :controls="true"
+            :poster="props.img"
             @ended="reset"
             muted="muted"
             :src="props.path"
@@ -35,61 +34,7 @@ const isPlaying = ref({});
 <script>
 import {defineProps} from 'vue';
 
-export default {
 
-    data() {
-        return {
-            isPlay: false,
-            currentTime: 0,
-            src: '',
-            check: false,
-        };
-    },
-
-    mounted() {
-
-        const video = this.$refs.video;
-
-        video.addEventListener("mouseenter", this.play);
-        video.addEventListener("mouseleave", this.stop);
-    },
-    beforeUnmount() {
-        const video = this.$refs.video;
-        video.removeEventListener("mouseenter", this.play);
-        video.removeEventListener("mouseleave", this.stop);
-    },
-
-    methods: {
-        updateTime() {
-            this.currentTime = this.$refs.video.currentTime;
-        },
-        play() {
-            if(!this.isPlay) {
-                if(this.check) {
-                    this.$refs.video.src = this.src;
-                    this.$refs.video.load();
-                }
-                this.$refs.video.currentTime = 0;
-                this.isPlay = true;
-                this.$refs.video.play();
-            };
-        },
-        stop() {
-            if(this.isPlay) {
-                this.isPlay = false;
-                this.check = true;
-                this.src =  this.$refs.video.src;
-                this.$refs.video.src = '';
-            };
-        },
-        reset() {
-            if(!this.isPlay) return ; else {
-                this.$refs.video.currentTime = 0;
-
-            }
-        },
-    },
-};
 </script>
 <style scoped>
 .progress-bar-container {
