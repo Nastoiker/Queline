@@ -42,13 +42,12 @@ export default {
             isPlay: false,
             currentTime: 0,
             src: '',
+            check: false,
         };
     },
 
     mounted() {
-        // this.$refs.video.addEventListener('loadeddata', () => {
-        //     console.log('Видео загружено и готово к воспроизведению');
-        // });
+
         const video = this.$refs.video;
 
         video.addEventListener("mouseenter", this.play);
@@ -65,8 +64,7 @@ export default {
             this.currentTime = this.$refs.video.currentTime;
         },
         play() {
-            if(this.isPlay) return ;
-            else {
+            if(!this.isPlay) {
                 if(this.check) {
                     this.$refs.video.src = this.src;
                     this.$refs.video.load();
@@ -74,18 +72,15 @@ export default {
                 this.$refs.video.currentTime = 0;
                 this.isPlay = true;
                 this.$refs.video.play();
-
-            }
+            };
         },
         stop() {
-            if(!this.isPlay) return ;
-            else {
-                this.$refs.video.pause();
+            if(this.isPlay) {
                 this.isPlay = false;
                 this.check = true;
                 this.src =  this.$refs.video.src;
                 this.$refs.video.src = '';
-            }
+            };
         },
         reset() {
             if(!this.isPlay) return ; else {
