@@ -6,7 +6,7 @@
             @timeupdate="updateTime"
             :style="{ backgroundImage: 'url(' + props.img + ') ', backgroundSize: 'cover', height: '180px' } "
             class=" video-preview  rounded-md"
-            :controls="true"
+            :controls="this.isPlay ?? false"
             @ended="reset"
             muted="muted"
             :src="props.path"
