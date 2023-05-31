@@ -21,7 +21,7 @@ export const useChannelStore = defineStore(
             },
             async getSubs(nickname) {
                 const res = await axios.get(`/api/@${nickname}/subscribers`);
-                this.subs = res.data;
+                this.subs = res.data.data;
             },
             async getChannel(nickname) {
                 const res = await axios.get(`/api/@${nickname}`);
