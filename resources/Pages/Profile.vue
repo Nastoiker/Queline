@@ -58,6 +58,14 @@
             <VideoContainer :videos="video"/>
         </div>
         <div v-if="activeTab === 'about'">
+            <div>
+                <div class="flex">
+                    <h1>Описание</h1>
+                    <div v-if="!editMode"  @click="editMode = true">{{ user.description ?? 'Добавить описание'}}</div>
+                </div>
+
+                <textarea placeholder="Описание" @input="" v-if="editMode" v-model="description" @blur="editMode = false"></textarea>
+            </div>
             <div v-for="(value, index) of Object.entries(user)">
                 {{ value[0] + ": " + value[1] }}
             </div>
@@ -77,6 +85,8 @@
 export default {
     data() {
         return {
+            editMode: false,
+            description: "Описание",
             activeTab: "own_video",
         };
     },

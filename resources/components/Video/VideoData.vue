@@ -7,7 +7,7 @@
         />
         <div class="flex space-x-5">
             <div>
-                <img :src="video.author.photo ? '/storage' + video.author.photo : defaultAvatar"  class="rounded-full object-cover w-[49px] h-[49px]" alt="">
+                <img @click="route.push(`/@${video.author.nickname}`)" :src="video.author.photo ? '/storage' + video.author.photo : defaultAvatar"  class="rounded-full object-cover w-[49px] h-[49px]" alt="">
             </div>
             <div class=" break-words w-[246px]">
                 <h1>{{video.title}}</h1>
@@ -31,6 +31,7 @@ import router from "@/js/route/index.js";
 import VideoComponent from "@/components/Video/VideoComponent.vue";
 import formatDate from "@/js/helpler/date";
 import defaultAvatar from "@/assets/user.jpg";
+import route from "@/js/route/index.js";
 
 const props = defineProps({
     video: Object,
