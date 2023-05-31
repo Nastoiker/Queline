@@ -39,9 +39,9 @@
                 <h1>Категория видео</h1>
             </button>
             <button
-                @click="setActiveTab('folows')"
+                @click="setActiveTab('follows')"
                 class="isAciveS"
-                :class="{ active: activeTab == 'folows' }"
+                :class="{ active: activeTab == 'follows' }"
             >
                 <h1>Подписки</h1>
             </button>
@@ -56,10 +56,8 @@
         <div v-if="activeTab === 'own_video' && !loaded">
             <VideoContainer :videos="video"/>
         </div>
-        <div v-if="activeTab === 'folows'">
-            <div v-for="(value, index) of subs" :key="index">
-                {{ value }}
-            </div>
+        <div v-if="activeTab === 'follows'">
+           ыщьу
         </div>
         <div v-if="activeTab === 'about'">
             <div>
@@ -114,3 +112,12 @@ const { video, loaded } = storeToRefs(videoStore);
 videoStore.getVideoUser(value);
 const { channel, subs } = storeToRefs(channelStore);
 </script>
+<style scope>
+.isAciveS {
+    padding-bottom: 1rem;
+}
+.isAciveS.active {
+    transition: all 0.2s ease-in-out;
+    @apply  border-b-4 ;
+}
+</style>

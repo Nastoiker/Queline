@@ -40,9 +40,9 @@
                 <h1>Категория видео</h1>
             </button>
             <button
-                @click="setActiveTab('folows')"
+                @click="setActiveTab('follows')"
                 class="isAciveS"
-                :class="{ active: activeTab == 'folows' }"
+                :class="{ active: activeTab == 'follows' }"
             >
                 <h1>Подписки</h1>
             </button>
@@ -56,6 +56,9 @@
         </div>
         <div v-if="activeTab === 'own_video' && !loaded">
             <VideoContainer :videos="video"/>
+        </div>
+        <div v-if="activeTab === 'follows'">
+           asdasd
         </div>
         <div v-if="activeTab === 'about'" class="flex justify-around">
             <div>
