@@ -4,7 +4,7 @@ import {ref} from "vue";
 export const useAdminStore = defineStore("admin", {
     state: () => ({
         admin: ref({}),
-        videos: ref({}),
+        videosForAdmin: ref({}),
     }),
     actions: {
         async fetchAdmin() {
@@ -27,7 +27,7 @@ export const useAdminStore = defineStore("admin", {
         },
         async getVideoAll() {
             const res = await axios.get('/api/videos');
-            this.videos = res.data.data;
+            this.videosForAdmin = res.data.data;
         },
         async createAdmin(user) {
             await axios.post(`/api/videos/@${user}/make-admin`, {

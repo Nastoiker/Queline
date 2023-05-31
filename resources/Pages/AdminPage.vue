@@ -25,7 +25,7 @@
                 </div>
                 <div class="tab-content">
                     <div v-show="activeTab === 'video'">
-                     <AdminVideoContainer :videos="videos" />
+                     <AdminVideoContainer :videos="videosForAdmin" />
 
                     </div>
                     <div v-show="activeTab === 'users'">
@@ -58,7 +58,7 @@ import {ref} from "vue";
 import AdminVideoContainer from "@/components/Admin/AdminVideoContainer.vue";
 const adminStore = useAdminStore();
 await adminStore.getVideoAll();
-const { videos, admin } = storeToRefs(adminStore);
+const { videosForAdmin, admin } = storeToRefs(adminStore);
 
 const createCategoryModel = ref("");
 const photoCategory = ref();
