@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
     <div v-if="currentVideo.path" class="w-11/12">
         <div class="w-fit">
             <video controls="controls" class="rounded-lg" :src="'/storage'+ currentVideo.path"></video>
@@ -54,7 +55,8 @@ import CommentsContainer from "@/components/Containers/CommentsContainer.vue";
 import Comment from "@/components/Comment/Comment.vue";
 import router from "@/js/route";
 
-const video = useVideoStore();
+
+const video =useVideoStore();
 const route = useRoute()
 
 const hash_id = route.params.hash_id;

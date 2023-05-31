@@ -1,9 +1,10 @@
 import { defineStore } from "pinia";
 import {ref} from "vue";
 
-export const useAdminstore = defineStore("user", {
+export const useAdminStore = defineStore("user", {
     state: () => ({
-        user: ref({}),
+        admin: ref({}),
+        videos: ref({}),
     }),
     persist: true,
     actions: {
@@ -18,10 +19,14 @@ export const useAdminstore = defineStore("user", {
                     }
                 }
             );
-            const user = res.data.data;
-            this.user = user;
+            const admin = res.data.data;
+            if(admin.role) {
+                this.admin = admin;
+            } else {
+                return
+            }
         },
-        async createVideo(data) {
+        async getVideos(data) {
             const res = await axios.post('/api/videos', {
                     ...data
                 },
@@ -32,17 +37,16 @@ export const useAdminstore = defineStore("user", {
                     }
                 }
             );
-            this.user = user;
+            this.videos = res.data.data;
         },
-
-        async deleteVideo(data) {
-            const res = await axios.post('/api/videos', {
-                ...data
-            });
+        async createAdmin(user) {
+            await axios.put(`/api/videos/@${user}/make-admin`, {
+                _method: 'PUT',
+            })
         },
         async moderateVideo(videoId) {
-            const video = await axios.put('/api/videos/hash/moderate', {
-                videoId
+            const video = await axios.put(`/api/videos/${videoId}/moderate`, {
+                _method: 'PUT',
             })
         }
     }
