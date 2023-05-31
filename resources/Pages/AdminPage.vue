@@ -36,11 +36,19 @@
                         <h2>Категории</h2>
                         <!-- Ваш контент для вкладки категории -->
                     </div>
+                    <div v-show="activeTab === 'createCategory'">
+                        <div>
+                            <form @submit.prevent="">
+                                <BaseInput label="Название категории" v-model="createCategory" type="text" />
+                            </form>
+                        </div>
+                    </div>
                 </div>
 </template>
 <script setup>
 
     import {useAdminstore} from "@/js/store/admin";
+    import BaseInput from "@/components/Input/BaseInput.vue";
 
     const admin = useAdminstore();
 </script>
@@ -90,6 +98,8 @@ export default {
 import { useSearchStore } from "@/js/store/search";
 import { storeToRefs } from "pinia";
 import {useAdminStore, useAdminstore} from "@/js/store/admin";
+import {ref} from "vue";
 const adminStore = useAdminStore();
 const { videos, admin } = storeToRefs(adminStore);
+const createCategory = ref({});
 </script>
