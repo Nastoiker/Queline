@@ -61,5 +61,4 @@ export const useAuthStore = defineStore("auth", {
     greeting: {
         enabled: true,
     },
-    persist: true,
 });

@@ -1,12 +1,11 @@
 import { defineStore } from "pinia";
 import {ref} from "vue";
 
-export const useAdminStore = defineStore("user", {
+export const useAdminStore = defineStore("admin", {
     state: () => ({
         admin: ref({}),
         videos: ref({}),
     }),
-    persist: true,
     actions: {
         async fetchAdmin() {
             if(!localStorage.getItem('user_token')) {
@@ -26,28 +25,41 @@ export const useAdminStore = defineStore("user", {
                 return
             }
         },
-        async getVideos(data) {
-            const res = await axios.post('/api/videos', {
-                    ...data
-                },
-                {
-                    headers: {
-                        'Content-type': 'multipart/form-data',
-                        'Authorization': `Bearer ${localStorage.getItem('user_token')}`
-                    }
-                }
-            );
+        async getVideoAll() {
+            const res = await axios.get('/api/videos');
             this.videos = res.data.data;
         },
         async createAdmin(user) {
-            await axios.put(`/api/videos/@${user}/make-admin`, {
+            await axios.post(`/api/videos/@${user}/make-admin`, {
                 _method: 'PUT',
+            },
+                {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('user_token')}`
+                    }
+                }
+                )
+        },
+        async createCategoy(category) {
+            await axios.post(`/api/categories`, {
+               ...category
+            },{
+                headers: {
+                    'Content-type': 'multipart/form-data',
+                    'Authorization': `Bearer ${localStorage.getItem('user_token')}`
+                }
             })
         },
         async moderateVideo(videoId) {
-            const video = await axios.put(`/api/videos/${videoId}/moderate`, {
+            const video = await axios.post(`/api/videos/${videoId}/moderate`, {
                 _method: 'PUT',
-            })
+            },
+                {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('user_token')}`
+                    }
+                }
+                )
         }
     }
 });

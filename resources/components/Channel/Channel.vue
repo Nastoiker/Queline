@@ -13,6 +13,7 @@
 <script setup>
 const props = defineProps({
     isFollow: Boolean,
+    channel: Object,
 })
 </script>
 <script>

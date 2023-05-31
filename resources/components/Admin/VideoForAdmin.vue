@@ -6,15 +6,12 @@
             @timeupdate="updateTime"
             :style="{ backgroundImage: 'url(' + props.img + ') ', backgroundSize: 'cover', height: '180px' } "
             class=" video-preview  rounded-md"
-            :controls="isPlaying.value"
+            :controls="this.isPlay"
             @ended="reset"
             muted="muted"
             :src="props.path"
-           >
+        >
         </video>
-        <div v-if="currentTime" class="progress-bar-container">
-            <progress class="progress-bar  absolute z-10" :max="duration" :value="currentTime"></progress>
-        </div>
     </div>
 </template>
 <script setup>
@@ -44,9 +41,7 @@ export default {
         return {
             isPlay: false,
             currentTime: 0,
-            duration: 20,
             src: '',
-            check: false,
         };
     },
 
@@ -67,25 +62,24 @@ export default {
 
     methods: {
         updateTime() {
-            this.currentTime =this.$refs.video.currentTime;
-            this.duration = Number(this.$refs.video.duration);
+            this.currentTime = this.$refs.video.currentTime;
         },
         play() {
-
             if(this.isPlay) return ;
-             else {
-                 if(this.check) {
-                     this.$refs.video.src = this.src;
-                     this.$refs.video.load();
-                 }
-                this.$refs.video.play();
+            else {
+                if(this.check) {
+                    this.$refs.video.src = this.src;
+                    this.$refs.video.load();
+                }
                 this.$refs.video.currentTime = 0;
                 this.isPlay = true;
+                this.$refs.video.play();
+
             }
         },
         stop() {
             if(!this.isPlay) return ;
-             else {
+            else {
                 this.$refs.video.pause();
                 this.isPlay = false;
                 this.check = true;
@@ -95,7 +89,7 @@ export default {
         },
         reset() {
             if(!this.isPlay) return ; else {
-
+                this.$refs.video.currentTime = 0;
 
             }
         },

@@ -23,7 +23,7 @@
 
             </div>
         </div>
-        <div class="flex text-sm sm:text-2xl space-x-10 my-20 border-b-2 ">
+        <div class="flex lg:px-48 text-sm sm:text-2xl space-x-10 my-20 border-b-2 ">
             <button
                 @click="setActiveTab('own_video')"
                 class="isAciveS"
@@ -62,9 +62,13 @@
             </div>
         </div>
         <div v-if="activeTab === 'about'">
-            <div v-for="(value, index) of Object.entries(user)">
-                {{ value[0] + ": " + value[1] }}
+            <div>
+                <div >
+                    <h1 class="block text-xl">Описание:</h1>
+                    <p>{{ user.description ?? 'Автор ничего о себе не написал('}}</div>
+                </div>
             </div>
+            <div><h1 class="text-xl">Дата создания:</h1> <h1>{{DateNumber(channel.created_at)}}</h1></div>
         </div>
     </div>
 </div>
@@ -95,6 +99,7 @@ import VideoContainer from "@/components/Containers/VideoContainer.vue";
 import {useChannelStore} from "@/js/store/channel";
 import {useUserStore} from "@/js/store/user";
 import router from "@/js/route";
+import {DateNumber} from "../js/helpler/date";
 const route = useRoute();
 const value = route.params.nickname;
 const videoStore = useVideoStore();

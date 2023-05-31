@@ -24,7 +24,7 @@
 
             </div>
         </div>
-        <div class="flex text-sm sm:text-2xl space-x-10 my-20 border-b-2 ">
+        <div class="lg:px-48 flex text-sm sm:text-2xl space-x-10 my-20 border-b-2 ">
             <button
                 @click="setActiveTab('own_video')"
                 class="isAciveS"
@@ -57,18 +57,17 @@
         <div v-if="activeTab === 'own_video' && !loaded">
             <VideoContainer :videos="video"/>
         </div>
-        <div v-if="activeTab === 'about'">
+        <div v-if="activeTab === 'about'" class="flex justify-around">
             <div>
-                <div class="flex">
-                    <h1>Описание</h1>
+                <div >
+                    <h1 class="block text-xl">Описание:</h1>
                     <div v-if="!editMode"  @click="editMode = true">{{ user.description ?? 'Добавить описание'}}</div>
                 </div>
 
-                <textarea placeholder="Описание" @input="" v-if="editMode" v-model="description" @blur="editMode = false"></textarea>
+                <textarea class="p-5 rounded-md" placeholder="Описание" @input="" v-if="editMode" v-model="description" @blur="editMode = false"></textarea>
+
             </div>
-            <div v-for="(value, index) of Object.entries(user)">
-                {{ value[0] + ": " + value[1] }}
-            </div>
+            <div><h1 class="text-xl">Дата создания:</h1> <h1>{{DateNumber(user.created_at)}}</h1></div>
         </div>
     </div>
 </template>
@@ -108,6 +107,7 @@ import { storeToRefs } from "pinia";
 import VideoComponent from "@/components/Video/VideoComponent.vue";
 import { useVideoStore } from "@/js/store/video";
 import VideoContainer from "@/components/Containers/VideoContainer.vue";
+import {DateNumber} from "../js/helpler/date";
 const videoStore = useVideoStore();
 const userStore = useUserStore();
 userStore.fetchUser();

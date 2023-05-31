@@ -3,7 +3,7 @@
         <div class="mx-auto sm:mx-0"  v-for="v in videos">
             <VideoData  :video="v"/>
         </div>
-        <h1 v-if="videos.length===0" class="text-4xl">
+        <h1 v-if="videos.length===0" class=" mx-auto text-4xl">
             Ничего не найдено
         </h1>
     </div>

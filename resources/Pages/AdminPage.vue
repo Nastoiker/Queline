@@ -17,29 +17,29 @@
                     </button>
                     <button
                         class="tab-button"
-                        :class="{ active: activeTab === 'category' }"
-                        @click="setActiveTab('category')"
+                        :class="{ active: activeTab === 'createCategory' }"
+                        @click="setActiveTab('createCategory')"
                     >
                         Создание категории
                     </button>
                 </div>
                 <div class="tab-content">
                     <div v-show="activeTab === 'video'">
-                       Создать категорию
+                     <AdminVideoContainer :videos="videos" />
 
                     </div>
                     <div v-show="activeTab === 'users'">
                         <h2>Пользователи</h2>
                         <!-- Ваш контент для вкладки пользователи -->
                     </div>
-                    <div v-show="activeTab === 'category'">
-                        <h2>Категории</h2>
-                        <!-- Ваш контент для вкладки категории -->
-                    </div>
                     <div v-show="activeTab === 'createCategory'">
-                        <div>
-                            <form @submit.prevent="">
-                                <BaseInput label="Название категории" v-model="createCategory" type="text" />
+                        <div class="tex-tstart">
+                            <form   @submit.prevent="createCategory">
+
+                                <img :src="photoCategory" alt="">
+                                <InputFile v-if="!photoCategory"  @file-updated="imgCategoryHandle" class="mb-20"  label="Фотография категории"/>
+                                <BaseInput required class=" mx-auto w-[500px] block" label="Название категории" v-model="createCategoryModel"  />
+                                <ButtonComponent class="text-center mx-auto">Создать категорию</ButtonComponent>
                             </form>
                         </div>
                     </div>
@@ -47,11 +47,36 @@
 </template>
 <script setup>
 
-    import {useAdminstore} from "@/js/store/admin";
-    import BaseInput from "@/components/Input/BaseInput.vue";
+import { useSearchStore } from "@/js/store/search";
+import { storeToRefs } from "pinia";
+import {useAdminStore} from "@/js/store/admin.js";
+import BaseInput from "@/components/Input/BaseInput.vue";
+import InputFile from "@/components/InputFile/InputFile.vue";
+import ButtonComponent from "@/components/Button/ButtonComponent.vue";
 
-    const admin = useAdminstore();
+import {ref} from "vue";
+import AdminVideoContainer from "@/components/Admin/AdminVideoContainer.vue";
+const adminStore = useAdminStore();
+const { videos, admin } = storeToRefs(adminStore);
+ adminStore.getVideoAll();
+
+const createCategoryModel = ref("");
+const photoCategory = ref();
+const photoCategoryPreview = ref({});
+function imgCategoryHandle(file) {
+    // videoFile.value = file.target.files;
+    photoCategory.value = file;
+    photoCategoryPreview.value = file.previewBase64;
+}
+const createCategory = async () => {
+    await adminStore.createCategoy({
+        text: createCategoryModel.value,
+        photo: photoCategory.value,
+    })
+}
 </script>
+
+
 <script>
 export default {
     data() {
@@ -94,12 +119,3 @@ export default {
     border-radius: 0 5px 5px 5px;
 }
 </style>
-<script setup>
-import { useSearchStore } from "@/js/store/search";
-import { storeToRefs } from "pinia";
-import {useAdminStore, useAdminstore} from "@/js/store/admin";
-import {ref} from "vue";
-const adminStore = useAdminStore();
-const { videos, admin } = storeToRefs(adminStore);
-const createCategory = ref({});
-</script>

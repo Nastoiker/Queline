@@ -61,6 +61,11 @@ const router = createRouter({
             component: () => import('@/Pages/Channel.vue'),
         },
         {
+            path: "/admin",
+            name: "admin",
+            component: () => import('@/Pages/AdminPage.vue'),
+        },
+        {
             path: "/signout",
             name: "signout",
             beforeEnter: (to, from, next) => {
@@ -85,6 +90,12 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
     const user = useUserStore()
     await user.fetchUser();
+    if (to.path === '/admin') {
+        if (user.user.role_id!==1) {
+            next("/home");
+            return;
+        }
+    }
     if (to.matched.some((route) => route.meta?.requiresAuth)) {
         if (!user.user.email) {
             next("/home");
