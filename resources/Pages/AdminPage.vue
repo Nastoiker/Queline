@@ -20,7 +20,7 @@
                         :class="{ active: activeTab === 'category' }"
                         @click="setActiveTab('category')"
                     >
-                        Категории
+                        Создание категории
                     </button>
                 </div>
                 <div class="tab-content">
@@ -89,6 +89,7 @@ export default {
 <script setup>
 import { useSearchStore } from "@/js/store/search";
 import { storeToRefs } from "pinia";
-const searchStore = useSearchStore();
-const { search, finded } = storeToRefs(searchStore);
+import {useAdminStore, useAdminstore} from "@/js/store/admin";
+const adminStore = useAdminStore();
+const { videos, admin } = storeToRefs(adminStore);
 </script>

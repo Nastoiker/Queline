@@ -30,6 +30,11 @@ export const useVideoStore = defineStore("videoStore", {
             }
             this.loaded = false;
         },
+        async deleteVideo(data) {
+            const res = await axios.post('/api/videos', {
+                ...data
+            });
+        },
         async getAllVideo() {
             const res = await axios.get('/api/videos');
             this.video = res.data.data;
