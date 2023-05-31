@@ -21,6 +21,7 @@ class DefaultUserResource extends JsonResource
             'description' => $this->description,
             'banner' => $this->banner,
             'email' => $this->email,
+            'role_id' => $this->role_id,
             'subscribers' => DefaultSubscriberResource::collection($this->subscribers),
             'subscribes' => UserLiteResource::collection($this->subscribes)
         ];
