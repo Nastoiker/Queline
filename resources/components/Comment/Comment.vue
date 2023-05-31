@@ -6,15 +6,17 @@
         <div class="text-start">
             <h4>{{ user.nickname }} &middot; <span>{{ formatDate(user.created_at) }}</span></h4>
             <div>{{ user.text }}</div>
-            <div class="flex justify-between w-[90px] my-2">
+            <div class="flex justify-between w-fit my-2 bg-gray rounded-full py-1 px-3">
                 <CommentLike
                     :count="user.grades.likes.length"
                     @commentLike="setLike"
+                    :is-graded="isGraded(user.grades.likes)"
                 ></CommentLike>
                 <div class="line-clamp-1 w-0.5 bg-white shrink-0"></div>
                 <CommentDislike
                     :count="user.grades.dislikes.length"
                     @commentDislike="setDislike"
+                    :is-graded="isGraded(user.grades.dislikes)"
                 ></CommentDislike>
             </div>
         </div>
@@ -43,5 +45,8 @@ const setDislike = () => {
     video.setCommentGrade(props.user.id, 2, hash_id);
 }
 
+const isGraded = (data) => {
+    return Boolean(data.find(item => item.nickname === localStorage.getItem('nickname')))
+}
 
 </script>

@@ -1,7 +1,8 @@
 <template>
     <div class="flex w-auto"  @click="$emit('dislike')">
         <div class="w-[20px] h-[20px] mr-2 cursor-pointer">
-            <img src="/resources/assets/Vector_dislike.svg" alt="" class="w-fit h-fit object-cover">
+            <img v-if="isGraded" src="/resources/assets/Vector_disliked.svg" alt="" class="w-fit h-fit object-cover">
+            <img v-else src="/resources/assets/Vector_dislike.svg" alt="" class="w-fit h-fit object-cover">
         </div>
         <div class="text-[14px]">{{ count }}</div>
     </div>

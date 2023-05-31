@@ -1,7 +1,6 @@
 import {defineStore} from "pinia";
 import {ref} from "vue";
 import axios from "axios";
-import {aw} from "../../../public/build/assets/app-041cbd2e";
 
 const url = "";
 
