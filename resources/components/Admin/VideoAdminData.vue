@@ -1,6 +1,6 @@
 <template>
     <div class="w-[320px]">
-        <VideoComponent
+        <VideoForAdmin
             :img="'/storage' + video.preview"
             :path="'/storage'+ video.path"
         />
@@ -26,7 +26,7 @@
 </template>
 <script setup>
 import router from "@/js/route/index.js";
-import VideoComponent from "@/components/Video/VideoComponent.vue";
+
 import VideoForAdmin from "@/components/Admin/VideoForAdmin.vue";
 import formatDate from "@/js/helpler/date";
 import defaultAvatar from "@/assets/user.jpg";
