@@ -65,10 +65,11 @@
             <div>
                 <div >
                     <h1 class="block text-xl">Описание:</h1>
-                    <p>{{ user.description ?? 'Автор ничего о себе не написал('}}</p></div>
+                    <p>{{ user.description ?? 'Автор ничего о себе не написал('}}</p>
+                </div>
+                <div><h1 class="text-xl">Дата создания:</h1> <h1>{{DateNumber(channel.created_at)}}</h1></div>
                 </div>
             </div>
-            <div><h1 class="text-xl">Дата создания:</h1> <h1>{{DateNumber(channel.created_at)}}</h1></div>
         </div>
     </div>
 </template>
