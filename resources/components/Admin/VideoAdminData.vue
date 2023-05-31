@@ -1,7 +1,6 @@
 <template>
     <div class="w-[320px]">
         <VideoForAdmin
-            @click="router.push(`/video/${video.hash_id}`)"
             :img="'/storage' + video.preview"
             :path="'/storage'+ video.path"
         />

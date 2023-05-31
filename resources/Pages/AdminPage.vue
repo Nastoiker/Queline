@@ -57,8 +57,8 @@ import ButtonComponent from "@/components/Button/ButtonComponent.vue";
 import {ref} from "vue";
 import AdminVideoContainer from "@/components/Admin/AdminVideoContainer.vue";
 const adminStore = useAdminStore();
+await adminStore.getVideoAll();
 const { videos, admin } = storeToRefs(adminStore);
- adminStore.getVideoAll();
 
 const createCategoryModel = ref("");
 const photoCategory = ref();
