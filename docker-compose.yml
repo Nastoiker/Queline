@@ -1,0 +1,27 @@
+version: '3'
+services:
+  mysql:
+    build:
+        context: ./docker/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=queline
+    ports:
+        - 3306:3306
+
+  php:
+    build:
+        context: ./docker/php
+    volumes:
+      - './:/var/www/html'
+      - './docker/php/php.ini:/usr/local/etc/php/php.ini'
+  nginx:
+    build:
+        context: ./docker/nginx
+    ports:
+      - 80:80
+    volumes:
+      - './:/var/www/html'
+      - './docker/nginx/conf.d/default.conf:/etc/nginx/nginx.conf'
+
+
