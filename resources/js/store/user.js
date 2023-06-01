@@ -5,9 +5,13 @@ export const useUserStore = defineStore("user", {
     state: () => ({
         user: ref({}),
         video: ref({}),
-        errorCreate: ref("")
+        errorCreate: ref(""),
+        loading: ref(Boolean),
     }),
     actions: {
+        checkIsFollow(channelNickname) {
+            return Boolean(this.user.subscribes.find( s => s.nickname === channelNickname));
+        },
         async fetchUser() {
             if(!localStorage.getItem('user_token')) {
                 return;
@@ -112,10 +116,19 @@ export const useUserStore = defineStore("user", {
             });
             this.user = user;
         },
-        async deleteVideo(data) {
-            const res = await axios.post('/api/videos', {
-                ...data
-            });
+        async deleteVideo(hashId) {
+            this.loading = true;
+            const res = await axios.post(`/api/videos/${hashId}`, {
+                _method: 'DELETE',
+            },
+                {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('user_token')}`
+                    },
+                }
+                );
+            this.loading = false;
         },
         async editVideo(data) {
             const edit = await axios.post('api/videos/hash', {
@@ -135,10 +148,17 @@ export const useUserStore = defineStore("user", {
                 }
             );
         },
-        async followChannel(data) {
-            const res = await axios.post('/api/videos', {
-                ...data
-            });
+        async followChannel(nickname) {
+            const res = await axios.post(`/api/@${nickname}/subscribe`, {
+            },
+                {
+                    headers: {
+                        'Content-type': 'multipart/form-data',
+                        'Accept': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('user_token')}`
+                    },
+                }
+                );
         },
     }
 });
