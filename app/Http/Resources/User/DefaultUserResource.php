@@ -22,8 +22,8 @@ class DefaultUserResource extends JsonResource
             'banner' => $this->banner,
             'email' => $this->email,
             'role_id' => $this->role_id,
-//            'subscribers' => $this->subscribers,
-//            'subscribes' => $this->subscribes
+            'subscribers' => $this->subscribers,
+            'subscribes' => $this->subscribes
         ];
     }
 }

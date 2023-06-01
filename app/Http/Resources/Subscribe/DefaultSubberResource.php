@@ -2,9 +2,6 @@
 
 namespace App\Http\Resources\Subscribe;
 
-use App\Http\Resources\User\DefaultUserResource;
-use App\Http\Resources\User\GetUserByIdResource;
-use App\Http\Resources\User\UserLiteResource;
 use App\Models\Subscribe;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
