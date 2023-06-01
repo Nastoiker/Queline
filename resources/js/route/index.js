@@ -1,5 +1,6 @@
 import {createRouter, createWebHistory} from "vue-router";
 import {useUserStore} from "@/js/store/user";
+import VideoPage from "@/Pages/VideoPage.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -48,7 +49,7 @@ const router = createRouter({
         {
             path: "/video/:hash_id",
             name: "videoPage",
-            component: () => import('@/Pages/VideoPage.vue'),
+            component: VideoPage,
         },
         {
             path: "/category/:id",

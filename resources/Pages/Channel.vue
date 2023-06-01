@@ -57,15 +57,10 @@
             <VideoContainer :videos="video"/>
         </div>
         <div v-if="activeTab === 'follows'">
-            <Subscriber
-                v-for="sub in subscribes"
-                :nickname="sub.user.nickname"
-                :photo="sub.user.photo"
-                :subscribers-count="sub.user.subscribers.length"
-            ></Subscriber>
+           ыщьу
         </div>
         <div v-if="activeTab === 'about'">
-            <div>
+            <div class="flex space-x-20">
                 <div >
                     <h1 class="block text-xl">Описание:</h1>
                     <p>{{ user.description ?? 'Автор ничего о себе не написал('}}</p>
@@ -102,13 +97,12 @@ import {useChannelStore} from "@/js/store/channel";
 import {useUserStore} from "@/js/store/user";
 import router from "@/js/route";
 import {DateNumber} from "../js/helpler/date";
-import Subscriber from "@/components/User/Subscriber.vue";
 const route = useRoute();
 const value = route.params.nickname;
 const videoStore = useVideoStore();
 const channelStore = useChannelStore();
 channelStore.getChannel(value);
-channelStore.getSubscribes(value);
+channelStore.getSubs(value);
 const userStore = useUserStore();
 const { user } = storeToRefs(userStore);
 if(value===user.nickname) {
@@ -116,12 +110,9 @@ if(value===user.nickname) {
 }
 const { video, loaded } = storeToRefs(videoStore);
 videoStore.getVideoUser(value);
-const { channel, subscribes } = storeToRefs(channelStore);
+const { channel, subs } = storeToRefs(channelStore);
 </script>
-
-
-
-<style scoped>
+<style scope>
 .isAciveS {
     padding-bottom: 1rem;
 }

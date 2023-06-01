@@ -15,10 +15,10 @@ module.exports = {
             'gray': '#6D6F73',
             'black': '#303236',
             'green': '#198585',
+            'red' : '#BB5656',
 
         },
         extend: {},
     },
     plugins: [],
 }
-

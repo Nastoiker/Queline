@@ -100,4 +100,5 @@ const isGraded = (data) => {
 videoStore.getAllVideo();
 const {currentVideo, video} = storeToRefs(videoStore);
 
+const value = router.params;
 </script>

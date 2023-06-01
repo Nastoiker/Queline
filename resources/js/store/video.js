@@ -54,7 +54,7 @@ export const useVideoStore = defineStore("videoStore", {
             this.categories =  res.data.data;
         },
         async getVideoByCategory(category) {
-            const res = await axios.get(`/api/category/${category}/videos`);
+                const res = await axios.get(`/api/category/${category}/videos`);
             this.videoByCategory = res.data.data;
         },
         async setLike(hash_id) {

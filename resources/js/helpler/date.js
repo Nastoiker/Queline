@@ -8,6 +8,6 @@ export default function formatDate(date) {
 }
 export const DateNumber = (data) => {
 
-    return  dayjs(data).format('YYYY. MM.DD')
+    return  dayjs(data).format('YYYY.MM.DD')
 
 }

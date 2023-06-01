@@ -1,11 +1,11 @@
 <template>
 
-    <div class="mx-auto sm:mx-0 my-20"  v-for="c in categories">
-        <div  v-if="videos.filter( v => v.category.title === c.title).length>0">
+    <div v-if="props.videos" class="mx-auto sm:mx-0 my-20"  v-for="c in props.categories">
+        <div  v-if="props.videos.filter( v => v.category.title === c.title).length>0">
             <h1 class="text-4xl">
                 {{ c.title}}
             </h1>
-            <VideoContainer   :videos="videos.filter( v => v.category.title === c.title)"/>
+            <VideoContainer   :videos="props.videos.filter( v => v.category.title === c.title)"/>
         </div>
     </div>
 

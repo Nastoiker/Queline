@@ -8,6 +8,9 @@ export const useUserStore = defineStore("user", {
         errorCreate: ref(""),
         loading: ref(Boolean),
     }),
+    getters: {
+
+    },
     actions: {
         checkIsFollow(channelNickname) {
             return Boolean(this.user.subscribes.find( s => s.nickname === channelNickname));

@@ -5,13 +5,10 @@ export const useChannelStore = defineStore(
     'app',
     {
         state: () => ({
-            subscribers: ref({}),
-            subscribes: ref({}),
+            subs: ref({}),
             channel: ref({})
         }),
-        getters: {
-
-        },
+        getters: {},
         actions: {
             toggleTheme(dark) {
                 if (dark) {
@@ -22,17 +19,13 @@ export const useChannelStore = defineStore(
                     document.documentElement.classList.remove('dark');
                 }
             },
-            async getSubscribers(nickname) {
+            async getSubs(nickname) {
                 const res = await axios.get(`/api/@${nickname}/subscribers`);
-                this.subscribers = res.data.data;
+                this.subs = res.data.data;
             },
             async getChannel(nickname) {
                 const res = await axios.get(`/api/@${nickname}`);
                 this.channel = res.data.data;
-            },
-            async getSubscribes(nickname) {
-                const res = await axios.get(`/api/@${nickname}/subscribes`);
-                this.subscribes = res.data.data;
             }
         },
     },

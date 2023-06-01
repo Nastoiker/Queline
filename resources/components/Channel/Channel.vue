@@ -1,24 +1,19 @@
 <template>
-    <div class="flex-col">
-        <img src="" class="rounded-full w-28 h-28" alt="">
+    <div class="flex space-x-5">
+        <img :src="channel.photo ? '/storage' + channel.photo : defaultAvatar" class="rounded-full w-28 h-28" alt="">
         <div>
             <h1>
-                {{name}}
+                {{channel.nickname}}
             </h1>
-            <p>{{countSubs}} Подписчиков</p>
-            <ButtonComponent>{{ isFollow ? 'Отписаться' : 'Подписаться'}}</ButtonComponent>
+            <p>{{channel.subscribers}} Подписчиков</p>
+            <button>{{ isFollow ? 'Отписаться' : 'Подписаться'}}</button>
         </div>
     </div>
 </template>
 <script setup>
+import defaultAvatar from "@/assets/user.jpg";
 const props = defineProps({
     isFollow: Boolean,
     channel: Object,
 })
-</script>
-<script>
-import ButtonComponent from "../Button/ButtonComponent";
-export default {
-    components: {ButtonComponent}
-}
 </script>

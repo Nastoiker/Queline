@@ -33,13 +33,6 @@
                 <h1>Ваши видео</h1>
             </button>
             <button
-                @click="setActiveTab('category')"
-                class="isAciveS"
-                :class="{ active: activeTab == 'category' }"
-            >
-                <h1>Категория видео</h1>
-            </button>
-            <button
                 @click="setActiveTab('follows')"
                 class="isAciveS"
                 :class="{ active: activeTab == 'follows' }"
@@ -55,12 +48,12 @@
             </button>
         </div>
         <div v-if="activeTab === 'own_video' && !loaded">
-            <VideoContainer :videos="video"/>
+            <UserVideoContainer @delete="handleDelete" :videos="video"/>
         </div>
         <div v-if="activeTab === 'follows'">
-           asdasd
+            <ChannelsContainer :channels="user.subscribes" />
         </div>
-        <div v-if="activeTab === 'about'" class="flex justify-around">
+        <div v-if="activeTab === 'about'" class="flex space-x-20">
             <div>
                 <div >
                     <h1 class="block text-xl">Описание:</h1>
@@ -107,14 +100,17 @@ import { useUserStore } from "../js/store/user";
 import Avatar from "@/components/AvatarComponent/Avatar.vue";
 import Bunner from '@/components/Bunner/Bunner.vue'
 import { storeToRefs } from "pinia";
+
 import VideoComponent from "@/components/Video/VideoComponent.vue";
 import { useVideoStore } from "@/js/store/video";
 import VideoContainer from "@/components/Containers/VideoContainer.vue";
 import {DateNumber} from "../js/helpler/date";
+import ChannelsContainer from "@/components/Containers/ChannelsContainer.vue";
+import UserVideoContainer from "@/components/User/UserVideoContainer.vue";
 const videoStore = useVideoStore();
 const userStore = useUserStore();
 userStore.fetchUser();
-const { user } = storeToRefs(userStore);
+const { user, loading } = storeToRefs(userStore);
 const { video, loaded } = storeToRefs(videoStore);
 const isActive = ref("");
 videoStore.getVideoUser(localStorage.getItem('nickname'));
@@ -139,5 +135,7 @@ const uploadBunner = (e) => {
         _method: 'PUT',
     });
 }
-
+const handleDelete = (hash_id) => {
+    userStore.deleteVideo(hash_id);
+}
 </script>

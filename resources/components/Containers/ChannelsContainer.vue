@@ -1,6 +1,6 @@
 <template>
     <div class="flex mx-auto  flex-wrap sm:gap-[30px]">
-        <div class="mx-auto sm:mx-0"  v-for="c of channels" :key="v.hash_id">
+        <div class="mx-auto sm:mx-0"  v-for="c of channels" :key="c.id">
             <Channel :channel="c"/>
         </div>
     </div>
