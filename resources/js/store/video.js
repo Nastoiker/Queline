@@ -6,7 +6,7 @@ const url = "";
 
 export const useVideoStore = defineStore("videoStore", {
     state: () => ({
-        video: ref({}),
+        video: ref([{}]),
         categories: ref({}),
         loaded: ref(Boolean),
         videoByCategory: ref({}),

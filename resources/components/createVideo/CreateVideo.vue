@@ -38,9 +38,8 @@
                 <InputFile v-if="!preview" accept="video/*" class="mb-32" @file-updated="previewImg" label="Превью"/>
             </div>
             <div>
-
-                <BaseInput label="Описание" v-model="Description"/>
-                <BaseInput label="Название" v-model="Title"/>
+                <BaseInput label="" v-model="Title" placeholder="Название видео"/>
+                <BaseInput label="" v-model="Description" placeholder="Описание"/>
                 <Select :options="categories"
                         :default="'Категория'"
                         class="select my-5"
