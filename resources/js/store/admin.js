@@ -5,6 +5,7 @@ export const useAdminStore = defineStore("admin", {
     state: () => ({
         admin: ref({}),
         videosForAdmin: ref({}),
+        users: ref({}),
     }),
     actions: {
         async fetchAdmin() {
@@ -28,6 +29,14 @@ export const useAdminStore = defineStore("admin", {
         async getVideoAll() {
             const res = await axios.get('/api/videos');
             this.videosForAdmin = res.data.data;
+        },
+        async getUserAll() {
+            const res = await axios.get('/api/all-users',{
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('user_token')}`
+                }
+            });
+            this.users = res.data.data;
         },
         async createAdmin(user) {
             await axios.post(`/api/videos/@${user}/make-admin`, {

@@ -1,5 +1,4 @@
 <template>
-    <router-link to="Home" name="Home"></router-link>
                 <div class="tabs">
                     <button
                         class="tab-button"
@@ -29,13 +28,11 @@
 
                     </div>
                     <div v-show="activeTab === 'users'">
-                        <h2>Пользователи</h2>
-                        <div class="flex mx-auto  flex-wrap sm:gap-[30px]">
-                            <div class="mx-auto sm:mx-0"  v-for="c of channels" :key="c.id">
-                                <Channel :channel="c"/>
-                            </div>
+                            <div>
+                            <AdminChannelsContainer :channels="users" />
                         </div>
-                        <!-- Ваш контент для вкладки пользователи -->
+
+
                     </div>
                     <div v-show="activeTab === 'createCategory'">
                         <div class="tex-tstart">
@@ -61,9 +58,12 @@ import ButtonComponent from "@/components/Button/ButtonComponent.vue";
 
 import {ref} from "vue";
 import AdminVideoContainer from "@/components/Admin/AdminVideoContainer.vue";
+import ChannelsContainer from "@/components/Containers/ChannelsContainer.vue";
+import AdminChannelsContainer from "@/components/Admin/AdminChannelsContainer.vue";
 const adminStore = useAdminStore();
  adminStore.getVideoAll();
-const { videosForAdmin, admin } = storeToRefs(adminStore);
+ adminStore.getUserAll();
+const { videosForAdmin, admin, users } = storeToRefs(adminStore);
 
 const createCategoryModel = ref("");
 const photoCategory = ref();
