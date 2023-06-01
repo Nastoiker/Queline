@@ -40,7 +40,7 @@
                         <router-link :to="{ path: '/profile' }" name="profile">Профиль</router-link>
                     </li>
                     <li>
-                        <router-link :to="{ path: '/createVideo' }" name="create_video">Создать видео</router-link>
+                        <router-link :to="{ path: '/profile/createVideo' }" name="create_video">Создать видео</router-link>
                     </li>
                 </ul>
                 <button v-if="user.role_id===1" class="block">
