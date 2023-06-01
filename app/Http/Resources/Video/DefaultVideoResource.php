@@ -28,6 +28,7 @@ class DefaultVideoResource extends JsonResource
             'category' => new DefaultCategoryResource($this->category),
             'path' => $this->path,
             'is_moderated' => $this->is_moderated,
+            'ban_status_id' => $this->ban_status_id,
             'created_at' => $this->created_at,
             'grades' => [
                 'likes' => DefaultGradeResource::collection($this->likes),
