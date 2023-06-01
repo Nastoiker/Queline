@@ -5,7 +5,7 @@
             rows="10"
             @input="$emit('update:modelValue', $event.target.value)"
             :placeholder="props.placeholder"
-            class="border-white border-2 rounded bg-transparent mt-3 p-2"
+            class="border-white w-full border-2 rounded bg-transparent mt-3 p-2"
         ></textarea>
     </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
     <div class="max-w-[400px] border-2 border-white rounded my-2 ">
-        <div class="flex flex-wrap">
+        <div class="flex max-w-[400px] flex-wrap">
             <CreateTag
                 v-for="tag in tags"
                 :text="tag.text"

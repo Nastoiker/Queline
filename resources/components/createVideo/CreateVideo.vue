@@ -39,7 +39,7 @@
             </div>
             <div>
                 <BaseInput label="" v-model="Title" placeholder="Название видео"/>
-                <BaseTextarea label="" v-model="Description" placeholder="Описание"/>
+                <BaseTextarea  label="" v-model="Description" placeholder="Описание"/>
                 <TagField @updateTags="updateTags" />
                 <Select :options="categories"
                         :default="'Категория'"
