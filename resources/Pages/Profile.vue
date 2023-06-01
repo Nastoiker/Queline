@@ -3,7 +3,7 @@
         <div>
             <Bunner :defaultSrc="user.banner ? '/storage' + user.banner : defaultBanner" @file-updated="uploadBunner"  class="w-full object-cover  h-48" />
 
-            <div class="-mt-20  sm:flex justify-around items-center">
+            <div class="-mt-20  sm:flex justify-around ">
                 <div class=" text-center sm:flex sm:text-start">
                     <Avatar  :defaultSrc="user.photo ? '/storage' + user.photo : defaultAvatar"  @input="uploadImage" class="w-48 mx-auto h-48 rounded-full"/>
 
@@ -12,11 +12,11 @@
                         <h2 class="mx-auto"> {{ user.email }}</h2>
                     </div>
                 </div>
-                <div class="my-10">
-                    <button class="block">
-                        <router-link to="/profile/editProfile" name="create_video">Редактировать профиль</router-link>
+                <div class="mt-20 space-y-2">
+                    <button v-if="user.role_id===1" class=" text-white block rounded-full bg-red py-2 px-10">
+                        <router-link to="/admin" name="admin">Войти в админку</router-link>
                     </button>
-                    <button class="block">
+                    <button class=" text-white block bg-green py-2 px-10 rounded-full">
                         <router-link to="/profile/createVideo" name="create_video">Создать видео</router-link>
                     </button>
 

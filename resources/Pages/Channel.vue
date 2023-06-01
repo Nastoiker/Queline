@@ -14,9 +14,6 @@
                     </div>
                 </div>
                 <div class="my-10">
-                    <button class="block">
-                        подписаться
-                    </button>
 
 
                 </div>
@@ -30,13 +27,6 @@
                 :class="{ active: activeTab == 'own_video' }"
             >
                 <h1>Ваши видео</h1>
-            </button>
-            <button
-                @click="setActiveTab('category')"
-                class="isAciveS"
-                :class="{ active: activeTab == 'category' }"
-            >
-                <h1>Категория видео</h1>
             </button>
             <button
                 @click="setActiveTab('about')"

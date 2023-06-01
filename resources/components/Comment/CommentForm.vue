@@ -1,5 +1,5 @@
 <template>
-    <div class="w-11/12">
+    <div class="mx-4 w-11/12">
         <form method="post" @submit.prevent="$emit('sendComment', mainTextArea.value)" class="w-full">
             <textarea
                 placeholder="Введите комментарий"

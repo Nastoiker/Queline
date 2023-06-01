@@ -1,5 +1,5 @@
 <template>
-    <div v-if="currentVideo.path" class="w-full flex">
+    <div v-if="currentVideo.path" class="w-full md:flex">
         <div class="mr-5 w-full">
             <video controls="controls" class=" w-full rounded-lg" :src="'/storage'+ currentVideo.path"></video>
             <div>
@@ -40,7 +40,7 @@
                     </div>
                 </div>
 
-                <div class="ml-28 my-5 space-y-20">
+                <div class="ml-5 sm:ml-28 my-5 space-y-20">
                     <span class="block my-5">Дата создания: {{ DateNumber(new Date(currentVideo.created_at)) }}</span>
                     <p1>
                         Описание: {{currentVideo.description}}
@@ -51,9 +51,14 @@
                 <Comment v-for="comment in currentVideo.comments" :user="comment"></Comment>
             </CommentsContainer>
         </div>
-        <div class="max-w-[300px]  ">
-            <VideoContainer :videos="video.filter(v=> (v.category.title === currentVideo.category.title && v.hash_id !==currentVideo.hash_id))" />
+        <div  class="w-full sm:max-w-[300px]">
+            <h1 class="text-xl">Другие видео</h1>
+            <div class="mx-auto">
+
+                <VideoContainer :show="true" :videos="video.filter(v=> (v.category.title === currentVideo.category.title && v.hash_id !==currentVideo.hash_id))" />
+            </div>
         </div>
+
     </div>
 </template>
 <script setup>
