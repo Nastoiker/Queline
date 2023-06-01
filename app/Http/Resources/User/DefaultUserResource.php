@@ -3,6 +3,7 @@
 namespace App\Http\Resources\User;
 
 use App\Http\Resources\Subscribe\DefaultSubscriberResource;
+use App\Http\Resources\Subscribe\LiteSubscriberResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -22,8 +23,8 @@ class DefaultUserResource extends JsonResource
             'banner' => $this->banner,
             'email' => $this->email,
             'role_id' => $this->role_id,
-            'subscribers' => $this->subscribers,
-            'subscribes' => $this->subscribes
+            'subscribers' => DefaultSubscriberResource::collection($this->subscribers),
+            'subscribes' => LiteSubscriberResource::collection($this->subscribes)
         ];
     }
 }
