@@ -50,7 +50,7 @@
                     </p1>
                 </div>
             </div>
-            <CommentsContainer @sendComment="handlePushComment">
+            <CommentsContainer @sendComment="handlePushComment" :img="userStore.user.photo">
                 <Comment v-for="comment in currentVideo.comments" :user="comment"></Comment>
             </CommentsContainer>
         </div>
@@ -80,6 +80,7 @@ import router from "@/js/route";
 import {useUserStore} from "@/js/store/user";
 import VideoContainer from "@/components/Containers/VideoContainer.vue";
 import Tag from "@/components/Tag/Tag.vue";
+import {ref} from "vue";
 
 
 const videoStore =useVideoStore();
@@ -104,8 +105,16 @@ const handlePushComment = (text) => {
 const isGraded = (data) => {
     return Boolean(data.find(item => item.nickname === localStorage.getItem('nickname')))
 }
+
+
 videoStore.getAllVideo();
 const {currentVideo, video} = storeToRefs(videoStore);
+
+const grades = ref({});
+//
+// console.log({isLiked, isDisliked})
+
+grades.value = currentVideo.value;
 
 const value = router.params;
 </script>
