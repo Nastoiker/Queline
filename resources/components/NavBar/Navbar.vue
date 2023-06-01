@@ -95,41 +95,37 @@ userStore.fetchUser();
 <script>
 import {ref} from "vue";
 import  router from '@/js/route/index';
-
+import { onMounted, reactive, watch } from 'vue'
 export default  {
     data () {
         return {
             isOpen: false,
-            links: [],
+            currentUrl: router.currentRoute,
+        }
+    },
+    watch: {
+        currentUrl(newUrl, oldUrl) {
+            if( newUrl !==oldUrl) {
+                this.isOpen = false;
+            }
         }
     },
     methods: {
-            scrollToTop() {
-                document.getElementById('app').scrollIntoView({ behavior: 'smooth' });
-            },
         toggle() {
             this.isOpen = false;
         },
         outElement(e) {
 
+
                 if (!document.getElementById('menu')?.contains(e.target) && !document.getElementById('menuButton')?.contains(e.target)) {
                     // Ниже код, который нужно выполнить при срабатывании события.
-                    console.log(1);
+
                     if(this.isOpen) { this.isOpen = false}
                 }
         }
     },
     created: function() {
         window.addEventListener('click', this.outElement);
-
-        const routes = router.getRoutes()
-
-        this.links = routes.map(route => {
-            return {
-                path: route.path,
-                name: route.name ? route.name : route.path.substring(1),
-            }
-        })
     },
 
 

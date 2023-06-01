@@ -30,7 +30,7 @@ import VideoContainer from "@/components/Containers/VideoContainer.vue";
         </div>
         <div class="my-20">
             <h1 class="text-4xl my-10">Последние видео</h1>
-            <VideoContainer :videos="getFirst(video.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)), 10)"/>
+            <VideoContainer :videos="getFirst(video.filter(v => v.is_moderated===1).sort((a, b) => new Date(b.created_at) - new Date(a.created_at)), 10)"/>
         </div>
         <CategoryArrVideo :categories="categories" :videos="video"/>
     </div>
