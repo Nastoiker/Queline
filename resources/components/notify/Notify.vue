@@ -49,6 +49,14 @@ const name = defineComponent({
     opacity: 0;
 }
 
+.popup-enter-active {
+    transition: all 0.3s;
+}
+
+.popup-leave-active {
+    transition: all 0.3s;
+}
+
 .popup-enter-to, .popup-leave-from {
     transform: translateY(0px);
     opacity: 1;

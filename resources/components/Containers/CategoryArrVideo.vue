@@ -3,7 +3,7 @@
     <div v-if="props.videos" class="mx-auto sm:mx-0 my-20"  v-for="c in props.categories">
         <div  v-if="props.videos.filter( v => (v.category.title === c.title && v.is_moderated===1)).length>0">
             <div class="flex  space-x-5 items-center">
-                <img :src="categoryDefault"  class="w-32 h-32 object-cover rounded-md bg-white" />
+                <img :src="c.photo ? '/storage' + c.photo : categoryDefault" alt="" class="w-32 h-32 object-cover rounded-md bg-white" />
                 <h1 class="text-4xl">
                     {{ c.title}}
                 </h1>

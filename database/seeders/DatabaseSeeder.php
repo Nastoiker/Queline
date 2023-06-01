@@ -57,7 +57,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Пользователь'
         ]);
 
-        Category::factory(10)->create();
+//        Category::factory(10)->create();
 
         User::create([
             'nickname' => 'admin',

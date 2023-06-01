@@ -75,7 +75,7 @@ function imgCategoryHandle(file) {
 }
 const createCategory = async () => {
     await adminStore.createCategoy({
-        text: createCategoryModel.value,
+        title: createCategoryModel.value,
         photo: photoCategory.value,
     })
 }
