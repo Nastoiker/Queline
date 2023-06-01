@@ -39,7 +39,8 @@
             </div>
             <div>
                 <BaseInput label="" v-model="Title" placeholder="Название видео"/>
-                <BaseInput label="" v-model="Description" placeholder="Описание"/>
+                <BaseTextarea label="" v-model="Description" placeholder="Описание"/>
+                <TagField @updateTags="updateTags" />
                 <Select :options="categories"
                         :default="'Категория'"
                         class="select my-5"
@@ -69,6 +70,8 @@ import ButtonComponent from "@/components/Button/ButtonComponent.vue";
 import InputFile from "@/components/InputFile/InputFile.vue";
 import {useVideoStore} from "@/js/store/video";
 import {storeToRefs} from "pinia";
+import BaseTextarea from "@/components/Textarea/BaseTextarea.vue";
+import TagField from "@/components/createVideo/TagField.vue";
 
 const videoFile = ref({});
 const video = ref();
@@ -77,6 +80,7 @@ const Description = ref("");
 const preview = ref();
 const previewFile = ref({});
 const categoryId = ref("");
+const tagsVideo = ref([]);
 
 const showNotify = ref(false);
 
@@ -110,13 +114,17 @@ function videoHandle(file) {
     video.value = file.previewBase64;
 }
 
+function updateTags(tags) {
+    tagsVideo.value = tags
+}
+
 const createVideo = () => {
     console.log({
         preview: previewFile.value,
         video: videoFile.value,
         description: Description.value,
         title: Title.value,
-        tags: JSON.stringify([]),
+        tags: [...tagsVideo.value],
         category_id: categoryId.value,
     });
     userStore.createVideo({
@@ -124,7 +132,7 @@ const createVideo = () => {
         video: videoFile.value,
         description: Description.value,
         title: Title.value,
-        tags: JSON.stringify([]),
+        tags: JSON.stringify(tagsVideo.value),
         category_id: categoryId.value,
     }).then(
         () => showNotify.value = true
