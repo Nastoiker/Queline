@@ -1,7 +1,7 @@
 <template>
     <div class="w-full flex my-6">
         <div class="w-[62px] h-[62px] rounded-full bg-gray mr-6 overflow-hidden">
-            <img :src="'/storage' + user.photo" alt="" class="h-fit w-fit object-center object-cover">
+            <img :src="user.photo ? '/storage' + user.photo : defaultAvatar" alt="" class=" rounded-full w-[62px] h-[62px] object-cover">
         </div>
         <div class="text-start">
             <h4>{{ user.nickname }} &middot; <span>{{ formatDate(user.created_at) }}</span></h4>
@@ -28,6 +28,7 @@ import formatDate from "@/js/helpler/date";
 import CommentLike from "@/components/Comment/CommentLike.vue";
 import CommentDislike from "@/components/Comment/CommentDislike.vue";
 import {useRoute} from "vue-router";
+import defaultAvatar from "@/assets/user.jpg";
 
 const props = defineProps({
     user: Object,
