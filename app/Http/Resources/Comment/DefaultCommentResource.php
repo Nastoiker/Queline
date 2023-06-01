@@ -19,6 +19,7 @@ class DefaultCommentResource extends JsonResource
             'id' => $this->id,
             'nickname' => $this->user->nickname,
             'text' => $this->text,
+            'photo' => $this->user->photo,
             'is_deleted' => $this->is_deleted,
             'created_at' => $this->created_at,
             're' => DefaultCommentResource::collection($this->re),

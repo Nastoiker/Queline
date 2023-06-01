@@ -1,7 +1,7 @@
 <template>
     <div class="w-full flex my-6">
-        <div class="w-[62px] h-[62px] rounded-full bg-gray mr-6">
-            <img :src="user.photo" alt="">
+        <div class="w-[62px] h-[62px] rounded-full bg-gray mr-6 overflow-hidden">
+            <img :src="'/storage' + user.photo" alt="" class="w-fit h-fit object-center object-cover">
         </div>
         <div class="text-start">
             <h4>{{ user.nickname }} &middot; <span>{{ formatDate(user.created_at) }}</span></h4>
