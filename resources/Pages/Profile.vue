@@ -32,13 +32,7 @@
             >
                 <h1>Ваши видео</h1>
             </button>
-            <button
-                @click="setActiveTab('follows')"
-                class="isAciveS"
-                :class="{ active: activeTab == 'follows' }"
-            >
-                <h1>Подписки</h1>
-            </button>
+
             <button
                 @click="setActiveTab('about')"
                 class="isAciveS"
@@ -50,9 +44,7 @@
         <div v-if="activeTab === 'own_video' && !loaded">
             <UserVideoContainer @delete="handleDelete" :videos="video"/>
         </div>
-        <div v-if="activeTab === 'follows'">
-            <ChannelsContainer :channels="user.subscribes" />
-        </div>
+
         <div v-if="activeTab === 'about'" class="flex space-x-20">
             <div>
                 <div >

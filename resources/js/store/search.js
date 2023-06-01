@@ -8,7 +8,7 @@ export const useSearchStore = defineStore('search', {
     }),
     actions: {
         async getFounded(search) {
-            const res = await axios.get(`/api/search?q={${search}}`);
+            const res = await axios.get(`/api/search?q=${search}`);
             this.founded = res.data;
         },
     },

@@ -3,6 +3,9 @@
         <div class="mx-auto sm:mx-0"  v-for="c of channels" :key="c.id">
             <Channel :channel="c"/>
         </div>
+        <h1 v-if="channels.length===0" class=" mx-auto text-4xl">
+           Увы, таких нет
+        </h1>
     </div>
 
 </template>

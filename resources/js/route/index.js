@@ -1,6 +1,8 @@
 import {createRouter, createWebHistory} from "vue-router";
 import {useUserStore} from "@/js/store/user";
 import VideoPage from "@/Pages/VideoPage.vue";
+import Channel from "@/Pages/Channel.vue";
+import CategoryPage from "@/Pages/CategoryPage.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -54,12 +56,12 @@ const router = createRouter({
         {
             path: "/category/:id",
             name: "categoryPage",
-            component: () => import('@/Pages/CategoryPage.vue'),
+            component: CategoryPage,
         },
         {
             path: "/@:nickname",
             name: "channel",
-            component: () => import('@/Pages/Channel.vue'),
+            component: Channel,
         },
         {
             path: "/admin",

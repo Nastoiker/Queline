@@ -1,5 +1,5 @@
 <template>
-<div>
+<div v-if="!loaded">
     <div>
         <div>
             <img :src="channel.banner ? '/storage' + channel.banner : defaultBanner"   class="w-full object-cover  h-48" />
@@ -39,13 +39,6 @@
                 <h1>Категория видео</h1>
             </button>
             <button
-                @click="setActiveTab('follows')"
-                class="isAciveS"
-                :class="{ active: activeTab == 'follows' }"
-            >
-                <h1>Подписки</h1>
-            </button>
-            <button
                 @click="setActiveTab('about')"
                 class="isAciveS"
                 :class="{ active: activeTab == 'about' }"
@@ -56,9 +49,7 @@
         <div v-if="activeTab === 'own_video' && !loaded">
             <VideoContainer :videos="video"/>
         </div>
-        <div v-if="activeTab === 'follows'">
-           ыщьу
-        </div>
+
         <div v-if="activeTab === 'about'">
             <div class="flex space-x-20">
                 <div >
@@ -101,16 +92,17 @@ const route = useRoute();
 const value = route.params.nickname;
 const videoStore = useVideoStore();
 const channelStore = useChannelStore();
-channelStore.getChannel(value);
-channelStore.getSubs(value);
+const loading = ref(true);
+channelStore.getChannel(value).then( () => loading.value=false);;
 const userStore = useUserStore();
 const { user } = storeToRefs(userStore);
 if(value===user.nickname) {
     router.push('/profile');
 }
+
 const { video, loaded } = storeToRefs(videoStore);
 videoStore.getVideoUser(value);
-const { channel, subs } = storeToRefs(channelStore);
+const { channel } = storeToRefs(channelStore);
 </script>
 <style scope>
 .isAciveS {

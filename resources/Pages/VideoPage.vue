@@ -1,7 +1,7 @@
 <template>
     <div v-if="currentVideo.path" class="w-full flex">
-        <div class="w-fit">
-            <video controls="controls" class="rounded-lg" :src="'/storage'+ currentVideo.path"></video>
+        <div class="mr-5 w-full">
+            <video controls="controls" class=" w-full rounded-lg" :src="'/storage'+ currentVideo.path"></video>
             <div>
                 <div>
                     <h1 class="text-2xl">{{ currentVideo.title }}</h1>
@@ -21,9 +21,7 @@
                                 {{ currentVideo.author.nickname }}
                             </h1>
                         </div>
-                        <ButtonComponent @click="handleFollow(currentVideo.author.nickname)"  class="bg-green"> {{ userStore.checkIsFollow(currentVideo.author.nickname) ? 'Отписаться'  : 'Подписаться'}}</ButtonComponent>
-
-
+<!--                        <ButtonComponent @click="handleFollow(currentVideo.author.nickname)"  class="bg-green"> {{ userStore.checkIsFollow(currentVideo.author.nickname) ? 'Отписаться'  : 'Подписаться'}}</ButtonComponent>-->
                     </div>
                     <div
                         class="rounded-2xl h-fit p-2 space-x-3 flex bg-gray"
@@ -53,7 +51,7 @@
                 <Comment v-for="comment in currentVideo.comments" :user="comment"></Comment>
             </CommentsContainer>
         </div>
-        <div class="w-[300px] mx-auto ">
+        <div class="max-w-[300px]  ">
             <VideoContainer :videos="video.filter(v=> (v.category.title === currentVideo.category.title && v.hash_id !==currentVideo.hash_id))" />
         </div>
     </div>

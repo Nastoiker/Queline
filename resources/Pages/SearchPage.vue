@@ -15,28 +15,19 @@
             >
                 Пользователи
             </button>
-            <button
-                class="tab-button"
-                :class="{ active: activeTab === 'category' }"
-                @click="setActiveTab('category')"
-            >
-                Категории
-            </button>
         </div>
         {{searchValue.value}}
         <div class="tab-content">
             <div v-show="activeTab === 'video'">
+                <CategoryContainer class="w-full" :categories="founded.categories" />
                <VideoContainer :videos="founded.videos"/>
                 <!-- Ваш контент для вкладки видео -->
             </div>
             <div v-show="activeTab === 'users'">
-                {{founded.users}}
-                <!-- Ваш контент для вкладки пользователи -->
+                <ChannelsContainer :channels="founded.users" />
             </div>
             <div v-show="activeTab === 'category'">
-                <h2>Категории</h2>
-                {{founded.categories}}
-                <!-- Ваш контент для вкладки категории -->
+
             </div>
         </div>
     </div>
@@ -90,6 +81,8 @@ import { storeToRefs } from "pinia";
 import {ref} from "vue";
 import {useRouter} from "vue-router";
 import VideoContainer from "@/components/Containers/VideoContainer.vue";
+import ChannelsContainer from "@/components/Containers/ChannelsContainer.vue";
+import CategoryContainer from "@/components/Containers/CategoryContainer.vue";
 const router = useRouter();
 
 const searchStore = useSearchStore();
