@@ -12,8 +12,8 @@
         </div>
 
         <Transition name="slide-fade">
-            <div id="menu" class="p-2  text-md sm:text-2xl space-y-5 sm:p-10 bg-gray h-full top-0 fixed left-0 z-50 block w-[40vw] min-w-[200px] max-w-[500px]" @clickout="isOpen = !isOpen" v-if="isOpen">
-               <div class="flex items-center">
+            <div id="menu" class="p-2 text-white text-md sm:text-2xl space-y-5 sm:p-10 bg-gray h-full top-0 fixed left-0 z-50 block w-[40vw] min-w-[200px] max-w-[500px]" @clickout="isOpen = !isOpen" v-if="isOpen">
+               <div class="ml-auto flex items-center">
                    <img @click="route.push('/')" :src="logo" class=" w-full h-8" alt="">
                    <button  class=" w-full" @click="isOpen = !isOpen"><svg class="ml-auto" width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                        <rect width="28.9691" height="3.10383" rx="1.55192" transform="matrix(0.707129 0.707085 -0.707129 0.707085 2.51465 0.321777)" fill="#D9D9D9"/>
@@ -21,18 +21,34 @@
                    </svg>
                    </button>
                </div>
-                <button  @click="auth.logout()">
-                    выйти
-                </button>
-                <div v-if="!user.nickname">
-                    <router-link class="block" to="/register">Зарегестрироваться </router-link>
-                    <router-link to="/login">Войти </router-link>
-                </div>
-                <ul>
-                    <li v-for="(link, index) in links" :key="index">
-                        <router-link :to="{ path: link.path }">{{ link.name }}</router-link>
+
+
+                <ul class="space-y-5">
+                    <li>
+                        <router-link :to="{ path: '/home' }" name="home">Главная</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{ path: '/createVideo' }" name="create_video">Создать видео</router-link>
+                    </li>
+                    <li>
+                        <router-link v-if="!user.nickname" :to="{ path: '/register' }" name="register">Регистрация</router-link>
+                    </li>
+                    <li>
+                        <router-link  v-if="!user.nickname" :to="{ path: '/login' }" name="login">Авторизация</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{ path: '/profile' }" name="profile">Профиль</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{ path: '/createVideo' }" name="create_video">Создать видео</router-link>
                     </li>
                 </ul>
+                <button v-if="user.role_id===1" class="block">
+                    <router-link to="/admin" name="admin">Войти в админку</router-link>
+                </button>
+                <button class="bottom-20" @click="auth.logout()">
+                    выйти
+                </button>
             </div>
         </Transition>
     </div>

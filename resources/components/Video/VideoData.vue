@@ -1,7 +1,7 @@
 <template>
     <div class="w-[320px]">
         <VideoComponent
-            @click="router.push(`/video/${video.hash_id}`)"
+            @click="redirect(video.is_moderated, video.hash_id )"
             :img="'/storage' + video.preview"
             :path="'/storage'+ video.path"
         />
@@ -27,7 +27,10 @@
 </template>
 <script setup>
 import router from "@/js/route/index.js";
-
+const redirect = (is_moderated, hash_id) => {
+    if(is_moderated !== 1) return;
+    router.push(`/video/${hash_id}`);
+}
 import VideoComponent from "@/components/Video/VideoComponent.vue";
 import formatDate from "@/js/helpler/date";
 import defaultAvatar from "@/assets/user.jpg";

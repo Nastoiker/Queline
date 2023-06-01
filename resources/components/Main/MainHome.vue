@@ -5,15 +5,15 @@
         <div class="relative w-full min-h-[100vh]  ">
             <div class="bg-green borderRadius absolute  right-0 m-0  w-[941px] h-[941px]">        </div>
 
-                    <div class="dots absolute sm:right-[200px] z-10 top-0">
+                    <div class="hidden sm:block dots absolute sm:right-[200px] z-10 top-0">
                     </div>
             <button></button>
 
-            <div class=" flex flex-col-reverse md:flex-row flex-wrap mx-auto mt-48  mb-24 md:mb-48 sm:justify-around w-full">
+            <div class=" flex flex-col-reverse md:flex-row flex-wrap mx-auto mt-48  mb-10 md:mb-24 sm:justify-around w-full">
                 <h1 class=" my-auto double-line-shadow  text-4xl sm:text-7xl z-30">Популярное</h1>
                 <div class="sm:w-1/3  z-40">
 
-                        <video class=" min-w-[400px]" controls="controls" :src="videoGame"></video>
+                        <video class=" min-w-[400px]" :poster="previewGame" controls="controls" :src="videoGame"></video>
                         <h1>Здесь геншин</h1>
 
                 </div>
@@ -26,6 +26,7 @@
 </template>
 <script setup>
 import videoGame from '@/assets/game.mp4';
+import previewGame from '@/assets/previewGame.png';
 </script>
 <style scoped>
 .double-line-shadow{

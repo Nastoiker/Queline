@@ -1,5 +1,5 @@
 <template>
-    <div @click="router.push(`@${channel.nickname}`)" class="flex space-x-5 items-center">
+    <div @click="router.push(`/@${channel.nickname}`)" class="flex space-x-5 items-center">
         <img :src="channel.photo ? '/storage' + channel.photo : defaultAvatar" class="rounded-full object-cover w-28 h-28" alt="">
         <div>
             <h1 class="text-xl">

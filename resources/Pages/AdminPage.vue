@@ -30,13 +30,18 @@
                     </div>
                     <div v-show="activeTab === 'users'">
                         <h2>Пользователи</h2>
+                        <div class="flex mx-auto  flex-wrap sm:gap-[30px]">
+                            <div class="mx-auto sm:mx-0"  v-for="c of channels" :key="c.id">
+                                <Channel :channel="c"/>
+                            </div>
+                        </div>
                         <!-- Ваш контент для вкладки пользователи -->
                     </div>
                     <div v-show="activeTab === 'createCategory'">
                         <div class="tex-tstart">
                             <form   @submit.prevent="createCategory">
 
-                                <img :src="photoCategory" alt="">
+                                <img class="max-w-[500px]" :src="photoCategoryPreview" alt="">
                                 <InputFile v-if="!photoCategory"  @file-updated="imgCategoryHandle" class="mb-20"  label="Фотография категории"/>
                                 <BaseInput required class=" mx-auto w-[500px] block" label="Название категории" v-model="createCategoryModel"  />
                                 <ButtonComponent class="text-center mx-auto">Создать категорию</ButtonComponent>

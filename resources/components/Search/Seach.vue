@@ -12,7 +12,7 @@ function findVideo() {
 }
 </script>
 <template>
-    <form @submit.prevent="findVideo" class="flex">
+    <form @submit.prevent="findVideo" class="flex ml-4">
         <input
             v-model="find"
             :="$attrs"
