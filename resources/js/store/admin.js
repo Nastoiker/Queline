@@ -69,6 +69,18 @@ export const useAdminStore = defineStore("admin", {
                     }
                 }
                 )
+        },
+        async changeStatus(videoId, status) {
+            const video = await axios.post(`/api/videos/${videoId}`, {
+                    _method: 'PUT',
+                    ban_status: status,
+                },
+                {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('user_token')}`
+                    }
+                }
+            )
         }
     }
 });

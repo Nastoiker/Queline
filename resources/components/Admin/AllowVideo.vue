@@ -4,6 +4,11 @@
             <h1>Не прошла модерацию</h1>
             <button @click="this.setModerated" class="rounded-md hover:scale-110 transition-all px-5 py-2 bg-green">Разрешить доступ</button>
         </div>
+        <div v-if="this.status===3">
+            <h1>
+                Теневой бан
+            </h1>
+        </div>
         <div v-else>
             <h1>
                 Видео разрешено
@@ -27,6 +32,10 @@ export default {
     methods: {
         setModerated()  {
             this.status = 1;
+            this.$emit('moderate', this.idVideo)
+        },
+        changeStatus()  {
+            this.status = 3;
             this.$emit('moderate', this.idVideo)
         },
     }
