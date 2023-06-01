@@ -20,6 +20,9 @@
                             <h1>
                                 {{ currentVideo.author.nickname }}
                             </h1>
+                            <div class="flex flex-wrap">
+                                <Tag v-for="tag in currentVideo.tags" :text="tag.name" />
+                            </div>
                         </div>
 <!--                        <ButtonComponent @click="handleFollow(currentVideo.author.nickname)"  class="bg-green"> {{ userStore.checkIsFollow(currentVideo.author.nickname) ? 'Отписаться'  : 'Подписаться'}}</ButtonComponent>-->
                     </div>
@@ -76,6 +79,7 @@ import Comment from "@/components/Comment/Comment.vue";
 import router from "@/js/route";
 import {useUserStore} from "@/js/store/user";
 import VideoContainer from "@/components/Containers/VideoContainer.vue";
+import Tag from "@/components/Tag/Tag.vue";
 
 
 const videoStore =useVideoStore();
