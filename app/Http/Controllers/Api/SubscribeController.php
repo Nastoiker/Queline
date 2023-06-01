@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Subscribe\SubscribeStoreRequest;
+use App\Http\Resources\Subscribe\DefaultSubberResource;
 use App\Http\Resources\Subscribe\DefaultSubscriberResource;
 use App\Models\Subscribe;
 use App\Models\User;
@@ -24,7 +25,7 @@ class SubscribeController extends Controller
 
         $user = $user->first();
         $subscribers = Subscribe::where('channel_id', $user->id)->get();
-        return DefaultSubscriberResource::collection($subscribers);
+        return DefaultSubberResource::collection($subscribers);
     }
 
     public function store($nickname, Request $request)

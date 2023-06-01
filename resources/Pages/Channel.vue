@@ -57,7 +57,12 @@
             <VideoContainer :videos="video"/>
         </div>
         <div v-if="activeTab === 'follows'">
-           ыщьу
+            <Subscriber
+                v-for="sub in subscribes"
+                :nickname="sub.user.nickname"
+                :photo="sub.user.photo"
+                :subscribers-count="sub.user.subscribers.length"
+            ></Subscriber>
         </div>
         <div v-if="activeTab === 'about'">
             <div>
@@ -97,12 +102,13 @@ import {useChannelStore} from "@/js/store/channel";
 import {useUserStore} from "@/js/store/user";
 import router from "@/js/route";
 import {DateNumber} from "../js/helpler/date";
+import Subscriber from "@/components/User/Subscriber.vue";
 const route = useRoute();
 const value = route.params.nickname;
 const videoStore = useVideoStore();
 const channelStore = useChannelStore();
 channelStore.getChannel(value);
-channelStore.getSubs(value);
+channelStore.getSubscribes(value);
 const userStore = useUserStore();
 const { user } = storeToRefs(userStore);
 if(value===user.nickname) {
@@ -110,9 +116,12 @@ if(value===user.nickname) {
 }
 const { video, loaded } = storeToRefs(videoStore);
 videoStore.getVideoUser(value);
-const { channel, subs } = storeToRefs(channelStore);
+const { channel, subscribes } = storeToRefs(channelStore);
 </script>
-<style scope>
+
+
+
+<style scoped>
 .isAciveS {
     padding-bottom: 1rem;
 }

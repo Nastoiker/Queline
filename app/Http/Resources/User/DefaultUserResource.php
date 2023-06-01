@@ -22,8 +22,8 @@ class DefaultUserResource extends JsonResource
             'banner' => $this->banner,
             'email' => $this->email,
             'role_id' => $this->role_id,
-            'subscribers' => DefaultSubscriberResource::collection($this->subscribers),
-            'subscribes' => UserLiteResource::collection($this->subscribes)
+//            'subscribers' => $this->subscribers,
+//            'subscribes' => $this->subscribes
         ];
     }
 }
