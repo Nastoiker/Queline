@@ -8,7 +8,7 @@
                         {{ c.title}}
                     </h1>
                 </div>
-                <VideoContainer   :videos="props.videos.filter( v => v.category.title === c.title)"/>
+                <VideoContainer :videos="props.videos.filter( v => v.category.title === c.title && v.is_moderated===1 && v.ban_status_id===1)"/>
             </div>
         </div>
     </div>
