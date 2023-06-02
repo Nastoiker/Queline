@@ -26,8 +26,8 @@ export default {
     },
     methods: {
         handleDelete(hash_id) {
+            this.$emit('delete', hash_id);
             this.deletedVideo.push(hash_id);
-            this.$emit('delete', hash_id)
         },
 
     }
