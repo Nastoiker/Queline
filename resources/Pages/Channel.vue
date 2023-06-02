@@ -37,7 +37,7 @@
             </button>
         </div>
         <div v-if="activeTab === 'own_video' && !loaded">
-            <VideoContainer :videos="video"/>
+            <VideoContainer  :videos="video.filter(v => v.is_moderated===1 && v.ban_status_id===0)"/>
         </div>
 
         <div v-if="activeTab === 'about'">
