@@ -77,6 +77,27 @@ export const useVideoStore = defineStore("videoStore", {
             });
             await this.getVideo(hash_id);
         },
+        async changeVideoGrade(hash_id, grade_status) {
+            const res = await axios.post(`/api/videos/${hash_id}/grade`, {
+                _method: 'PUT',
+                grade_status: grade_status
+            }, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('user_token')}`
+                }
+            });
+            await this.getVideo(hash_id);
+        },
+        async deleteVideoGrade(hash_id) {
+            const res = await axios.post(`/api/videos/${hash_id}/grade`, {
+                _method: 'DELETE'
+            }, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('user_token')}`
+                }
+            });
+            await this.getVideo(hash_id);
+        },
         async pushComment(text, hash_id, re_id = null) {
             const commentData = {'text': text};
             if (re_id) {

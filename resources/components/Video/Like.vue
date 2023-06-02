@@ -1,5 +1,5 @@
 <template>
-    <div class="flex w-auto" @click="$emit('like')">
+    <div class="flex w-auto" @click="handleClick">
         <div class="w-[20px] h-[20px] mr-2 cursor-pointer">
             <img v-if="isGraded" src="/resources/assets/Vector_liked.svg" alt="" class="w-fit h-fit object-contain">
             <img v-else src="/resources/assets/Vectorlike.svg" alt="" class="w-fit h-fit object-contain">
@@ -18,7 +18,19 @@ const props = defineProps({
         type: Boolean,
         default: false
     }
-})
+});
+
+const emits = defineEmits([
+    'likeVideo', 'deleteVideoGrade'
+]);
+
+const handleClick = () => {
+    if (props.isGraded) {
+        emits('deleteVideoGrade');
+        return ;
+    }
+    emits('likeVideo')
+}
 
 </script>
 

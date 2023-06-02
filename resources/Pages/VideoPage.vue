@@ -31,14 +31,16 @@
                     >
                         <Like
                             :count="currentVideo.grades.likes.length"
-                            @like="handleLike"
-                            :is-graded="isGraded(currentVideo.grades.likes)"
+                            @likeVideo="handleLike"
+                            @deleteVideoGrade="handleDeleteGrade"
+                            :is-graded="isLiked(currentVideo.grades.likes)"
                         ></Like>
                         <div class="line-clamp-1"></div>
                         <Dislike
                             :count="currentVideo.grades.dislikes.length"
-                            @dislike="handleDislike"
-                            :is-graded="isGraded(currentVideo.grades.dislikes)"
+                            @dislikeVideo="handleDislike"
+                            @deleteVideoGrade="handleDeleteGrade"
+                            :is-graded="isDisliked(currentVideo.grades.dislikes)"
                         ></Dislike>
                     </div>
                 </div>
@@ -91,20 +93,45 @@ const handleFollow = (nickname) => {
 }
 const hash_id = route.params.hash_id;
 videoStore.getVideo(hash_id);
+
+
+const liked = ref(false);
+const disliked = ref(false);
+
+const isLiked = (data) => {
+    liked.value = Boolean(data.find(item => item.nickname === localStorage.getItem('nickname')));
+    return Boolean(data.find(item => item.nickname === localStorage.getItem('nickname')));
+}
+
+const isDisliked = (data) => {
+    disliked.value = Boolean(data.find(item => item.nickname === localStorage.getItem('nickname')));
+    return Boolean(data.find(item => item.nickname === localStorage.getItem('nickname')));
+}
+
 const handleLike = () => {
+    if (disliked) {
+        videoStore.changeVideoGrade(hash_id, 1);
+        return ;
+    }
     videoStore.setLike(hash_id)
 }
 const handleDislike = () => {
+    if (liked) {
+        videoStore.changeVideoGrade(hash_id, 2);
+        return ;
+    }
     videoStore.setDislike(hash_id)
+}
+
+const handleDeleteGrade = () => {
+    videoStore.deleteVideoGrade(hash_id)
 }
 
 const handlePushComment = (text) => {
     videoStore.pushComment(text, hash_id)
 }
 
-const isGraded = (data) => {
-    return Boolean(data.find(item => item.nickname === localStorage.getItem('nickname')))
-}
+
 
 
 videoStore.getAllVideo();
