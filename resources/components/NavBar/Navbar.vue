@@ -27,9 +27,7 @@
                     <li>
                         <router-link :to="{ path: '/home' }" name="home">Главная</router-link>
                     </li>
-                    <li>
-                        <router-link :to="{ path: '/createVideo' }" name="create_video">Создать видео</router-link>
-                    </li>
+
                     <li>
                         <router-link v-if="!user.nickname" :to="{ path: '/register' }" name="register">Регистрация</router-link>
                     </li>
@@ -37,7 +35,7 @@
                         <router-link  v-if="!user.nickname" :to="{ path: '/login' }" name="login">Авторизация</router-link>
                     </li>
                     <li>
-                        <router-link :to="{ path: '/profile' }" name="profile">Профиль</router-link>
+                        <router-link v-if="user.nickname" :to="{ path: '/profile' }" name="profile">Профиль</router-link>
                     </li>
                     <li>
                         <router-link :to="{ path: '/profile/createVideo' }" name="create_video">Создать видео</router-link>
