@@ -12,7 +12,7 @@
                         <div>
 
                         </div>
-                        <img @click="router.push(`@${currentVideo.author.nickname}`)"
+                        <img @click="router.push(`/@${currentVideo.author.nickname}`)"
                              class="w-20 h-20 object-cover rounded-full"
                              :src="currentVideo.author.photo ? '/storage' + currentVideo.author.photo : defaultAvatar"
                              alt="">
