@@ -47,9 +47,9 @@
 
                 <div class="ml-5 sm:ml-28 my-5 space-y-20">
                     <span class="block my-5">Дата создания: {{ DateNumber(new Date(currentVideo.created_at)) }}</span>
-                    <p1>
+                    <h1>
                         Описание: {{currentVideo.description}}
-                    </p1>
+                    </h1>
                 </div>
             </div>
             <CommentsContainer @sendComment="handlePushComment" :img="userStore.user.photo">

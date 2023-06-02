@@ -3,10 +3,11 @@
         <form method="post" @submit.prevent="handlePushComment" class="w-full">
             <textarea
                 placeholder="Введите комментарий"
-                class="w-full h-8 border-b-white bg-transparent resize-none outline-none border-b-2"
+                class="w-full h-fit border-b-white bg-transparent resize-none outline-none border-b-2"
                 @input="textAreaLengthChecker"
                 @keydown="handleKeyDown"
                 ref="mainTextArea"
+                :rows="counter"
             ></textarea>
             <div
                 v-if="isFilled"
@@ -31,6 +32,7 @@ import {ref} from "vue";
 
 const mainTextArea = ref(null);
 const isFilled = ref(false);
+const counter = ref(0);
 
 const emits = defineEmits([
     'sendComment'
@@ -41,20 +43,29 @@ const textAreaLengthChecker = () => {
 }
 
 const handleKeyDown = ($e) => {
-    if ($e.keyCode === 13) {
+
+    if (($e.shiftKey) && ($e.keyCode === 13)) {
+        $e.preventDefault();
+        console.log('shift')
+        mainTextArea.value.value += '\n';
+        counter.value++;
+    } else if ($e.keyCode === 13) {
         $e.preventDefault();
         emits('sendComment', mainTextArea.value.value);
         mainTextArea.value.value = '';
+        counter.value = 0;
     }
 }
 
 const handlePushComment = () => {
-    emits('sendComment', mainTextArea.value.value)
+    emits('sendComment', mainTextArea.value.value);
+    mainTextArea.value.value = '';
 };
 
 const focusOut = () => {
     mainTextArea.value.value = '';
     isFilled.value = false;
+    counter.value = 0;
     mainTextArea.value.blur();
 }
 
