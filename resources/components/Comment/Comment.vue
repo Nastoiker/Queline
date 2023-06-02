@@ -10,13 +10,13 @@
                 <CommentLike
                     :count="user.grades.likes.length"
                     @commentLike="setLike"
-                    :is-graded="isGraded(user.grades.likes)"
+                    :is-graded="isLiked(user.grades.likes)"
                 ></CommentLike>
                 <div class="line-clamp-1 w-0.5 bg-white shrink-0"></div>
                 <CommentDislike
                     :count="user.grades.dislikes.length"
                     @commentDislike="setDislike"
-                    :is-graded="isGraded(user.grades.dislikes)"
+                    :is-graded="isDisliked(user.grades.dislikes)"
                 ></CommentDislike>
             </div>
         </div>
@@ -29,6 +29,7 @@ import CommentLike from "@/components/Comment/CommentLike.vue";
 import CommentDislike from "@/components/Comment/CommentDislike.vue";
 import {useRoute} from "vue-router";
 import defaultAvatar from "@/assets/user.jpg";
+import {ref} from "vue";
 
 const props = defineProps({
     user: Object,
@@ -38,16 +39,39 @@ const hash_id = route.params.hash_id;
 
 const video = useVideoStore();
 
+const liked = ref(false);
+const disliked = ref(false);
+
+const isLiked = (data) => {
+    liked.value = Boolean(data.find(item => item.nickname === localStorage.getItem('nickname')))
+    return Boolean(data.find(item => item.nickname === localStorage.getItem('nickname')))
+}
+
+const isDisliked = (data) => {
+    disliked.value = Boolean(data.find(item => item.nickname === localStorage.getItem('nickname')))
+    return Boolean(data.find(item => item.nickname === localStorage.getItem('nickname')))
+}
+
 const setLike = () => {
-    video.setCommentGrade(props.user.id, 1, hash_id);
+    if (liked.value) {
+        video.deleteCommentGrade(props.user.id, hash_id)
+    } else if (disliked.value) {
+        video.changeCommentGrade(props.user.id, 1, hash_id)
+    } else {
+        video.setCommentGrade(props.user.id, 1, hash_id);
+    }
 }
 
 const setDislike = () => {
-    video.setCommentGrade(props.user.id, 2, hash_id);
+    if (disliked.value) {
+        video.deleteCommentGrade(props.user.id, hash_id)
+    } else if (liked.value) {
+        video.changeCommentGrade(props.user.id, 2, hash_id)
+    } else {
+        video.setCommentGrade(props.user.id, 2, hash_id);
+    }
 }
 
-const isGraded = (data) => {
-    return Boolean(data.find(item => item.nickname === localStorage.getItem('nickname')))
-}
+
 
 </script>

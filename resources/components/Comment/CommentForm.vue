@@ -1,10 +1,11 @@
 <template>
     <div class="mx-4 w-11/12">
-        <form method="post" @submit.prevent="$emit('sendComment', mainTextArea.value)" class="w-full">
+        <form method="post" @submit.prevent="handlePushComment" class="w-full">
             <textarea
                 placeholder="Введите комментарий"
                 class="w-full h-8 border-b-white bg-transparent resize-none outline-none border-b-2"
                 @input="textAreaLengthChecker"
+                @keydown="handleKeyDown"
                 ref="mainTextArea"
             ></textarea>
             <div
@@ -14,10 +15,12 @@
                 <button
                     class="mr-3"
                     @click="focusOut"
-                >Отмена</button>
+                >Отмена
+                </button>
                 <button
                     type="submit"
-                >Оставить комментарий</button>
+                >Оставить комментарий
+                </button>
             </div>
         </form>
 
@@ -29,9 +32,25 @@ import {ref} from "vue";
 const mainTextArea = ref(null);
 const isFilled = ref(false);
 
+const emits = defineEmits([
+    'sendComment'
+]);
+
 const textAreaLengthChecker = () => {
     isFilled.value = mainTextArea.value.value.length > 0;
 }
+
+const handleKeyDown = ($e) => {
+    if ($e.keyCode === 13) {
+        $e.preventDefault();
+        emits('sendComment', mainTextArea.value.value);
+        mainTextArea.value.value = '';
+    }
+}
+
+const handlePushComment = () => {
+    emits('sendComment', mainTextArea.value.value)
+};
 
 const focusOut = () => {
     mainTextArea.value.value = '';
