@@ -1,6 +1,6 @@
 <template>
     <div class="flex mx-auto  flex-wrap sm:gap-[30px]">
-        <div class="mx-auto w-[500px] sm:mx-0"  v-for="v in channels">
+        <div class="mx-auto my-2 w-[500px] sm:mx-0"  v-for="v in channels">
             <Channel  :channel="v"/>
 
         </div>

@@ -5,7 +5,7 @@
 
             <Search label="поиск" />
             <button @click="toggleDark()"><img class="h-8 w-8" :src="isDark ? Moon : Sun" alt=""></button>
-            <div v-if="user.nickname" class=" flex items-center">
+            <div v-if="user.nickname" class=" flex space-x-2 items-center">
                 <router-link to="/profile">
                     <img
                         class="w-8 h-8 object-cover rounded-full"

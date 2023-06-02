@@ -3,7 +3,7 @@
         <div class="mr-5 w-full">
             <video controls="controls" class=" w-full rounded-lg" :src="'/storage'+ currentVideo.path"></video>
             <div>
-                <div>
+                <div class="ml-2">
                     <h1 class="text-2xl">{{ currentVideo.title }}</h1>
                     <span>{{ WordEnd(currentVideo.watches.length) }}</span>
                 </div>
@@ -45,9 +45,9 @@
                     </div>
                 </div>
 
-                <div class="ml-5 sm:ml-28 my-5 space-y-20">
-                    <span class="block my-5">Дата создания: {{ DateNumber(new Date(currentVideo.created_at)) }}</span>
-                    <h1>
+                <div class="ml-5 sm:ml-28 my-5 space-y-5">
+                    <span class="block mt-5">Дата создания: {{ DateNumber(new Date(currentVideo.created_at)) }}</span>
+                    <h1 class="break-all">
                         Описание: {{currentVideo.description}}
                     </h1>
                 </div>
@@ -57,7 +57,7 @@
             </CommentsContainer>
         </div>
         <div  class="w-full sm:max-w-[300px]">
-            <h1 class="text-xl">Другие видео</h1>
+            <h1 class="mt-10 ml-5 sm:ml-0 text-xl">Другие видео</h1>
             <div class="mx-auto">
 
                 <VideoContainer :show="true" :videos="video.filter(v=> (v.category.title === currentVideo.category.title && v.hash_id !==currentVideo.hash_id && v.is_moderated===1 && v.ban_status_id!==4 && v.ban_status_id!==2))" />
@@ -109,14 +109,14 @@ const isDisliked = (data) => {
 }
 
 const handleLike = () => {
-    if (disliked) {
+    if (disliked.value) {
         videoStore.changeVideoGrade(hash_id, 1);
         return ;
     }
     videoStore.setLike(hash_id)
 }
 const handleDislike = () => {
-    if (liked) {
+    if (liked.value) {
         videoStore.changeVideoGrade(hash_id, 2);
         return ;
     }

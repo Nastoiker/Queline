@@ -45,7 +45,7 @@
             <UserVideoContainer @delete="handleDelete" :videos="video"/>
         </div>
 
-        <div v-if="activeTab === 'about'" class="flex space-x-20">
+        <div v-if="activeTab === 'about'" class="ml-2 flex space-x-20">
             <div>
                 <div >
                     <h1 class="block text-xl">Описание:</h1>

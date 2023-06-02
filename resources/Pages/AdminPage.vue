@@ -35,13 +35,13 @@
 
                     </div>
                     <div v-show="activeTab === 'createCategory'">
-                        <div class="tex-tstart">
+                        <div class="my-20">
                             <form   @submit.prevent="createCategory">
 
                                 <img class="max-w-[500px]" :src="photoCategoryPreview" alt="">
                                 <InputFile v-if="!photoCategory"  @file-updated="imgCategoryHandle" class="mb-20"  label="Фотография категории"/>
                                 <BaseInput required class=" mx-auto w-[500px] block" label="Название категории" v-model="createCategoryModel"  />
-                                <ButtonComponent class="text-center mx-auto">Создать категорию</ButtonComponent>
+                                <ButtonComponent class="text-center absolute left-0 right-0 mx-auto my-20">Создать категорию</ButtonComponent>
                             </form>
                         </div>
                     </div>
