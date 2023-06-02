@@ -26,7 +26,7 @@
                 class="isAciveS"
                 :class="{ active: activeTab == 'own_video' }"
             >
-                <h1>Ваши видео</h1>
+                <h1>Видео</h1>
             </button>
             <button
                 @click="setActiveTab('about')"
@@ -37,7 +37,7 @@
             </button>
         </div>
         <div v-if="activeTab === 'own_video' && !loaded">
-            <VideoContainer  :videos="video.filter(v => v.is_moderated===1 && v.ban_status_id===0)"/>
+            <VideoContainer  :videos="video.filter(v => v.is_moderated===1 && v.ban_status_id===1)"/>
         </div>
 
         <div v-if="activeTab === 'about'">
