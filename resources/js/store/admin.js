@@ -71,7 +71,8 @@ export const useAdminStore = defineStore("admin", {
                 )
         },
         async changeStatus(videoId, status) {
-            const video = await axios.post(`/api/videos/${videoId}`, {
+            console.log(videoId, status);
+            const video = await axios.post(`/api/videos/${videoId}/ban`, {
                     _method: 'PUT',
                     ban_status: status,
                 },

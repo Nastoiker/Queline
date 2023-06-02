@@ -1,5 +1,5 @@
 <template>
-    <div v-if="currentVideo.path" class="w-full md:flex">
+    <div v-if="currentVideo.path && currentVideo.ban_status_id!==2 && currentVideo.ban_status_id!==4 && currentVideo.is_moderated===1" class="w-full md:flex">
         <div class="mr-5 w-full">
             <video controls="controls" class=" w-full rounded-lg" :src="'/storage'+ currentVideo.path"></video>
             <div>
@@ -60,7 +60,7 @@
             <h1 class="text-xl">Другие видео</h1>
             <div class="mx-auto">
 
-                <VideoContainer :show="true" :videos="video.filter(v=> (v.category.title === currentVideo.category.title && v.hash_id !==currentVideo.hash_id))" />
+                <VideoContainer :show="true" :videos="video.filter(v=> (v.category.title === currentVideo.category.title && v.hash_id !==currentVideo.hash_id && v.is_moderated===1 && v.ban_status_id!==4 && v.ban_status_id!==2))" />
             </div>
         </div>
 

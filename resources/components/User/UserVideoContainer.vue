@@ -1,6 +1,6 @@
 <template>
     <div class="flex mx-auto  flex-wrap sm:gap-[30px]">
-        <div class="mx-auto sm:mx-0"  v-for="v in videosarr.filter(video => !deletedVideo.includes(video.hash_id))">
+        <div class="mx-auto sm:mx-0"  v-for="v in videosarr.filter(video => (!deletedVideo.includes(video.hash_id) && video.ban_status_id!==4))">
             <VideoData  :video="v"/>
             <div>
                 <button @click="this.handleDelete(v.hash_id)" class=" text-white bg-red px-5 py-2 rounded-lg my-2 hover:scale-110 transition-all">Удалить видео</button>
