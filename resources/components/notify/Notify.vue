@@ -8,12 +8,12 @@
             enter-to-class="popup-enter-to"
             leave-from-class="popup-leave-from"
         >
-            <div v-if="show" class="popup fixed w-[300px] h-[250px] bg-gray z-30" :key="123">
-                <div class="w-full text-center my-5">
+            <div v-if="show" class="popup p-20 rounded-md  fixed w-[300px] h-[250px] bg-gray z-30" :key="123">
+                <div class="w-full text-center ">
                     <slot></slot>
                 </div>
                 <div
-                    class="w-full text-center my-5 cursor-pointer"
+                    class="w-full bg-green rounded-full text-center my-5 cursor-pointer"
                     @click="show = false"
                 >Закрыть</div>
             </div>

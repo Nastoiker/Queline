@@ -4,7 +4,7 @@
         <input
             ref="file"
             :id="label"
-            class="w-full text-white p-2 border-black border-b-2 dark:border-white bg-transparent"
+            class="w-full  p-2 border-black border-b-2 dark:border-white bg-transparent"
             type="text" :="$attrs" :value="modelValue"
             @input="$emit('update:modelValue', $event.target.value)"
         >

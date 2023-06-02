@@ -49,8 +49,29 @@
 
             </div>
         </div>
-        <ButtonComponent class="my-10">Создать видео</ButtonComponent>
+        <div v-if="loading" class=" sm:ml-40 flex items-center text-4xl">Видео загружается <svg
+            class="animate-spin  mx-3 h-16 w-16 text-white"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+        >
+            <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+            ></circle>
+            <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            ></path>
+        </svg> </div>
+        <button :disabled="loading" class="sm:ml-40  my-10 bg-green px-5 py-2 rounded-full">Создать видео</button>
         <Notify :show="showNotify">Видео загружено</Notify>
+        <Notify :show="error">Ошибка! не все данные заполнены</Notify>
         <div class="my-48">
             {{ userStore.errorCreate }}
         </div>
@@ -94,7 +115,8 @@ const removeImg = () => {
     preview.value = null;
     previewFile.value = null;
 }
-
+const loading = ref(false);
+const error = ref(false);
 const setCategoryId = (id) => {
     categoryId.value = id;
 }
@@ -127,6 +149,9 @@ const createVideo = () => {
         tags: [...tagsVideo.value],
         category_id: categoryId.value,
     });
+    loading.value= true;
+    error.value = false;
+    if( !previewFile.value ||  !videoFile.value  || !Title.value || typeof categoryId.value !== "number") { error.value = true; loading.value = false; return;};
     userStore.createVideo({
         preview: previewFile.value,
         video: videoFile.value,
@@ -135,8 +160,13 @@ const createVideo = () => {
         tags: JSON.stringify(tagsVideo.value),
         category_id: categoryId.value,
     }).then(
-        () => showNotify.value = true
+        () => {  videoFile.value=null; categoryId.value=null; previewFile.value=null;Description.value=null ; Title.value=null; tagsVideo.value=null ;showNotify.value = true;  loading.value= false; }
     );
 
 }
 </script>
+<style scoped>
+button:disabled {
+    @apply bg-gray;
+}
+</style>

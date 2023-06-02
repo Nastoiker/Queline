@@ -45,7 +45,7 @@ export const useUserStore = defineStore("user", {
                         }
                     }
                 );
-                this.errorCreate =null;
+                this.errorCreate = null;
             } catch (e) {
                 this.errorCreate = e.message;
             }
