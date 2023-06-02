@@ -4,7 +4,7 @@
             <VideoData  :video="v"/>
             <div>
                 <button @click="handleDelete(v.hash_id)" class=" text-white bg-red px-5 py-2 rounded-lg my-2 hover:scale-110 transition-all">Удалить видео</button>
-                <span class="mx-2">{{v.is_moderated===1 ?  'Промодерировано ✅ ' : 'На проверке &#128164;'}}</span>
+                <span class="mx-2">{{v.is_moderated===1 ?  'Проверено ✅ ' : 'На проверке &#128164;'}}</span>
             </div>
         </div>
         <h1 v-if="videosarr.length===0" class=" mx-auto text-4xl">
